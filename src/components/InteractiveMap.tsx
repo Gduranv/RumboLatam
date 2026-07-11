@@ -179,7 +179,7 @@ export const InteractiveMap = () => {
       {selectedCountry && (
         <TouristModal
           countryName={selectedCountry.name}
-          places={selectedCountry.places}
+          places={selectedCountry.places.map((p) => p.path)}
           onClose={() => setSelectedCountry(null)}
         />
       )}
