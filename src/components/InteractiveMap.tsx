@@ -4,6 +4,7 @@ import { useState } from "react";
 import { CountryItem } from "./CountryItem";
 import { TouristModal } from "./TouristModal";
 import { Compass } from "./Compass";
+import { ProjectModal } from "./ProjectModal";
 
 // Tipado para los países
 interface CountryData {
@@ -127,6 +128,7 @@ const countriesData: CountryData[] = [
 export const InteractiveMap = () => {
   const [selectedCountry, setSelectedCountry] = useState<CountryData | null>(null);
   const [isGiaModalOpen, setIsGiaModalOpen] = useState(false);
+  const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
 
   return (
     <div className="relative w-full max-w-3xl mx-auto aspect-[1764/1843]">
@@ -150,7 +152,10 @@ export const InteractiveMap = () => {
       </div>
 
       {/* Título flotante / Logo */}
-      <div className="fixed bottom-12 left-12 z-30 pointer-events-none drop-shadow-xl">
+      <div 
+        className="fixed bottom-12 left-12 z-30 drop-shadow-xl cursor-pointer"
+        onClick={() => setIsProjectModalOpen(true)}
+      >
         <img
           src="/OtrosRecursos/LOGO RUMBO.png"
           alt="Rumbo Latam Logo"
@@ -213,6 +218,11 @@ export const InteractiveMap = () => {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Modal del Proyecto */}
+      {isProjectModalOpen && (
+        <ProjectModal onClose={() => setIsProjectModalOpen(false)} />
       )}
     </div>
   );
