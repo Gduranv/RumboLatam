@@ -45,7 +45,7 @@ export const CountryItem = ({
             key={index}
             src={place.path}
             alt={`Lugar turístico ${index + 1} de ${name}`}
-            className={`absolute drop-shadow-md transition-transform duration-300 z-10 max-w-none ${id === 'repdominicana' ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none'}`}
+            className={`absolute drop-shadow-md transition-transform duration-300 z-10 max-w-none scale-[0.6] md:scale-100 origin-center ${id === 'repdominicana' ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none'}`}
             style={{
               top: place.position.top,
               left: place.position.left,
@@ -55,15 +55,13 @@ export const CountryItem = ({
           />
         ))}
 
-        {/* Bandera Flotante con tamaño exacto 34x36 */}
+        {/* Bandera Flotante */}
         {flagPath && flagPosition && (
           <div 
-            className="absolute rounded-full overflow-hidden shadow-lg border-2 border-white bg-white transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-2 z-20 max-w-none"
+            className="absolute rounded-full overflow-hidden shadow-lg border-2 border-white bg-white transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-2 z-20 max-w-none w-[30px] h-[32px] md:w-[34px] md:h-[36px]"
             style={{
               top: flagPosition.top,
               left: flagPosition.left,
-              width: '34px',
-              height: '36px',
             }}
           >
             <img

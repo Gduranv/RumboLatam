@@ -11,31 +11,37 @@ export default function MobileHome() {
 
   return (
     <div className="flex md:hidden flex-col min-h-[100dvh] overflow-hidden relative bg-[#A3DBEF]">
-      
+
       {/* --- FONDOS Y EFECTOS --- */}
       {/* Blur 1: Arriba Izquierda */}
       <div className="absolute w-[167px] h-[167px] left-[-18px] top-[20px] bg-[#00BCFF] rounded-full filter blur-[111px] opacity-70"></div>
-      
+
       {/* Blur 2: Centro Derecha */}
       <div className="absolute w-[176px] h-[176px] left-[277px] top-[272px] bg-[#00BCFF] rounded-full filter blur-[111px] opacity-70"></div>
-      
+
       {/* Blur 3: Abajo Izquierda */}
       <div className="absolute w-[327px] h-[329px] left-[-82px] top-[600px] bg-[#00BCFF] rounded-full filter blur-[150px] opacity-70"></div>
 
       {/* Grid de fondo sutil (Opcional, simulando "tablero web este si.png") */}
-      <div className="absolute inset-0 z-0 opacity-10 pointer-events-none" 
-           style={{ backgroundImage: 'linear-gradient(#59B9D3 1px, transparent 1px), linear-gradient(90deg, #59B9D3 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
+      <div className="absolute inset-0 z-0 opacity-10 pointer-events-none"
+        style={{ backgroundImage: 'linear-gradient(#59B9D3 1px, transparent 1px), linear-gradient(90deg, #59B9D3 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
       </div>
 
       {/* Olas y Arena del Fondo Inferior */}
-      {/* Ola Celeste */}
-      <div className="absolute w-[150%] h-[250px] left-[-20%] bottom-[-80px] bg-[#59C3E0] transform rotate-[-8deg] z-0 rounded-t-[50%]"></div>
-      {/* Arena */}
-      <div className="absolute w-[150%] h-[200px] left-[-20%] bottom-[-100px] bg-[#FFF7E2] transform rotate-[-6deg] z-0 rounded-t-[50%]"></div>
+      <div className="absolute bottom-[-40px] left-0 w-full z-0 pointer-events-none flex flex-col justify-end">
+        {/* Ola Celeste */}
+        <svg className="w-full h-auto absolute bottom-2 left-0" viewBox="0 0 430 173" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M139.857 54.6023C309.792 85.8503 440.786 33.6085 484.213 5.92687e-05L499.956 132.357L-175.016 212.639L-196.263 34.0054C-71.7001 -0.23912 51.3056 32.3164 139.857 54.6023Z" fill="#59C3E0" />
+        </svg>
+        {/* Arena */}
+        <svg className="w-full h-auto absolute bottom-0 left-0" viewBox="0 0 430 105" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M150.209 50.3834C-20.3835 70.3477 -155.303 32.2732 -198.093 -1.06974e-05L-211.508 103.057L462.122 207.426L486.834 47.9253C362.895 11.2063 239.22 34.5862 150.209 50.3834Z" fill="#FFF7E2" />
+        </svg>
+      </div>
 
       {/* --- ELEMENTOS FLOTANTES --- */}
       {/* Logo Arriba Izquierda */}
-      <div className="absolute top-8 left-6 z-20 pointer-events-none w-32">
+      <div className="absolute top-4 left-6 z-20 pointer-events-none w-28 sm:w-32">
         <img
           src="/OtrosRecursos/LOGO RUMBO.png"
           alt="Rumbo Latam Logo"
@@ -44,37 +50,39 @@ export default function MobileHome() {
       </div>
 
       {/* Brújula Arriba Derecha */}
-      <div className="absolute top-8 right-6 z-20 pointer-events-auto scale-75 origin-top-right drop-shadow-md">
+      <div className="absolute top-4 right-6 z-20 pointer-events-auto scale-75 origin-top-right drop-shadow-md">
         <Compass />
       </div>
 
-      {/* --- CONTENIDO PRINCIPAL --- */}
-      {/* Contenedor del Mapa (Ajustado para móvil) */}
-      <main className="flex-1 w-full flex items-center justify-center relative z-10 pt-24 pb-48 px-2">
-        <div className="w-full max-w-[500px]">
-          <InteractiveMap />
+      {/* Contenedor del Mapa (Ajustado a 386x436 px exactos) */}
+      <main className="flex-1 w-full flex items-center justify-center relative z-10 pt-18 pb-32 overflow-hidden">
+        {/* Mapa fluido y ampliado para aprovechar el ancho de la pantalla móvil y recortar el océano */}
+        <div className="w-full relative flex items-center justify-center mt-4">
+          <div className="w-[140%] max-w-[600px] flex items-center justify-center">
+            <InteractiveMap className="w-full h-auto aspect-[1764/1843]" />
+          </div>
         </div>
       </main>
 
       {/* --- ELEMENTOS INFERIORES --- */}
       {/* Botón Accesibilidad / Nosotras (Abajo Izquierda) */}
-      <button 
+      <button
         onClick={() => setIsNosotrasOpen(true)}
         className="absolute bottom-10 left-6 z-20 w-16 h-16 rounded-full shadow-xl flex items-center justify-center hover:scale-105 transition-transform"
       >
-        <img 
-          src="/Paises/icon nosotras.png" 
-          alt="Acerca de Nosotras" 
+        <img
+          src="/Paises/NosotrasFondoNaranja.png"
+          alt="Acerca de Nosotras"
           className="w-full h-full object-contain"
         />
       </button>
 
       {/* Gia (Abajo Derecha) */}
-      <div className="absolute bottom-[-10px] right-[-30px] z-20 pointer-events-none">
+      <div className="absolute bottom-[-370px] right-[-80px] z-20 pointer-events-none">
         <img
-          src="/OtrosRecursos/GIA_ESTATICA.svg"
-          alt="Gia"
-          className="w-48 sm:w-60 h-auto object-contain drop-shadow-2xl"
+          src="/GiaGifHome.gif"
+          alt="Gia Animada"
+          className="w-[320px] h-auto object-contain drop-shadow-2xl"
         />
       </div>
 

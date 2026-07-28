@@ -7,13 +7,17 @@ import { TouristModal } from "@/components/modals/TouristModal";
 import { Compass } from "@/components/ui/Compass";
 import { countriesData, CountryData } from "@/data/countries";
 
-export const InteractiveMap = () => {
+interface InteractiveMapProps {
+  className?: string;
+}
+
+export const InteractiveMap = ({ className = "" }: InteractiveMapProps) => {
   const router = useRouter();
   const [selectedCountry, setSelectedCountry] = useState<CountryData | null>(null);
   const [isGiaModalOpen, setIsGiaModalOpen] = useState(false);
 
   return (
-    <div className="relative w-full max-w-3xl mx-auto aspect-[1764/1843]">
+    <div className={`relative w-full max-w-3xl mx-auto ${className || 'aspect-[1764/1843]'}`}>
 
       {/* Mapa Base Completo */}
       <img
