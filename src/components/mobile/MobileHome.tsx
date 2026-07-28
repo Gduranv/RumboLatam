@@ -57,8 +57,8 @@ export default function MobileHome() {
 
       {/* Contenedor del Mapa */}
       <main className="flex-1 w-full flex items-center justify-center relative z-10 pt-28 pb-32 overflow-hidden">
-        {/* Recortamos solo una pizca sutil de los lados con scale-[1.02] */}
-        <div className="w-[386px] h-[436px] relative flex items-center justify-center scale-[1.02]">
+        {/* Sin ningún zoom artificial para garantizar que los países de los bordes entren completos */}
+        <div className="w-[386px] h-[436px] relative flex items-center justify-center">
           <div className="absolute w-[417px] h-[436px] flex items-center justify-center">
             <InteractiveMap />
           </div>
@@ -79,7 +79,7 @@ export default function MobileHome() {
       </button>
 
       {/* Gia (Abajo Derecha) */}
-      <div className="absolute bottom-[-350px] right-[-195px] z-20 pointer-events-none w-[570px] h-[570px] max-w-none">
+      <div className="absolute bottom-[-365px] right-[-215px] z-20 pointer-events-none w-[570px] h-[570px] max-w-none">
         <img
           src="/GiaLight.gif"
           alt="Gia Animada"
