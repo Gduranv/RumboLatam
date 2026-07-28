@@ -42,7 +42,7 @@ export default function MobileHome() {
 
       {/* --- ELEMENTOS FLOTANTES --- */}
       {/* Logo Arriba Izquierda */}
-      <div className="absolute top-4 left-6 z-20 pointer-events-none w-28 sm:w-32">
+      <div className="absolute top-2 left-6 z-20 pointer-events-none w-28 sm:w-32">
         <img
           src="/OtrosRecursos/LOGO RUMBO.png"
           alt="Rumbo Latam Logo"
@@ -51,14 +51,14 @@ export default function MobileHome() {
       </div>
 
       {/* Brújula Arriba Derecha */}
-      <div className="absolute top-4 right-6 z-20 pointer-events-auto scale-75 origin-top-right drop-shadow-md">
+      <div className="absolute top-2 right-6 z-20 pointer-events-auto scale-75 origin-top-right drop-shadow-md">
         <Compass />
       </div>
 
-      {/* Contenedor del Mapa (Ajustado a 386x436 px exactos) */}
-      <main className="flex-1 w-full flex items-center justify-center relative z-10 pt-18 pb-32 overflow-hidden">
-        {/* El marco de 386x436 (ajustado a 417 para rellenar) */}
-        <div className="w-[386px] h-[436px] relative flex items-center justify-center">
+      {/* Contenedor del Mapa */}
+      <main className="flex-1 w-full flex items-center justify-center relative z-10 pt-28 pb-32 overflow-hidden">
+        {/* Recortamos solo una pizca sutil de los lados con scale-[1.02] */}
+        <div className="w-[386px] h-[436px] relative flex items-center justify-center scale-[1.02]">
           <div className="absolute w-[417px] h-[436px] flex items-center justify-center">
             <InteractiveMap />
           </div>
@@ -79,7 +79,7 @@ export default function MobileHome() {
       </button>
 
       {/* Gia (Abajo Derecha) */}
-      <div className="absolute bottom-[-350px] right-[-177px] z-20 pointer-events-none w-[570px] h-[570px] max-w-none">
+      <div className="absolute bottom-[-350px] right-[-195px] z-20 pointer-events-none w-[570px] h-[570px] max-w-none">
         <img
           src="/GiaLight.gif"
           alt="Gia Animada"
