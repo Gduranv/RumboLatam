@@ -45,7 +45,15 @@ export const CountryItem = ({
             key={index}
             src={place.path}
             alt={`Lugar turístico ${index + 1} de ${name}`}
-            className={`absolute drop-shadow-md transition-transform duration-300 z-10 max-w-none scale-[0.6] md:scale-100 origin-center ${id === 'repdominicana' ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none'}`}
+            className={`absolute drop-shadow-md transition-transform duration-300 z-10 max-w-none origin-center ${
+              id === 'repdominicana' 
+                ? 'scale-[0.45] md:scale-100 pointer-events-auto cursor-pointer' 
+                : id === 'mexico'
+                ? 'scale-[0.5] md:scale-100 pointer-events-none'
+                : id === 'brasil'
+                ? 'scale-[0.85] md:scale-100 pointer-events-none'
+                : 'scale-[0.75] md:scale-100 pointer-events-none'
+            }`}
             style={{
               top: place.position.top,
               left: place.position.left,

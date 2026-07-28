@@ -17,7 +17,7 @@ export interface CountryData {
   subtitle: string;
   heroImage: string;
   giaImage: string;
-  
+
   // Datos para el mapa interactivo
   svgPath: string;
   flagPath?: string;
@@ -76,7 +76,7 @@ export const countriesData: Record<string, CountryData> = {
     places: [
       { path: "/Paises/Colombia/LUGAR COLOMBIA1.png", position: { top: "30%", left: "50%", width: "47px", height: "28px" } },
       { path: "/Paises/Colombia/LUGAR COLOMBIA2.png", position: { top: "35%", left: "30%", width: "48px", height: "68px" } },
-      { path: "/Paises/Colombia/LUGAR COLOMBIA3.png", position: { top: "-8%", left: "10%", width: "50px", height: "58px" } },
+      { path: "/Paises/Colombia/LUGAR COLOMBIA3.png", position: { top: "-10%", left: "-5%", width: "50px", height: "58px" } },
     ],
     position: { top: "22.83%", left: "45.03%", width: "14.34%" },
     destinations: []
@@ -91,8 +91,8 @@ export const countriesData: Record<string, CountryData> = {
     flagPath: "/Paises/Venezuela/Bandera Venezuela.png",
     flagPosition: { top: "-5%", left: "65%" },
     places: [
-      { path: "/Paises/Venezuela/LUGAR VENEZUELA1.png", position: { top: "-4%", left: "90%", width: "55%" } },
-      { path: "/Paises/Venezuela/LUGAR VENEZUELA2.png", position: { top: "-30%", left: "18%", width: "40%" } },
+      { path: "/Paises/Venezuela/LUGAR VENEZUELA1.png", position: { top: "-4%", left: "95%", width: "55%" } },
+      { path: "/Paises/Venezuela/LUGAR VENEZUELA2.png", position: { top: "-20%", left: "18%", width: "40%" } },
       { path: "/Paises/Venezuela/LUGAR VENEZUELA3.png", position: { top: "30%", left: "45%", width: "40%" } },
     ],
     position: { top: "23.14%", left: "51.67%", width: "16.01%" },

@@ -7,12 +7,13 @@ interface ClientPreloaderProps {
   children: React.ReactNode;
 }
 
-// Lista de assets pesados que queremos garantizar que estén cargados
+// Lista de assets pesados (imágenes) que queremos garantizar que estén cargados
 const ASSETS_TO_PRELOAD = [
-  "/GiaGifHome.gif",
+  "/GiaLight.gif",
   "/TableroMapaWeb.svg",
   "/OtrosRecursos/MAPA SVG.svg",
-  "/OtrosRecursos/LOGO RUMBO.png"
+  "/OtrosRecursos/LOGO RUMBO.png",
+  "/OtrosRecursos/Nosotras.png"
 ];
 
 export const ClientPreloader: React.FC<ClientPreloaderProps> = ({ children }) => {
@@ -22,11 +23,12 @@ export const ClientPreloader: React.FC<ClientPreloaderProps> = ({ children }) =>
   useEffect(() => {
     let loadedCount = 0;
     let hasError = false;
+    const totalAssets = ASSETS_TO_PRELOAD.length;
 
-    // Timeout de seguridad de 5 segundos por si alguna imagen falla o el internet es muy lento
+    // Timeout de seguridad de 7 segundos por si alguna imagen falla o el internet es muy lento
     const safetyTimeout = setTimeout(() => {
       finishLoading();
-    }, 5000);
+    }, 7000);
 
     const finishLoading = () => {
       if (!isLoading) return;
@@ -37,20 +39,24 @@ export const ClientPreloader: React.FC<ClientPreloaderProps> = ({ children }) =>
       }, 500); // Duración del fade out
     };
 
-    const imageLoaded = () => {
+    const assetLoaded = () => {
       loadedCount++;
-      if (loadedCount >= ASSETS_TO_PRELOAD.length) {
-        finishLoading();
+      if (loadedCount >= totalAssets) {
+        // Añadimos un pequeño delay para asegurar renderizado final
+        setTimeout(() => {
+          finishLoading();
+        }, 400);
       }
     };
 
+    // Precargar Imágenes
     ASSETS_TO_PRELOAD.forEach((src) => {
       const img = new Image();
       img.src = src;
-      img.onload = imageLoaded;
+      img.onload = assetLoaded;
       img.onerror = () => {
         hasError = true;
-        imageLoaded(); // Si falla igual contamos para no quedarnos pegados
+        assetLoaded();
       };
     });
 

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { InteractiveMap } from "@/components/map/InteractiveMap";
 import { Compass } from "@/components/ui/Compass";
 import { NosotrasModal } from "@/components/modals/NosotrasModal";
@@ -56,10 +57,10 @@ export default function MobileHome() {
 
       {/* Contenedor del Mapa (Ajustado a 386x436 px exactos) */}
       <main className="flex-1 w-full flex items-center justify-center relative z-10 pt-18 pb-32 overflow-hidden">
-        {/* Mapa fluido y ampliado para aprovechar el ancho de la pantalla móvil y recortar el océano */}
-        <div className="w-full relative flex items-center justify-center mt-4">
-          <div className="w-[140%] max-w-[600px] flex items-center justify-center">
-            <InteractiveMap className="w-full h-auto aspect-[1764/1843]" />
+        {/* El marco de 386x436 (ajustado a 417 para rellenar) */}
+        <div className="w-[386px] h-[436px] relative flex items-center justify-center">
+          <div className="absolute w-[417px] h-[436px] flex items-center justify-center">
+            <InteractiveMap />
           </div>
         </div>
       </main>
@@ -71,18 +72,18 @@ export default function MobileHome() {
         className="absolute bottom-10 left-6 z-20 w-16 h-16 rounded-full shadow-xl flex items-center justify-center hover:scale-105 transition-transform"
       >
         <img
-          src="/Paises/NosotrasFondoNaranja.png"
+          src="/NosotrasHD.png"
           alt="Acerca de Nosotras"
           className="w-full h-full object-contain"
         />
       </button>
 
       {/* Gia (Abajo Derecha) */}
-      <div className="absolute bottom-[-370px] right-[-80px] z-20 pointer-events-none">
+      <div className="absolute bottom-[-350px] right-[-177px] z-20 pointer-events-none w-[570px] h-[570px] max-w-none">
         <img
-          src="/GiaGifHome.gif"
+          src="/GiaLight.gif"
           alt="Gia Animada"
-          className="w-[320px] h-auto object-contain drop-shadow-2xl"
+          className="w-full h-full object-contain drop-shadow-2xl"
         />
       </div>
 
