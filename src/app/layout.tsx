@@ -1,15 +1,32 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Albert_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const albertSans = Albert_Sans({
+  variable: "--font-albert-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const nohemi = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Nohemi-Regular-BF6438cc4d0e493.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Nohemi-SemiBold-BF6438cc588a48a.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Nohemi-Bold-BF6438cc587b5b5.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-nohemi",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +42,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${albertSans.variable} ${nohemi.variable} font-sans h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

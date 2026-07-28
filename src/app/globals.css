@@ -8,8 +8,14 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-albert-sans);
+  --font-nohemi: var(--font-nohemi);
+  --color-verde: #13522B;
+  --color-naranja: #FF7223;
+  --color-azul-claro: #A3DBEF;
+  --color-azul-oscuro: #7DCBE7;
+  --color-beige: #FFF3E0; /* Approximation for the card background */
+  --color-bg-beige: #FDF9EC; /* Approximation for the main background below green */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +28,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), sans-serif;
 }
