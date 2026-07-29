@@ -18,72 +18,90 @@ export default function MobileCountry({ countryId }: MobileCountryProps) {
   }; // Podríamos usarlo dinámicamente luego
 
   return (
-    <main className="w-full min-h-screen bg-[#FDF9EC] flex flex-col overflow-x-hidden relative pb-12 block md:hidden">
-      
-      {/* HEADER HERO (Imagen Principal) */}
-      <section className="relative w-full h-[60vh] min-h-[400px] flex flex-col justify-between overflow-hidden">
-        {/* Fondo de País y Gradiente */}
-        <div className="absolute top-0 left-0 w-full h-[600px] z-10">
-          {/* Foto de País */}
-          <div className="absolute inset-0 -z-10">
-            <Image
-              src={countryInfo.heroImage}
-              alt={`Foto de ${countryInfo.name}`}
-              fill
-              priority
-              className="object-cover"
-            />
-          </div>
+    <main className="w-full min-h-screen bg-[#FDF9EC] flex flex-col overflow-x-hidden relative block md:hidden">
 
-          {/* Gradiente sutil para oscurecer la imagen y asegurar lectura del texto */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-transparent -z-10" />
+      {/* HERO SECTION (Imagen + Header + Gia) */}
+      <section className="relative w-full min-h-[550px] flex flex-col overflow-hidden">
 
-          {/* Textos del Hero */}
-          <div className="absolute left-[20px] top-[140px] text-white z-10 font-nohemi">
-            <h1 className="text-[32px] font-bold leading-tight tracking-tight">{countryInfo.name}:</h1>
-            <p className="text-[16px] font-bold mt-1 pr-4">{countryInfo.subtitle}</p>
+        {/* Fondo de País (se extiende por todo el hero) */}
+        <div className="absolute inset-0 z-0 h-full">
+          <img
+            src={countryInfo.heroImage}
+            alt={`Foto de ${countryInfo.name}`}
+            className="w-full h-full object-cover"
+          />
+          {/* Gradiente sutil para oscurecer la parte superior y asegurar lectura del texto */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-transparent" />
+          {/* Gradiente inferior para fundirse con la sección verde de abajo (estirado 2px para evitar líneas de renderizado) */}
+          <div className="absolute inset-x-0 -bottom-[2px] h-48 bg-gradient-to-t from-[#13522B] via-[#13522B]/80 to-transparent" />
+        </div>
+
+        {/* HEADER NARANJA CON CORTE EN V */}
+        <div className="relative z-20 w-full">
+          {/* Fondo Naranja con corte en V */}
+          <div
+            className="absolute top-0 left-0 w-full h-full bg-[#FF7223] drop-shadow-md z-0"
+            style={{ clipPath: "polygon(0 0, 100% 0, 100% 65%, 50% 100%, 0 65%)" }}
+          ></div>
+
+          {/* Contenido del Header */}
+          <div className="relative z-10 w-full flex justify-center px-4 pt-6 pb-14">
+
+            {/* Botón Atrás (Posicionado en el borde izquierdo) */}
+            <Link href="/" className="absolute left-4 top-[96px] z-20">
+              <button className="flex items-center justify-center hover:scale-105 transition-transform drop-shadow-md">
+                <img src="/Paises/FlechaAtras.png" alt="Atrás" className="w-10 h-10 object-contain" />
+              </button>
+            </Link>
+
+            {/* Logo Rumbo Latam Blanco */}
+            <img src="/Paises/logoBlanco.png" alt="Rumbo Latam" className="relative z-10 w-[120px] top-[20px] h-auto object-contain mt-1" />
+
+            {/* Botón Música (Posicionado en el borde derecho) */}
+            <a
+              href="https://open.spotify.com/playlist/5bywhsxxSqQbOoneg9vdPI?si=UEAJ74YLRTihwv_shlzdEw&utm_source=whatsapp&pi=BKfbh5UxS_yP8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute right-4 top-[96px] z-20 flex items-center justify-center hover:scale-105 transition-transform drop-shadow-md"
+            >
+              <img src="/ICONO-MUSIC.png" alt="Música" className="w-10 h-10 object-contain" />
+            </a>
           </div>
         </div>
 
-        {/* Top Navbar (Logo y Botones) */}
-        <div className="relative z-20 w-full flex items-center justify-between px-4 pt-4">
-          <Link href="/">
-            <button className="w-10 h-10 flex items-center justify-center bg-white/20 backdrop-blur-md rounded-full shadow-lg">
-              <svg width="24" height="24" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
-                <circle cx="32" cy="32" r="32" fill="#FFF7E2" />
-                <path d="M39.383 32.287L48 48.5721L16 32.2851L48 16L39.383 32.287Z" fill="#FF7223" />
-              </svg>
-            </button>
-          </Link>
-          
-          <img src="/Paises/LogoReducido.png" alt="Rumbo Latam" className="w-[120px] h-auto object-contain" />
-
-          {/* Botón About */}
-          <button className="w-10 h-10 flex items-center justify-center bg-white/20 backdrop-blur-md rounded-full shadow-lg">
-            <svg width="24" height="24" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
-              <circle cx="32" cy="32" r="32" fill="#FFF7E2" />
-              <path d="M42.5681 25.2113L38.6574 29.4615L36.8007 31.4774L36.7817 49.5541C36.7817 49.6201 36.7817 49.6819 36.7741 49.7438H33.1709V41.029H30.3764V49.7438H26.6896C26.6706 49.616 26.663 49.4799 26.663 49.348V31.4733L24.7191 29.3997L20.8311 25.2526C20.8311 25.2526 20.8538 25.2237 20.8652 25.2072C22.3954 23.2944 22.403 23.2903 23.3788 22.1401L28.0223 27.1777H31.7167H35.411L40.0584 22.1401C41.0304 23.2903 41.038 23.2944 42.5681 25.2072V25.2113Z" fill="#FF7223" />
-              <path d="M34.4278 15H28.9716L26.2417 20.1324L28.9716 25.2648H34.4278L37.1577 20.1324L34.4278 15Z" fill="#FF7223" />
-            </svg>
-          </button>
+        {/* Textos del Hero */}
+        <div className="relative z-10 px-6 pt-18 text-white font-nohemi mt-2">
+          <h1 className="text-[36px] font-bold leading-tight tracking-tight drop-shadow-md">{countryInfo.name}:</h1>
+          <p className="text-[20px] font-bold mt-1 pr-4 drop-shadow-md">{countryInfo.subtitle}</p>
         </div>
 
-        {/* Botón flotante de Spotify */}
-        <a
-          href="https://open.spotify.com/playlist/5bywhsxxSqQbOoneg9vdPI?si=UEAJ74YLRTihwv_shlzdEw&utm_source=whatsapp&pi=BKfbh5UxS_yP8"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute bottom-6 right-6 z-30 hover:scale-105 transition-transform drop-shadow-2xl"
-        >
-          <svg width="64" height="64" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M127.934 65.5855C127.402 69.1115 125.438 72.483 122.838 75.7435C119.904 79.4115 116.185 82.9375 112.837 86.4078C108.458 90.786 104.072 95.1765 99.6987 99.5546L99.5813 99.6719C93.4723 105.742 87.0359 112.331 80.7662 118.389C75.2749 123.415 68.7643 129.67 60.8331 127.589C54.8599 126.033 48.6088 119.778 42.4751 113.708C38.5156 109.75 34.55 105.773 30.6029 101.839C26.9215 98.159 23.3141 94.5651 19.6141 90.8662C15.0493 86.1732 9.59501 81.2084 5.42555 76.0337C4.48047 74.8481 3.59099 73.6501 2.79415 72.4336C-1.08499 66.5303 -0.825558 61.0098 2.95476 55.3781C6.593 49.8946 11.7817 45.0843 16.4453 40.3356C27.9221 29.0723 38.6515 17.6299 50.4125 6.75557C54.2793 3.38398 58.9553 0.0247003 63.8598 0C73.5206 0.111151 82.6131 11.9426 89.4449 18.2288C97.6294 26.4046 105.468 34.2346 113.702 42.4598C119.576 48.8078 128.916 56.2365 127.927 65.5855H127.934Z" fill="#70B694" />
-            <path d="M83.9535 39.1438L52.278 47.6654V72.1866L47.917 69.6549L39.6707 74.4529V84.0552L47.917 88.8531L57.8434 83.8637L57.8372 57.0392L78.3943 50.9691L78.3819 65.709L74.0271 63.1772L65.7747 67.9753V77.5775L74.0271 82.3755L83.9535 77.3861V39.1438Z" fill="#FFF7E2" />
-          </svg>
-        </a>
+        {/* Gia y su Mensaje */}
+        <div className="absolute top-140 left-68 -rotate-30 w-[300px] h-[340px] z-20 pointer-events-none">
+          {/* Mensaje Nube (Usando el asset de la nube con el texto encima) */}
+          <div className="absolute bottom-110 rotate-20 right-28 w-[120px] origin-bottom-right drop-shadow-lg">
+            <div className="relative">
+              <img src="/Paises/NubeParaMensaje.png" alt="Nube" className="w-full h-auto" />
+              <p className="absolute inset-0 flex items-center justify-center text-center text-[#13522B] font-bold text-[12px] leading-tight px-4 pt-2 pb-6 rotate-[-10deg] font-nohemi">
+                {countryInfo.giaMessage}
+              </p>
+            </div>
+          </div>
+
+          {/* Gia Imagen (GiaSaluda.png) */}
+          <img
+            src="/Paises/GiaSaluda.png"
+            alt="Gia Saluda"
+            className="absolute bottom-[-10px] right-[-10px] w-[180px] h-auto object-contain drop-shadow-xl"
+          />
+        </div>
+
       </section>
 
       {/* SECCIÓN: ANTES DE VIAJAR */}
-      <section className="w-full bg-[#13522B] px-4 py-12 relative z-10 -mt-6 rounded-t-3xl shadow-2xl">
+      <section
+        className="w-full bg-[#13522B] px-4 pt-12 pb-24 relative z-10 -mt-[1px]"
+        style={{ clipPath: "polygon(0 0, 100% 0, 100% calc(100% - 40px), 50% 100%, 0 calc(100% - 40px))" }}
+      >
         <h2 className="text-white text-3xl font-bold tracking-tight font-nohemi text-center mb-8">
           Antes de viajar:
         </h2>
@@ -136,7 +154,7 @@ export default function MobileCountry({ countryId }: MobileCountryProps) {
       </section>
 
       {/* SECCIÓN: 3 DESTINOS */}
-      <section className="w-full pt-16 pb-12 flex flex-col items-center overflow-hidden">
+      <section className="w-full pt-10 pb-10 flex flex-col items-center overflow-hidden bg-[#FFF7E2] -mt-[10px]">
         <h2 className="text-[#13522B] text-3xl font-bold tracking-tight mb-8 font-nohemi text-center px-4">
           3 destinos que no te puedes perder
         </h2>
@@ -144,13 +162,23 @@ export default function MobileCountry({ countryId }: MobileCountryProps) {
       </section>
 
       {/* FOOTER */}
-      <footer className="w-full mt-[-200px] sm:mt-[-150px] relative z-10 px-6 pb-8 flex flex-col items-center gap-6">
-        <Image src="/Paises/LogoURBE.png" alt="Logo URBE" width={100} height={50} className="object-contain drop-shadow-md" />
-        
-        <div className="text-[#1D799B] text-[14px] leading-relaxed tracking-wide font-sans text-center bg-white/50 p-4 rounded-xl backdrop-blur-sm shadow-sm w-full max-w-sm">
-          <p className="font-bold">© 2026 Rumbo Latam.</p>
-          <p className="font-medium">Trabajo Especial de Grado - URBE.</p>
-          <p className="font-medium">Todos los derechos reservados.</p>
+      <footer className="w-full flex-grow relative z-10 bg-[#B5E3F8] pt-8 pb-6 px-6 mt-auto">
+        {/* Ola SVG Arriba */}
+        <div className="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180 -translate-y-[99%]">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[30px]">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#B5E3F8"></path>
+          </svg>
+        </div>
+
+        <div className="flex items-center justify-between">
+          <div className="text-[#1D799B] text-[9px] leading-snug tracking-wide font-sans text-left font-medium">
+            <p className="font-bold">© 2024 Rumbo Latam.</p>
+            <p>Trabajo Especial de Grado - URBE.</p>
+            <p>Todos los derechos reservados.</p>
+          </div>
+          <div className="w-[80px]">
+            <img src="/Paises/LogoURBE.png" alt="Logo URBE" className="w-full h-auto object-contain" />
+          </div>
         </div>
       </footer>
     </main>

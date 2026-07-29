@@ -53,7 +53,7 @@ export const destinosData: Record<string, DestinoData> = {
       ]
     },
     animales: {
-      description: "Podrás observar especies únicas como el oso hormiguero gigante, el jaguar, el puma, nutrias gigantes, y aves exóticas como guacamayas y tucanes en su hábitat natural.",
+      description: "Especies que podras observar en tu ruta por el sitio y alrededores",
       images: [
         "/Paises/Venezuela/Animales/AnimalesCanaima1.webp",
         "/Paises/Venezuela/Animales/AnimalesCanaima2.webp",
@@ -63,7 +63,7 @@ export const destinosData: Record<string, DestinoData> = {
       ]
     },
     actividades: {
-      description: "Resaltan hacer snorkel en los arrecifes de coral, explorar los famosos barcos hundidos (como el carguero alemán Sesostris), disfrutar de tranquilas aguas cristalinas y degustar pescado frito fresco con tostones en los quioscos locales.",
+      description: "Resaltan navegar en curiara por ríos",
       images: [
         "/Paises/Venezuela/Actividades/ActCanaima1.webp",
         "/Paises/Venezuela/Actividades/ActCanaima2.webp",

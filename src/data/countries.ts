@@ -17,6 +17,7 @@ export interface CountryData {
   subtitle: string;
   heroImage: string;
   giaImage: string;
+  giaMessage: string;
 
   // Datos para el mapa interactivo
   svgPath: string;
@@ -36,6 +37,7 @@ export const countriesData: Record<string, CountryData> = {
     subtitle: "Un viaje a través de la historia y el sabor.",
     heroImage: "/Paises/Venezuela/FotoVenezuela.png", // TODO: Replace with real image
     giaImage: "/Paises/Venezuela/giasaludovnz.png", // TODO: Replace with real image
+    giaMessage: "¡Órale! Prepárate para el viaje.",
     svgPath: "/Paises/Mexico/mexico.svg",
     flagPath: "/Paises/Mexico/BANDERA MEXICO.png",
     flagPosition: { top: "45%", left: "18%" },
@@ -53,12 +55,13 @@ export const countriesData: Record<string, CountryData> = {
     subtitle: "Explora la magia de este destino.",
     heroImage: "/Paises/Venezuela/FotoVenezuela.png",
     giaImage: "/Paises/Venezuela/giasaludovnz.png",
+    giaMessage: "¡Klk! Prepárate para el viaje.",
     svgPath: "/Paises/RepublicaDominicana/repdominicana.svg",
     flagPath: "/Paises/RepublicaDominicana/BANDERA REP DOM.png",
     flagPosition: { top: "-250%", left: "120%" },
     places: [
       { path: "/Paises/RepublicaDominicana/LUGAR REP DOM1.png", position: { top: "-150%", left: "0%", width: "50px", height: "60px" } },
-      { path: "/Paises/RepublicaDominicana/LUGAR REP DOM2.png", position: { top: "-350%", left: "-80%", width: "60px", height: "50px" } },
+      { path: "/Paises/RepublicaDominicana/LUGAR REP DOM2.png", position: { top: "-350%", left: "-115%", width: "60px", height: "50px" } },
       { path: "/Paises/RepublicaDominicana/LUGAR REP DOM3.png", position: { top: "-22%", left: "160%", width: "60px", height: "38px" } },
     ],
     position: { top: "14.34%", left: "53.37%", width: "4.35%" },
@@ -70,6 +73,7 @@ export const countriesData: Record<string, CountryData> = {
     subtitle: "Explora la magia de este destino.",
     heroImage: "/Paises/Venezuela/FotoVenezuela.png",
     giaImage: "/Paises/Venezuela/giasaludovnz.png",
+    giaMessage: "¡Quiubo, parce! Prepárate para el viaje.",
     svgPath: "/Paises/Colombia/colombia.svg",
     flagPath: "/Paises/Colombia/BANDERA COLOMBIA.png",
     flagPosition: { top: "35%", left: "-10%" },
@@ -87,6 +91,7 @@ export const countriesData: Record<string, CountryData> = {
     subtitle: "La magia de la tierra de gracia.",
     heroImage: "/Paises/Venezuela/FotoVenezuela.png",
     giaImage: "/Paises/Venezuela/giasaludovnz.png",
+    giaMessage: "¡Epa, chamo! Prepárate para el viaje.",
     svgPath: "/Paises/Venezuela/venezuela.svg",
     flagPath: "/Paises/Venezuela/Bandera Venezuela.png",
     flagPosition: { top: "-5%", left: "65%" },
@@ -126,6 +131,7 @@ export const countriesData: Record<string, CountryData> = {
     subtitle: "Explora la magia de este destino.",
     heroImage: "/Paises/Venezuela/FotoVenezuela.png",
     giaImage: "/Paises/Venezuela/giasaludovnz.png",
+    giaMessage: "¡Hola, pata! Prepárate para el viaje.",
     svgPath: "/Paises/Peru/peru.svg",
     flagPath: "/Paises/Peru/BANDERA PERU.png",
     flagPosition: { top: "45%", left: "10%" },
@@ -143,6 +149,7 @@ export const countriesData: Record<string, CountryData> = {
     subtitle: "Explora la magia de este destino.",
     heroImage: "/Paises/Venezuela/FotoVenezuela.png",
     giaImage: "/Paises/Venezuela/giasaludovnz.png",
+    giaMessage: "¡Oi, galera! Prepare-se para a viagem.",
     svgPath: "/Paises/Brasil/brasil.svg",
     flagPath: "/Paises/Brasil/BANDERA BRASIL.png",
     flagPosition: { top: "15%", left: "80%" },
@@ -160,6 +167,7 @@ export const countriesData: Record<string, CountryData> = {
     subtitle: "Explora la magia de este destino.",
     heroImage: "/Paises/Venezuela/FotoVenezuela.png",
     giaImage: "/Paises/Venezuela/giasaludovnz.png",
+    giaMessage: "¡Hola, po! Prepárate para el viaje.",
     svgPath: "/Paises/Chile/chile.svg",
     flagPath: "/Paises/Chile/BANDERA CHILE.png",
     flagPosition: { top: "3%", left: "30%" },
@@ -177,6 +185,7 @@ export const countriesData: Record<string, CountryData> = {
     subtitle: "Explora la magia de este destino.",
     heroImage: "/Paises/Venezuela/FotoVenezuela.png",
     giaImage: "/Paises/Venezuela/giasaludovnz.png",
+    giaMessage: "¡Che, boludo! Prepárate para el viaje.",
     svgPath: "/Paises/Argentina/argentina.svg",
     flagPath: "/Paises/Argentina/BANDERA ARGENTINA.png",
     flagPosition: { top: "45%", left: "65%" },

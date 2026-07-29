@@ -5,6 +5,7 @@ import TravelerManualCard from "@/components/ui/TravelerManualCard";
 import HospedajeCard from "@/components/cards/HospedajeCard";
 import InfoHorizontalCard from "@/components/ui/InfoHorizontalCard";
 import StampCarousel from "@/components/carousels/StampCarousel";
+import MobileDestino from "@/components/mobile/MobileDestino";
 import { destinosData } from "@/data/destinations";
 
 const hospedajeImages = [
@@ -42,7 +43,12 @@ export default async function DestinoPage({
   const backToCountry = `/paises/${destino.countryId || "venezuela"}`;
 
   return (
-    <main className="w-full min-h-[3328px] bg-[#FDF9EC] mx-auto relative overflow-hidden">
+    <>
+    {/* Versión Móvil */}
+    <MobileDestino destinoId={destinoId} />
+
+    {/* Versión Desktop */}
+    <main className="w-full min-h-[3328px] bg-[#FDF9EC] mx-auto relative overflow-hidden hidden md:block">
 
       {/* Capa 3: Sección verde ("Manual del viajero") apilada detrás */}
       <div
@@ -390,5 +396,6 @@ export default async function DestinoPage({
       </div>
 
     </main>
+    </>
   );
 }
