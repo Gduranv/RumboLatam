@@ -76,7 +76,7 @@ export default function MobileCountry({ countryId }: MobileCountryProps) {
         </div>
 
         {/* Gia y su Mensaje */}
-        <div className="absolute top-140 left-68 -rotate-30 w-[300px] h-[340px] z-20 pointer-events-none">
+        <div className="absolute top-140 left-60 -rotate-30 w-[300px] h-[340px] z-20 pointer-events-none">
           {/* Mensaje Nube (Usando el asset de la nube con el texto encima) */}
           <div className="absolute bottom-110 rotate-20 right-28 w-[120px] origin-bottom-right drop-shadow-lg">
             <div className="relative">
