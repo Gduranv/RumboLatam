@@ -55,9 +55,7 @@ export default function MobileCountry({ countryId }: MobileCountryProps) {
             </Link>
 
             {/* Logo Rumbo Latam Blanco */}
-            <Link href="/" className="relative z-10 top-[20px] mt-1">
-              <img src="/Paises/logoBlanco.png" alt="Rumbo Latam" className="w-[120px] h-auto object-contain cursor-pointer hover:scale-105 transition-transform" />
-            </Link>
+            <img src="/Paises/logoBlanco.png" alt="Rumbo Latam" className="relative z-10 w-[120px] top-[20px] h-auto object-contain mt-1" />
 
             {/* Botón Música (Posicionado en el borde derecho) */}
             <a
@@ -78,7 +76,7 @@ export default function MobileCountry({ countryId }: MobileCountryProps) {
         </div>
 
         {/* Gia y su Mensaje */}
-        <div className="absolute top-140 left-63 -rotate-30 w-[300px] h-[340px] z-20 pointer-events-none">
+        <div className="absolute top-140 left-66 -rotate-30 w-[300px] h-[340px] z-20 pointer-events-none">
           {/* Mensaje Nube (Usando el asset de la nube con el texto encima) */}
           <div className="absolute bottom-110 rotate-20 right-28 w-[120px] origin-bottom-right drop-shadow-lg">
             <div className="relative">

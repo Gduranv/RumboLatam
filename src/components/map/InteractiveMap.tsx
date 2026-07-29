@@ -50,13 +50,13 @@ export const InteractiveMap = ({ className = "" }: InteractiveMapProps) => {
 
       {/* Personaje (Gia) - Esquina inferior derecha (Cortada a propósito) */}
       <div
-        className="hidden md:block fixed -bottom-20 -right-20 z-30 drop-shadow-2xl cursor-pointer group"
+        className="hidden md:block fixed -bottom-100 -right-10 z-30 drop-shadow-2xl cursor-pointer group"
         onClick={() => setIsGiaModalOpen(true)}
       >
         <img
-          src="/OtrosRecursos/GIA_ESTATICA.svg"
+          src="/GiaLight.gif"
           alt="Personaje Gia"
-          className="w-80 md:w-[500px] h-auto transform origin-bottom hover:scale-110 hover:-translate-y-4 hover:-rotate-2 transition-all duration-300 ease-out"
+          className="w-80 md:w-[350px] h-auto transform origin-bottom hover:scale-110 hover:-translate-y-4 hover:-rotate-2 transition-all duration-300 ease-out"
         />
       </div>
 
@@ -84,7 +84,7 @@ export const InteractiveMap = ({ className = "" }: InteractiveMapProps) => {
           <div className="relative bg-white dark:bg-slate-800 rounded-3xl p-6 md:p-10 max-w-2xl w-full shadow-2xl flex flex-col md:flex-row gap-8 items-center md:items-start animate-in fade-in zoom-in duration-300">
             <div className="flex-shrink-0 w-48 md:w-64 h-auto drop-shadow-xl">
               <img
-                src="/OtrosRecursos/GIA_ESTATICA.svg"
+                src="/GiaLight.gif"
                 alt="Gia"
                 className="w-full h-full object-contain"
               />
