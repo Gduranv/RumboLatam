@@ -102,7 +102,9 @@ const MobileDestino = ({ destinoId }: MobileDestinoProps) => {
             </Link>
 
             {/* Logo Rumbo Latam Blanco */}
-            <img src="/Paises/logoBlanco.png" alt="Rumbo Latam" className="relative z-10 w-[120px] top-[20px] h-auto object-contain mt-1" />
+            <Link href="/" className="relative z-10 top-[20px] mt-1">
+              <img src="/Paises/logoBlanco.png" alt="Rumbo Latam" className="w-[120px] h-auto object-contain cursor-pointer hover:scale-105 transition-transform" />
+            </Link>
 
             {/* Botón Música */}
             <a
