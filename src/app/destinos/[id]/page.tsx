@@ -150,7 +150,7 @@ export default async function DestinoPage({
       </section>
 
       {/* Botones de navegación (Atrás y About) */}
-      <CountryHeaderButtons backUrl={backToCountry} />
+      <CountryHeaderButtons backUrl={backToCountry} countryId={destino.countryId || "venezuela"} />
 
       {/* Capa 2: Imagen (Hero del Destino) */}
       <div

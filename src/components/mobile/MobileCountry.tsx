@@ -72,7 +72,7 @@ export default function MobileCountry({ countryId }: MobileCountryProps) {
         {/* Textos del Hero */}
         <div className="relative z-10 px-6 pt-18 text-white font-nohemi mt-2">
           <h1 className="text-[36px] font-bold leading-tight tracking-tight drop-shadow-md">{countryInfo.name}:</h1>
-          <p className="text-[20px] font-bold mt-1 pr-4 drop-shadow-md">{countryInfo.subtitle}</p>
+          <p className="text-[20px] font-bold -mt-1 pr-4 drop-shadow-md">{countryInfo.subtitle}</p>
         </div>
 
         {/* Gia y su Mensaje */}

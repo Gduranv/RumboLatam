@@ -3,20 +3,52 @@ import Link from "next/link";
 import AnimatedCard from "@/components/cards/AnimatedCard";
 import DestinationsCarousel from "@/components/carousels/DestinationsCarousel";
 import CountryHeaderButtons from "@/components/ui/CountryHeaderButtons";
-import { countriesData } from "@/data/countries";
+import { getPais } from "@/data";
+import type { AntesDeViajarCard } from "@/types";
+
+const GIA_BUBBLE_DEFAULT = "/Paises/Venezuela/giasaludovnz.png";
+
+const LOREM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
+const DEFAULT_ANTES_DE_VIAJAR: AntesDeViajarCard[] = [
+  { title: "Moneda", description: LOREM, icon: { src: "/Paises/icon moneda.png", alt: "Icono Moneda" } },
+  { title: "Gastronomía", description: LOREM, icon: { src: "/Paises/icono gastronomia.png", alt: "Icono Gastronomía" } },
+  { title: "Idioma", description: LOREM, icon: { src: "/Paises/idioma.png", alt: "Icono Idioma" } },
+  { title: "Estaciones", description: LOREM, icon: { src: "/Paises/icon estaciones.png", alt: "Icono Estaciones" } },
+];
+
+function RichText({ text }: { text: string }) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return (
+    <>
+      {parts.map((part, index) =>
+        part.startsWith("**") && part.endsWith("**") ? (
+          <strong key={index}>{part.slice(2, -2)}</strong>
+        ) : (
+          <span key={index}>{part}</span>
+        )
+      )}
+    </>
+  );
+}
 
 interface DesktopCountryProps {
   countryId: string;
 }
 
 export default function DesktopCountry({ countryId }: DesktopCountryProps) {
-  const countryInfo = countriesData[countryId] || {
-    name: countryId.charAt(0).toUpperCase() + countryId.slice(1),
-    subtitle: "Explora la magia de este destino.",
-    heroImage: "/Paises/Venezuela/FotoVenezuela.png",
-    giaImage: "/Paises/Venezuela/giasaludovnz.png",
-    destinations: []
-  };
+  const pais = getPais(countryId);
+  const name = pais?.name ?? countryId.charAt(0).toUpperCase() + countryId.slice(1);
+  const subtitle = pais?.subtitle || "Explora la magia de este destino.";
+  const heroSrc = pais?.hero.src || "";
+  const antesDeViajar = pais?.antesDeViajar?.length ? pais.antesDeViajar : DEFAULT_ANTES_DE_VIAJAR;
+  const destinations = (pais?.destinos ?? []).map((destino) => ({
+    id: destino.id,
+    title: destino.title,
+    tag: destino.tag,
+    description: destino.description,
+    imageSrc: destino.image.src,
+  }));
 
   return (
     <main className="w-full min-w-[1024px] h-[2800px] bg-[#FDF9EC] mx-auto relative overflow-hidden hidden md:block">
@@ -30,49 +62,15 @@ export default function DesktopCountry({ countryId }: DesktopCountryProps) {
         {/* Grid de Tarjetas */}
         <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-5 w-fit mx-auto place-items-center">
 
-          <AnimatedCard
-            title="Moneda"
-            description={
-              <>
-                El bolívar (VES) es la moneda oficial, aunque el uso del dólar estadounidense (USD) en efectivo está ampliamente extendido en comercios y servicios.
-              </>
-            }
-            iconSrc="/Paises/icon moneda.png"
-            iconAlt="Icono Moneda"
-          />
-
-          <AnimatedCard
-            title="Gastronomía"
-            description={
-              <>
-                Predomina una cocina basada en el maíz, las carnes sazonadas y los quesos frescos, caracterizada por un balance perfecto de sabores intensos
-              </>
-            }
-            iconSrc="/Paises/icono gastronomia.png"
-            iconAlt="Icono Gastronomía"
-          />
-
-          <AnimatedCard
-            title="Idioma"
-            description={
-              <>
-                <strong>Español,</strong> hablado con una calidez única y lleno de expresiones coloquiales icónicas que te harán sentir como en casa.
-              </>
-            }
-            iconSrc="/Paises/idioma.png"
-            iconAlt="Icono Idioma"
-          />
-
-          <AnimatedCard
-            title="Estaciones"
-            description={
-              <>
-                Al ser un país tropical, no existen las estaciones tradicionales, sino dos períodos climáticos: el de sequía <strong>(verano)</strong> y el de lluvias <strong>(invierno)</strong>.
-              </>
-            }
-            iconSrc="/Paises/icon estaciones.png"
-            iconAlt="Icono Estaciones"
-          />
+          {antesDeViajar.map((card) => (
+            <AnimatedCard
+              key={card.title}
+              title={card.title}
+              description={<RichText text={card.description} />}
+              iconSrc={card.icon.src}
+              iconAlt={card.icon.alt}
+            />
+          ))}
 
         </div>
       </div>
@@ -82,21 +80,25 @@ export default function DesktopCountry({ countryId }: DesktopCountryProps) {
         className="absolute top-0 left-0 w-full h-[911px] z-10"
         style={{ clipPath: 'polygon(0 0, 100% 0, 100% 765px, 50% 911px, 0 765px)' }}
       >
-        {/* Fondo de País */}
+        {/* Fondo de País (o placeholder de cortina mientras no exista la foto) */}
         <div className="absolute inset-0 -z-10">
-          <Image
-            src={countryInfo.heroImage}
-            alt={`Foto de ${countryInfo.name}`}
-            fill
-            priority
-            className="object-cover"
-          />
+          {heroSrc ? (
+            <Image
+              src={heroSrc}
+              alt={`Foto de ${name}`}
+              fill
+              priority
+              className="object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-[#FF7223] via-[#F1A23E] to-[#36B2CE]" />
+          )}
         </div>
 
         {/* Textos del Hero */}
         <div className="absolute left-[56px] top-[420px] text-white z-10 font-nohemi">
-          <h1 className="text-[56px] font-bold leading-tight tracking-tight">{countryInfo.name}:</h1>
-          <p className="text-[24px] font-bold mt-1">{countryInfo.subtitle}</p>
+          <h1 className="text-[56px] font-bold leading-tight tracking-tight">{name}:</h1>
+          <p className="text-[24px] font-bold -mt-1">{subtitle}</p>
         </div>
 
         {/* Gia (Posicionada al fondo para que el clip-path en V la recorte automáticamente) */}
@@ -112,7 +114,7 @@ export default function DesktopCountry({ countryId }: DesktopCountryProps) {
           {/* Nube de Saludo (Aparece al hacer hover) */}
           <div className="absolute top-[-10%] left-[0%] w-[220px] transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 pointer-events-none">
             <Image
-              src={countryInfo.giaImage}
+              src={GIA_BUBBLE_DEFAULT}
               alt="Gia Saluda"
               width={220}
               height={150}
@@ -129,7 +131,7 @@ export default function DesktopCountry({ countryId }: DesktopCountryProps) {
         style={{ clipPath: 'polygon(0 0, 100% 0, 100% 50px, 50% 100%, 0 50px)' }}
       >
         <Link href="/">
-          <div className="relative w-[380px] h-[120px] ml-10 hover:scale-105 transition-transform duration-300 cursor-pointer">
+          <div className="relative w-[143px] h-[109px] hover:scale-105 transition-transform duration-300 cursor-pointer">
             <Image
               src="/Paises/logoBlanco.png"
               alt="Logo Rumbo Latam"
@@ -141,7 +143,7 @@ export default function DesktopCountry({ countryId }: DesktopCountryProps) {
       </section>
 
       {/* Componente Cliente para manejar los botones Atrás y About con su Modal */}
-      <CountryHeaderButtons />
+      <CountryHeaderButtons countryId={countryId} />
 
       {/* Botón Playlist (Superpuesto entre la foto y la sección verde a la izquierda) */}
       {/* Calculado en top-[719px] para que cruce exactamente la línea diagonal */}
@@ -164,7 +166,7 @@ export default function DesktopCountry({ countryId }: DesktopCountryProps) {
         </h2>
 
         {/* Contenedor del Carrusel */}
-        <DestinationsCarousel destinations={countryInfo.destinations} />
+        <DestinationsCarousel destinations={destinations} />
       </section>
 
       {/* Capa 4: Footer - Ola azul claro (SVG nativo exportado de Figma) */}
