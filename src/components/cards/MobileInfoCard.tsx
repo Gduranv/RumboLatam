@@ -63,30 +63,36 @@ const MobileInfoCard = ({ title, description, images, iconSrc, iconAlt, iconPosi
         </div>
 
         {/* Carrusel deslizable de imágenes (Right) */}
-        {images.length > 0 && (
-          <div className="relative w-[55%] shrink-0">
-            <div
-              ref={scrollRef}
-              className="flex gap-2 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2"
-              style={{ WebkitOverflowScrolling: "touch", scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              {images.map((src, idx) => (
-                <div key={idx} className="relative w-full h-[100px] rounded-[10px] overflow-hidden shadow-md bg-gray-200 shrink-0 snap-start">
-                  <Image src={src} alt={`Imagen ${idx + 1}`} fill className="object-cover" />
-                </div>
-              ))}
-            </div>
-
-            {/* Dots */}
-            {images.length > 1 && (
-              <div className="flex justify-center gap-1.5 mt-1">
-                {images.map((_, idx) => (
-                  <div key={idx} className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${idx === currentIndex ? "bg-[#FFF7E2] w-3" : "bg-[#FFF7E2]/40"}`} />
+        <div className="relative w-[55%] shrink-0">
+          {images.length > 0 ? (
+            <>
+              <div
+                ref={scrollRef}
+                className="flex gap-2 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2"
+                style={{ WebkitOverflowScrolling: "touch", scrollbarWidth: "none", msOverflowStyle: "none" }}
+              >
+                {images.map((src, idx) => (
+                  <div key={idx} className="relative w-full h-[100px] rounded-[10px] overflow-hidden shadow-md bg-gray-200 shrink-0 snap-start">
+                    <Image src={src} alt={`Imagen ${idx + 1}`} fill className="object-cover" />
+                  </div>
                 ))}
               </div>
-            )}
-          </div>
-        )}
+
+              {/* Dots */}
+              {images.length > 1 && (
+                <div className="flex justify-center gap-1.5 mt-1">
+                  {images.map((_, idx) => (
+                    <div key={idx} className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${idx === currentIndex ? "bg-[#FFF7E2] w-3" : "bg-[#FFF7E2]/40"}`} />
+                  ))}
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="w-full h-[100px] bg-[#D45917] rounded-[10px] flex items-center justify-center text-white font-bold text-sm font-nohemi shadow-inner">
+              Falta el recurso
+            </div>
+          )}
+        </div>
       </div>
     );
   }
@@ -113,8 +119,8 @@ const MobileInfoCard = ({ title, description, images, iconSrc, iconAlt, iconPosi
       </div>
 
       {/* Carrusel deslizable de imágenes FUERA de la card */}
-      {images.length > 0 && (
-        <div className="relative mt-3">
+      <div className="relative mt-3 w-full">
+        {images.length > 0 ? (
           <div
             ref={scrollRef}
             className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2"
@@ -126,8 +132,12 @@ const MobileInfoCard = ({ title, description, images, iconSrc, iconAlt, iconPosi
               </div>
             ))}
           </div>
-        </div>
-      )}
+        ) : (
+          <div className="w-full h-[140px] bg-[#FFECCC] border border-[#FF7223]/30 rounded-[12px] flex items-center justify-center text-[#FF7223] font-bold text-xl font-nohemi shadow-sm">
+            Falta el recurso
+          </div>
+        )}
+      </div>
     </div>
   );
 };

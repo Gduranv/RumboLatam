@@ -143,16 +143,22 @@ export default function HospedajeCard({ hotels, images }: HospedajeCardProps) {
       </div>
 
       {/* Imagen representativa del hospedaje con transición fade rápida */}
-      <div className="relative w-full h-[180px] rounded-[16px] overflow-hidden mt-8 shadow-md bg-gray-200">
-        {images.map((src, idx) => (
-          <Image
-            key={src}
-            src={src}
-            alt={`Imagen de hospedaje ${idx + 1}`}
-            fill
-            className={`object-cover transition-opacity duration-300 ${idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-          />
-        ))}
+      <div className="relative w-full h-[180px] rounded-[16px] overflow-hidden mt-8 bg-gray-200">
+        {images.length > 0 ? (
+          images.map((src, idx) => (
+            <Image
+              key={src}
+              src={src}
+              alt={`Imagen de hospedaje ${idx + 1}`}
+              fill
+              className={`object-cover transition-opacity duration-300 ${idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+            />
+          ))
+        ) : (
+          <div className="w-full h-full bg-[#D45917] flex items-center justify-center text-white font-bold text-xl font-nohemi shadow-inner">
+            Falta el recurso
+          </div>
+        )}
       </div>
     </div>
   );

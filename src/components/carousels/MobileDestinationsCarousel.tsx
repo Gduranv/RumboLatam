@@ -61,11 +61,17 @@ export default function MobileDestinationsCarousel({ destinations }: MobileDesti
           <div className="relative z-10 w-[272px] h-[185px] rounded-[14.5px] overflow-hidden flex flex-col">
             
             {/* Imagen de fondo */}
-            <img
-              src={current.imageSrc}
-              alt={current.title}
-              className="absolute inset-0 w-full h-full object-cover z-0"
-            />
+            {current.imageSrc ? (
+              <img
+                src={current.imageSrc}
+                alt={current.title}
+                className="absolute inset-0 w-full h-full object-cover z-0"
+              />
+            ) : (
+              <div className="absolute inset-0 w-full h-full bg-gray-800 flex items-center justify-center text-white text-xl font-bold font-nohemi z-0">
+                Falta el recurso
+              </div>
+            )}
             
             {/* Gradientes (SVG provisto por el usuario) */}
             <svg className="absolute inset-0 z-10 w-full h-full pointer-events-none" viewBox="0 0 272 185" fill="none" xmlns="http://www.w3.org/2000/svg">

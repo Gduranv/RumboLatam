@@ -6,16 +6,23 @@ import { countriesData } from "@/data/countries";
 
 interface MobileCountryProps {
   countryId: string;
+  dynamicDestinationsResources: Record<string, string | null>;
+  dynamicHeroImage: string | null;
 }
 
-export default function MobileCountry({ countryId }: MobileCountryProps) {
+export default function MobileCountry({ countryId, dynamicDestinationsResources, dynamicHeroImage }: MobileCountryProps) {
   const countryInfo = countriesData[countryId] || {
     name: countryId.charAt(0).toUpperCase() + countryId.slice(1),
     subtitle: "Explora la magia de este destino.",
-    heroImage: "/Paises/Venezuela/FotoVenezuela.png",
+    heroImage: dynamicHeroImage,
     giaImage: "/Paises/Venezuela/giasaludovnz.png",
     destinations: []
-  }; // Podríamos usarlo dinámicamente luego
+  };
+  const heroImage = dynamicHeroImage || countryInfo.heroImage;
+  const destinations = countryInfo.destinations.map(dest => ({
+    ...dest,
+    imageSrc: dynamicDestinationsResources[dest.id] || ""
+  }));
 
   return (
     <main className="w-full min-h-screen bg-[#FDF9EC] flex flex-col overflow-x-hidden relative block md:hidden">
@@ -25,11 +32,17 @@ export default function MobileCountry({ countryId }: MobileCountryProps) {
 
         {/* Fondo de País (se extiende por todo el hero) */}
         <div className="absolute inset-0 z-0 h-full">
-          <img
-            src={countryInfo.heroImage}
-            alt={`Foto de ${countryInfo.name}`}
-            className="w-full h-full object-cover"
-          />
+          {heroImage ? (
+            <img
+              src={heroImage}
+              alt={`Foto de ${countryInfo.name}`}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-gray-800 flex items-center justify-center text-white text-3xl font-bold font-nohemi">
+              Falta el recurso
+            </div>
+          )}
           {/* Gradiente sutil para oscurecer la parte superior y asegurar lectura del texto */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-transparent" />
           {/* Gradiente inferior para fundirse con la sección verde de abajo (estirado 2px para evitar líneas de renderizado) */}
@@ -158,7 +171,8 @@ export default function MobileCountry({ countryId }: MobileCountryProps) {
         <h2 className="text-[#13522B] text-3xl font-bold tracking-tight mb-8 font-nohemi text-center px-4">
           3 destinos que no te puedes perder
         </h2>
-        <MobileDestinationsCarousel destinations={countryInfo.destinations} />
+        {/* Contenedor del Carrusel */}
+        <MobileDestinationsCarousel destinations={destinations} />
       </section>
 
       {/* FOOTER */}

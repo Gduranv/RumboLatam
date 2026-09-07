@@ -7,6 +7,7 @@ import InfoHorizontalCard from "@/components/ui/InfoHorizontalCard";
 import StampCarousel from "@/components/carousels/StampCarousel";
 import MobileDestino from "@/components/mobile/MobileDestino";
 import { destinosData } from "@/data/destinations";
+import { getDestinationResources } from "@/utils/getResources";
 
 const hospedajeImages = [
   "/Paises/Venezuela/Hospedaje/hospedajeCanaima1.webp",
@@ -39,24 +40,25 @@ export default async function DestinoPage({
   const resolvedParams = await params;
   const destinoId = resolvedParams.id;
   const destino = destinosData[destinoId] || destinosData["canaima"]; // Fallback a canaima si no se encuentra
+  const dynamicResources = getDestinationResources(destino);
 
   const backToCountry = `/paises/${destino.countryId || "venezuela"}`;
 
   return (
     <>
     {/* Versión Móvil */}
-    <MobileDestino destinoId={destinoId} />
+    <MobileDestino destinoId={destinoId} dynamicResources={dynamicResources} />
 
     {/* Versión Desktop */}
     <main className="w-full min-h-[3328px] bg-[#FDF9EC] mx-auto relative overflow-hidden hidden md:block">
 
       {/* Capa 3: Sección verde ("Manual del viajero") apilada detrás */}
       <div
-        className="absolute top-0 left-0 w-full h-[1550px] bg-[#13522B] z-0 pt-[940px]"
+        className="absolute top-0 left-0 w-full h-[1550px] bg-[#13522B] z-0 pt-[900px]"
         style={{ clipPath: 'polygon(0 0, 100% 0, 100% 1400px, 50% 1550px, 0 1400px)' }}
       >
         <div className="w-full max-w-[1100px] mx-auto px-10">
-          <div className="mb-32">
+          <div className="mb-24">
             <h2 className="text-[#FFF7E2] text-[40px] font-bold tracking-tight font-nohemi">Manual del viajero</h2>
             <p className="text-[#A3DBEF] text-[18px] font-medium font-sans mt-1">Detalles esenciales para planificar tu ruta</p>
           </div>
@@ -158,43 +160,48 @@ export default async function DestinoPage({
         style={{ clipPath: 'polygon(0 0, 100% 0, 100% 765px, 50% 911px, 0 765px)' }}
       >
         <div className="absolute inset-0 -z-10">
-          {/* Aquí se usará la imagen dinámica según el id, por ahora Canaima */}
-          <Image
-            src={destino.heroImage}
-            alt={`Foto de ${destino.name}`}
-            fill
-            priority
-            quality={100}
-            className="object-cover"
-          />
+          {dynamicResources.portadaImage ? (
+            <Image
+              src={dynamicResources.portadaImage}
+              alt={`Foto de ${destino.name}`}
+              fill
+              priority
+              quality={100}
+              className="object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-gray-800 flex items-center justify-center text-white text-3xl font-bold font-nohemi">
+              Falta el recurso
+            </div>
+          )}
         </div>
 
         {/* Textos del Hero del Destino (Centrados y abajo) */}
-        <div className="absolute bottom-[200px] left-0 w-full flex flex-col items-center justify-center text-white z-10 font-nohemi">
-          <h1 className="text-[64px] font-bold leading-tight tracking-tight capitalize drop-shadow-lg">{destino.name}</h1>
-          <p className="text-[28px] font-bold mt-1 drop-shadow-md">{destino.tag}</p>
+        <div className="absolute bottom-[200px] left-0 w-full flex flex-col items-center justify-center z-10">
+          <h1 className="text-[50pt] font-bold leading-tight tracking-tight capitalize drop-shadow-lg font-nohemi text-[#F1E4C4]">{destino.name}</h1>
+          <p className="text-[28pt] font-normal mt-1 drop-shadow-md font-sans text-[#FFF7E2]">{destino.tag}</p>
         </div>
       </div>
 
       {/* Capa 4: Tarjetas Naranjas de Información Extendida */}
-      <section className="absolute top-[1550px] left-0 w-full z-20 pt-16 px-10">
+      <section className="absolute top-[1700px] left-0 w-full z-20 pt-16 px-10">
         <div className="w-full max-w-[1100px] mx-auto grid grid-cols-[380px_1fr] gap-8">
           
           {/* Columna Izquierda: Hospedaje */}
-          <div className="relative z-30">
+          <div className="relative z-30 h-full">
             <HospedajeCard
               hotels={destino.hospedaje.hotels}
-              images={destino.hospedaje.images.length > 0 ? destino.hospedaje.images : hospedajeImages}
+              images={dynamicResources.hospedajeImages}
             />
           </div>
 
           {/* Columna Derecha: Animales y Actividades */}
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col justify-between h-full gap-8">
             {/* Tarjeta de Animales */}
             <InfoHorizontalCard
               title="Animales autóctonos"
               description={destino.animales.description}
-              images={destino.animales.images.length > 0 ? destino.animales.images : animalesImages}
+              images={dynamicResources.animalesImages}
               badgePosition="top-right"
               badgeSvg={
                                 <svg width="174" height="173" viewBox="0 0 174 173" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -268,7 +275,7 @@ export default async function DestinoPage({
             <InfoHorizontalCard
               title="Actividades para hacer"
               description={destino.actividades.description}
-              images={destino.actividades.images.length > 0 ? destino.actividades.images : actividadesImages}
+              images={dynamicResources.actividadesImages}
               badgePosition="bottom-right"
               badgeSvg={
                 <svg width="174" height="174" viewBox="0 0 174 174" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -362,8 +369,14 @@ export default async function DestinoPage({
       </section>
 
       {/* Capa 5: Galería de Sellos Postales */}
-      <section className="absolute top-[2350px] left-0 w-full z-20 pt-10">
-        <StampCarousel images={destino.galeriaImages} />
+      <section className="absolute top-[2500px] left-0 w-full z-20 pt-10">
+        {dynamicResources.galeriaImages.length > 0 ? (
+          <StampCarousel images={dynamicResources.galeriaImages} />
+        ) : (
+          <div className="w-full h-[400px] flex items-center justify-center text-[#1D799B] font-bold text-4xl font-nohemi">
+            Falta el recurso
+          </div>
+        )}
       </section>
 
       {/* Capa 6: Footer - Olas Azules */}

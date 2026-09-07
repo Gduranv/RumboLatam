@@ -17,15 +17,15 @@ const stampPath = "M460.072 0V340.735H443.119C441.178 335.804 436.223 332.297 43
 // Un componente auxiliar para reutilizar la forma del sello
 const Stamp = ({ color, image, width, rotation, isSecondary = false }: { color: string, image: StampImage, width: string, rotation: string, isSecondary?: boolean }) => {
   return (
-    <div className={`relative shrink-0 ${width} ${rotation} ${isSecondary ? '' : 'shadow-2xl drop-shadow-xl'} flex items-center justify-center transition-all duration-500`}>
+    <div className={`relative shrink-0 ${width} ${rotation} flex items-center justify-center transition-all duration-500`}>
       {/* El SVG nativo hace de máscara/borde del sello */}
-      <svg viewBox="0 0 461 341" fill="none" xmlns="http://www.w3.org/2000/svg" className={`w-full h-auto ${isSecondary ? '' : 'drop-shadow-md'}`}>
+      <svg viewBox="0 0 461 341" fill="none" xmlns="http://www.w3.org/2000/svg" className={`w-full h-auto`}>
         <path d={stampPath} fill={color} />
       </svg>
       
       {/* Contenido Interno (Rectángulo Beige y Foto) */}
       <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ padding: '6% 3% 6% 3%' }}>
-        <div className="w-[95%] h-[95%] bg-[#FFF7E2] flex items-center justify-center p-2 rounded-[2px] shadow-sm">
+        <div className="w-[95%] h-[95%] bg-[#FFF7E2] flex items-center justify-center p-2 rounded-[2px]">
           <div className="relative w-full h-full overflow-hidden">
             <Image src={image?.src || "/placeholder"} alt={image?.alt || "Stamp photo"} fill className="object-cover" />
           </div>

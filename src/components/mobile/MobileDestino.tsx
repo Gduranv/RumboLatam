@@ -7,40 +7,23 @@ import { destinosData } from "@/data/destinations";
 
 interface MobileDestinoProps {
   destinoId: string;
+  dynamicResources: {
+    portadaImage: string | null;
+    galeriaImages: { src: string; alt: string }[];
+    animalesImages: string[];
+    hospedajeImages: string[];
+    actividadesImages: string[];
+  };
 }
 
 /** Versión móvil de la página de destino turístico */
-const MobileDestino = ({ destinoId }: MobileDestinoProps) => {
+const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
   const destino = destinosData[destinoId] || destinosData["canaima"];
   const backToCountry = `/paises/${destino.countryId || "venezuela"}`;
 
-  /** Imágenes fallback para secciones sin datos */
-  const hospedajeImages = destino.hospedaje.images.length > 0
-    ? destino.hospedaje.images
-    : [
-      "/Paises/Venezuela/Hospedaje/hospedajeCanaima1.webp",
-      "/Paises/Venezuela/Hospedaje/hospedajeCanaima2.webp",
-      "/Paises/Venezuela/Hospedaje/hospedajeCanaima3.webp",
-    ];
-
-  const animalesImages = destino.animales.images.length > 0
-    ? destino.animales.images
-    : [
-      "/Paises/Venezuela/Animales/AnimalesCanaima1.webp",
-      "/Paises/Venezuela/Animales/AnimalesCanaima2.webp",
-      "/Paises/Venezuela/Animales/AnimalesCanaima3.webp",
-      "/Paises/Venezuela/Animales/AnimalesCanaima4.webp",
-      "/Paises/Venezuela/Animales/AnimalesCanaima5.webp",
-    ];
-
-  const actividadesImages = destino.actividades.images.length > 0
-    ? destino.actividades.images
-    : [
-      "/Paises/Venezuela/Actividades/ActCanaima1.webp",
-      "/Paises/Venezuela/Actividades/ActCanaima2.webp",
-      "/Paises/Venezuela/Actividades/ActCanaima3.webp",
-      "/Paises/Venezuela/Actividades/ActCanaima4.webp",
-    ];
+  const hospedajeImages = dynamicResources.hospedajeImages;
+  const animalesImages = dynamicResources.animalesImages;
+  const actividadesImages = dynamicResources.actividadesImages;
 
   /** Cards del manual del viajero para el carrusel */
   const manualCards = [
@@ -77,11 +60,17 @@ const MobileDestino = ({ destinoId }: MobileDestinoProps) => {
 
         {/* Fondo de Destino */}
         <div className="absolute inset-0 z-0 h-full">
-          <img
-            src={destino.heroImage}
-            alt={`Foto de ${destino.name}`}
-            className="w-full h-full object-cover"
-          />
+          {dynamicResources.portadaImage ? (
+            <img
+              src={dynamicResources.portadaImage}
+              alt={`Foto de ${destino.name}`}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-gray-800 flex items-center justify-center text-white text-xl font-bold font-nohemi">
+              Falta el recurso
+            </div>
+          )}
           {/* Gradiente superior para legibilidad del header */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-transparent" />
         </div>
@@ -190,11 +179,15 @@ const MobileDestino = ({ destinoId }: MobileDestinoProps) => {
       {/* ============================================= */}
       {/* SECCIÓN: GALERÍA DE SELLOS POSTALES            */}
       {/* ============================================= */}
-      {destino.galeriaImages && destino.galeriaImages.length > 0 && (
-        <section className="w-full pt-6 pb-6 flex flex-col items-center bg-[#FFF7E2]">
-          <MobileStampCarousel images={destino.galeriaImages} />
-        </section>
-      )}
+      <section className="w-full pt-6 pb-6 flex flex-col items-center bg-[#FFF7E2]">
+        {dynamicResources.galeriaImages.length > 0 ? (
+          <MobileStampCarousel images={dynamicResources.galeriaImages} />
+        ) : (
+          <div className="w-full h-[200px] flex items-center justify-center text-[#1D799B] font-bold text-2xl font-nohemi">
+            Falta el recurso
+          </div>
+        )}
+      </section>
 
       {/* ============================================= */}
       {/* FOOTER                                        */}

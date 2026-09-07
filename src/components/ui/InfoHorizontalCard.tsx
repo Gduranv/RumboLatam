@@ -60,15 +60,21 @@ export default function InfoHorizontalCard({ title, description, images, badgeSv
       </div>
 
       <div className="relative z-10 w-[280px] h-[160px] rounded-[16px] overflow-hidden shrink-0 shadow-md bg-gray-200">
-        {images.map((src, idx) => (
-          <Image
-            key={src}
-            src={src}
-            alt={`Imagen de ${title} ${idx + 1}`}
-            fill
-            className={`object-cover transition-opacity duration-300 ${idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-          />
-        ))}
+        {images.length > 0 ? (
+          images.map((src, idx) => (
+            <Image
+              key={src}
+              src={src}
+              alt={`Imagen de ${title} ${idx + 1}`}
+              fill
+              className={`object-cover transition-opacity duration-300 ${idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+            />
+          ))
+        ) : (
+          <div className="w-full h-full bg-gray-800 flex items-center justify-center text-white text-xl font-bold font-nohemi">
+            Falta el recurso
+          </div>
+        )}
       </div>
     </div>
   );

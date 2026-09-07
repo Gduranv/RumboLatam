@@ -34,20 +34,22 @@ function RichText({ text }: { text: string }) {
 
 interface DesktopCountryProps {
   countryId: string;
+  dynamicDestinationsResources: Record<string, string | null>;
+  dynamicHeroImage: string | null;
 }
 
-export default function DesktopCountry({ countryId }: DesktopCountryProps) {
+export default function DesktopCountry({ countryId, dynamicDestinationsResources, dynamicHeroImage }: DesktopCountryProps) {
   const pais = getPais(countryId);
   const name = pais?.name ?? countryId.charAt(0).toUpperCase() + countryId.slice(1);
   const subtitle = pais?.subtitle || "Explora la magia de este destino.";
-  const heroSrc = pais?.hero.src || "";
+  const heroSrc = dynamicHeroImage;
   const antesDeViajar = pais?.antesDeViajar?.length ? pais.antesDeViajar : DEFAULT_ANTES_DE_VIAJAR;
   const destinations = (pais?.destinos ?? []).map((destino) => ({
     id: destino.id,
     title: destino.title,
     tag: destino.tag,
     description: destino.description,
-    imageSrc: destino.image.src,
+    imageSrc: dynamicDestinationsResources[destino.id] || "",
   }));
 
   return (
@@ -91,7 +93,9 @@ export default function DesktopCountry({ countryId }: DesktopCountryProps) {
               className="object-cover"
             />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-[#FF7223] via-[#F1A23E] to-[#36B2CE]" />
+            <div className="w-full h-full bg-gray-800 flex items-center justify-center text-white text-4xl font-bold font-nohemi">
+              Falta el recurso
+            </div>
           )}
         </div>
 

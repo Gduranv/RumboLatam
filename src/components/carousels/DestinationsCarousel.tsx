@@ -59,12 +59,18 @@ export default function DestinationsCarousel({ destinations }: DestinationsCarou
           key={current.title} 
           className="absolute top-[35px] left-[25px] right-[25px] bottom-[35px] rounded-[16px] overflow-hidden bg-gray-200 animate-in fade-in duration-500"
         >
-          <Image
-            src={current.imageSrc}
-            alt={current.title}
-            fill
-            className="object-cover"
-          />
+          {current.imageSrc ? (
+            <Image
+              src={current.imageSrc}
+              alt={current.title}
+              fill
+              className="object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-gray-800 flex items-center justify-center text-white text-4xl font-bold font-nohemi">
+              Falta el recurso
+            </div>
+          )}
           {/* Gradiente oscuro en la base para leer el texto */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none"></div>
 

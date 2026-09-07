@@ -55,9 +55,13 @@ const SmallHotelCard = ({ hotel, image }: { hotel: Hotel; image?: string }) => {
       <div className="flex items-center mt-1 mb-2">
         {renderStars(hotel.rating)}
       </div>
-      {image && (
+      {image ? (
         <div className="relative w-full h-[70px] rounded-[8px] overflow-hidden shadow-sm bg-gray-200">
           <Image src={image} alt={`${hotel.type} ${hotel.name}`} fill className="object-cover" />
+        </div>
+      ) : (
+        <div className="relative w-full h-[70px] rounded-[8px] overflow-hidden shadow-inner bg-[#D45917] flex items-center justify-center">
+          <p className="text-white text-[10px] font-bold font-nohemi text-center leading-tight">Falta el<br/>recurso</p>
         </div>
       )}
     </div>
@@ -118,9 +122,13 @@ const MobileHospedajeCard = ({ hotels, images }: MobileHospedajeCardProps) => {
             </div>
 
             {/* Foto rectangular */}
-            {images[2] && (
+            {images[2] ? (
               <div className="relative w-[120px] h-[70px] rounded-[8px] overflow-hidden shadow-sm bg-gray-200 shrink-0">
                 <Image src={images[2]} alt={`${bottomHotel.type} ${bottomHotel.name}`} fill className="object-cover" />
+              </div>
+            ) : (
+              <div className="relative w-[120px] h-[70px] rounded-[8px] overflow-hidden shadow-inner bg-[#D45917] flex items-center justify-center shrink-0">
+                <p className="text-white text-[12px] font-bold font-nohemi text-center leading-tight">Falta el<br/>recurso</p>
               </div>
             )}
           </div>
