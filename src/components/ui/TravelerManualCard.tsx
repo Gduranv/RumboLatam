@@ -29,7 +29,7 @@ export default function TravelerManualCard({ title, description, iconSvg }: Trav
       <h3 className="text-[#FF7223] text-[24px] font-bold font-nohemi mb-4">
         {title}
       </h3>
-      <p className="text-[#13522B] text-[15px] font-medium font-sans leading-relaxed">
+      <p className="text-[#13522B] text-[15px] font-medium font-sans leading-relaxed whitespace-pre-line">
         {description}
       </p>
     </div>

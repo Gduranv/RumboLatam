@@ -2,6 +2,7 @@ export interface Hotel {
   name: string;
   type: string;
   rating: number;
+  link?: string;
 }
 
 export interface DestinoData {
@@ -117,15 +118,15 @@ export const destinosData: Record<string, DestinoData> = {
     tag: "Refugio caribeño",
     heroImage: "/Paises/Venezuela/portadas/isla_larga_portada.webp",
     manual: {
-      clima: "Tropical caribeño con media de 28°C. Varía de mañanas soleadas a tardes frescas con brisa marina, baja humedad y sol radiante constante.",
+      clima: "Tropical caribeño con media \n de 28°C. Varía de mañanas soleadas a tardes frescas con \n brisa marina, baja humedad y \n sol radiante constante.",
       transporte: "Acceso terrestre hasta Puerto Cabello (Balneario Quizandal). Desde allí se toman lanchas o peñeros locales para un trayecto marítimo de 15 minutos.",
       mejorEpoca: "Ideal de enero a abril por sus aguas cristalinas y poco viento, o en días de semana para disfrutar de la playa con total tranquilidad y desconexión."
     },
     hospedaje: {
       hotels: [
-        { name: "Casa Guipuzcoana", type: "Hotel", rating: 5 },
-        { name: "Aqua Vista", type: "Posada", rating: 4.5 },
-        { name: "Suite Caribe", type: "Hotel", rating: 4 }
+        { name: "Casa Guipuzcoana", type: "Hotel", rating: 5, link: "https://www.booking.com/hotel/ve/casa-guipuzcoana.html" },
+        { name: "Aqua Vista", type: "Posada", rating: 4.5, link: "https://www.booking.com/hotel/ve/aqua-vista-posada.html" },
+        { name: "Suite Caribe", type: "Hotel", rating: 4, link: "https://www.suitecaribe.com/" }
       ],
       images: []
     },

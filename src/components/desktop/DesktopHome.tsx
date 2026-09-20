@@ -1,12 +1,9 @@
 "use client";
 
 import { InteractiveMap } from "@/components/map/InteractiveMap";
-import { useState } from "react";
-import { NosotrasModal } from "@/components/modals/NosotrasModal";
+import Link from "next/link";
 
 export default function DesktopHome() {
-  const [isNosotrasOpen, setIsNosotrasOpen] = useState(false);
-
   return (
     <div
       className="hidden md:flex flex-col min-h-screen font-sans transition-colors duration-500 overflow-hidden relative"
@@ -18,26 +15,21 @@ export default function DesktopHome() {
       }}
     >
       {/* Icono Arriba a la Izquierda */}
-      <div 
-        className="fixed top-8 left-12 z-50 drop-shadow-md cursor-pointer"
-        onClick={() => setIsNosotrasOpen(true)}
+      <Link
+        href="/nosotras"
+        className="fixed top-8 left-12 z-50 drop-shadow-md"
       >
         <img
           src="/OtrosRecursos/ICON.png"
           alt="Rumbo Latam Icon"
           className="w-12 md:w-16 h-auto hover:scale-110 transition-transform duration-300"
         />
-      </div>
+      </Link>
 
       {/* Main Map Container */}
       <main className="flex flex-1 w-full items-center justify-center p-4 sm:p-12 mt-12 sm:mt-0">
         <InteractiveMap />
       </main>
-
-      {/* Nosotras Modal */}
-      {isNosotrasOpen && (
-        <NosotrasModal onClose={() => setIsNosotrasOpen(false)} />
-      )}
     </div>
   );
 }

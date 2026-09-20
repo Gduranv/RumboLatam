@@ -54,7 +54,7 @@ export default function InfoHorizontalCard({ title, description, images, badgeSv
         <h3 className="text-white text-[24px] font-bold font-nohemi mb-3">
           {title}
         </h3>
-        <p className="text-white/90 text-[14px] font-sans font-medium leading-relaxed">
+        <p className="text-white/90 text-[14px] font-sans font-medium leading-relaxed whitespace-pre-line">
           {description}
         </p>
       </div>

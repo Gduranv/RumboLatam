@@ -3,29 +3,87 @@ import type { PaisData } from "@/types";
 export const pais: PaisData = {
   id: "argentina",
   name: "Argentina",
-  subtitle: "Explora la magia de este destino.",
+  subtitle: "El alma de los grandes horizontes",
   hero: {
     // TODO(design): falta foto de portada real para Argentina.
     src: "",
     alt: "Argentina",
   },
   // Mensaje de Gia propio del país: lo completa el equipo de contenido manualmente.
-  giaMessage: "¡Che, boludo! Prepárate para el viaje.",
+  giaMessage: "¡Che, qué alegría! Sentite como en casa.",
   // TODO(design): copy de las 4 ser de "Antes de viajar" para Argentina.
-  antesDeViajar: [],
-  destinos: [],
+  antesDeViajar: [
+    {
+      title: "Moneda",
+      description:
+        "El peso argentino (ARS) es la moneda oficial, aunque debido al contexto económico local, el cambio de divisas extranjeras es sumamente común en el turismo.",
+      icon: { src: "/Paises/icon moneda.png", alt: "Icono Moneda" },
+    },
+    {
+      title: "Gastronomía",
+      description:
+        "Predomina una cocina basada en carnes asadas, harinas y el tradicional mate, caracterizada por una fuerte influencia europea y un balance de sabores.",
+      icon: { src: "/Paises/icono gastronomia.png", alt: "Icono Gastronomía" },
+    },
+    {
+      title: "Idioma",
+      description:
+        "**Español rioplatense,** distinguido mundialmente por su voseo y una entonación italiana muy marcada que le da una personalidad expresiva y melodiosa.",
+      icon: { src: "/Paises/idioma.png", alt: "Icono Idioma" },
+    },
+    {
+      title: "Estaciones",
+      description:
+        "Al encontrarse en el extremo sur del continente, experimenta las cuatro estaciones del año con total claridad: inviernos muy fríos y veranos templados.",
+      icon: { src: "/Paises/icon estaciones.png", alt: "Icono Estaciones" },
+    },
+  ],
+  destinos: [
+    {
+      id: "",
+      title: 'Parque nacional los glaciares',
+      tag: 'Glaciares y Senderismo',
+      description: 'Hogar de imponentes masas de hielo milenario como el Perito Moreno en Santa Cruz. Un territorio gélido esculpido por el tiempo que te invita a descubrir la majestuosidad austral.',
+      image: {
+        src: '',
+        alt: '',
+      },
+    },
+    {
+      id: "serrania-de-hornocal",
+      title: 'Serrania de Hornocal',
+      tag: 'Prisma ancestral',
+      description: 'El majestuoso cerro de los 14 colores ubicado en la Quebrada de Humahuaca en Jujuy. Una imponente formación geológica que impacta visualmente por sus pliegues calcáreos y matices vivos.',
+      image: {
+        src: '',
+        alt: '',
+      },
+    },
+    {
+      id: "cataratas-del-iguazu",
+      title: 'Cataratas del Iguazú',
+      tag: 'Cascadas y selva',
+      description: 'El sistema de caídas de agua más impactante del mundo, rodeado de una densa selva misionera. Un espectáculo natural abrumador donde el agua y la bruma fusionan el paisaje.',
+      image: {
+        src: '',
+        alt: '',
+      },
+    },
+  ],
   curiosidades: [
     {
-      text: "¿Sabías que el tango nació en los barrios de Buenos Aires a finales del siglo XIX? Esta danza romántica y melancólica, fruto del mestizaje, fue declarada en 2009 Patrimonio Cultural Inmaterial de la Humanidad por la UNESCO.",
-      image: { src: "", alt: "Tango porteño" },
-    },
-    {
-      text: "¿Sabías que el glaciar Perito Moreno, en la Patagonia argentina, es uno de los pocos glaciares del mundo que continúa avanzando? Su frente se derrumba en bloques de hielo gigantes ante los ojos de quienes lo visitan.",
-      image: { src: "", alt: "Glaciar Perito Moreno" },
-    },
-    {
-      text: "¿Sabías que tomar mate es casi un ritual de amistad? La infusión de yerba mate se comparte en ronda con la misma bombilla, y negarse a convidar es un gesto que todo argentino toma muy en serio.",
+      text: "¿Sabías que compartir el mate en Argentina es casi un ritual sagrado de amistad? Sin embargo, hay una regla de oro para los turistas: nunca debes usar la bombilla (el sorbete de metal) para revolver la hierba, ya que se considera una grave falta de respeto hacia quien lo prepara.",
       image: { src: "", alt: "Mate argentino" },
+    },
+    {
+      text: "¿Sabías que Argentina alberga algunas de las colonias continentales de pingüinos de Magallanes más grandes del mundo? En lugares como Punta Tombo, los turistas pueden caminar literalmente junto a cientos de miles de pingüinos en su hábitat natural.",
+      image: { src: "", alt: "Pingüinos de Magallanes" },
+    },
+    {
+      text: "¿Sabías que Argentina es un verdadero parque jurásico de la vida real? En la región de la Patagonia se descubrieron los restos del Argentinosaurus, que con casi 40 metros de longitud es considerado uno de los animales terrestres más grandes que jamás haya existido.",
+      image: { src: "", alt: "Argentina Parque Jurásico" },
     },
   ],
 };
+
+

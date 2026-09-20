@@ -54,6 +54,7 @@ export interface Hotel {
   tipo: string;
   /** Entre 1 y 5, admite decimales (ej.: 4.5) */
   estrellas: number;
+  link?: string;
 }
 
 export interface HospedajeData {

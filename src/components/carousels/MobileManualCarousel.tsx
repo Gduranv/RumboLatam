@@ -62,7 +62,7 @@ const MobileManualCarousel = ({ cards }: MobileManualCarouselProps) => {
             <h3 className="text-[#FF7223] text-[18px] font-bold font-nohemi mb-2 pr-14">
               {card.title}
             </h3>
-            <p className="text-[#13522B] text-[11px] font-medium font-sans leading-relaxed pr-4">
+            <p className="text-[#13522B] text-[11px] font-medium font-sans leading-relaxed pr-4 whitespace-pre-line">
               {card.description}
             </p>
           </div>

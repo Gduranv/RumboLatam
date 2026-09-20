@@ -1,15 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import dynamic from "next/dynamic";
+import Link from "next/link";
 import { InteractiveMap } from "@/components/map/InteractiveMap";
 import { Compass } from "@/components/ui/Compass";
-import { NosotrasModal } from "@/components/modals/NosotrasModal";
 
 export default function MobileHome() {
-  const [isNosotrasOpen, setIsNosotrasOpen] = useState(false);
-
   return (
     <div className="flex md:hidden flex-col min-h-[100dvh] overflow-hidden relative bg-[#A3DBEF]">
 
@@ -67,8 +62,8 @@ export default function MobileHome() {
 
       {/* --- ELEMENTOS INFERIORES --- */}
       {/* Botón Accesibilidad / Nosotras (Abajo Izquierda) */}
-      <button
-        onClick={() => setIsNosotrasOpen(true)}
+      <Link
+        href="/nosotras"
         className="absolute bottom-10 left-6 z-20 w-16 h-16 rounded-full shadow-xl flex items-center justify-center hover:scale-105 transition-transform"
       >
         <img
@@ -76,7 +71,7 @@ export default function MobileHome() {
           alt="Acerca de Nosotras"
           className="w-full h-full object-contain"
         />
-      </button>
+      </Link>
 
       {/* Gia (Abajo Derecha) */}
       <div className="absolute bottom-[-365px] right-[-215px] z-20 pointer-events-none w-[570px] h-[570px] max-w-none">
@@ -86,13 +81,6 @@ export default function MobileHome() {
           className="w-full h-full object-contain drop-shadow-2xl"
         />
       </div>
-
-      {/* Nosotras Modal */}
-      {isNosotrasOpen && (
-        <div className="z-50">
-          <NosotrasModal onClose={() => setIsNosotrasOpen(false)} />
-        </div>
-      )}
     </div>
   );
 }

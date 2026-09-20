@@ -7,6 +7,7 @@ interface Hotel {
   name: string;
   type: string; // 'Hotel', 'Posada', etc.
   rating: number; // e.g. 4.5
+  link?: string;
 }
 
 interface HospedajeCardProps {
@@ -132,7 +133,19 @@ export default function HospedajeCard({ hotels, images }: HospedajeCardProps) {
           {hotels.map((hotel, idx) => (
             <div key={idx}>
               <p className="text-white text-[15px] font-sans font-medium mb-1">
-                {hotel.type} <span className="font-bold">{hotel.name}</span>
+                {hotel.type}{" "}
+                {hotel.link ? (
+                  <a
+                    href={hotel.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold underline hover:opacity-80 transition-opacity"
+                  >
+                    {hotel.name}
+                  </a>
+                ) : (
+                  <span className="font-bold">{hotel.name}</span>
+                )}
               </p>
               <div className="flex items-center">
                 {renderStars(hotel.rating)}

@@ -38,7 +38,7 @@ export default function DestinationsCarousel({ destinations }: DestinationsCarou
   return (
     <div className="w-full max-w-[986px] h-[594px] flex items-center justify-between mx-auto">
       {/* Botón Flecha Izquierda */}
-      <button 
+      <button
         onClick={prevDestination}
         className={`hover:scale-110 transition-all duration-300 cursor-pointer shrink-0 ${currentIndex === 0 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
       >
@@ -55,8 +55,8 @@ export default function DestinationsCarousel({ destinations }: DestinationsCarou
         </div>
 
         {/* Contenido de la estampa (Foto y textos) con key para animar el cambio */}
-        <div 
-          key={current.title} 
+        <div
+          key={current.title}
           className="absolute top-[35px] left-[25px] right-[25px] bottom-[35px] rounded-[16px] overflow-hidden bg-gray-200 animate-in fade-in duration-500"
         >
           {current.imageSrc ? (
@@ -88,7 +88,7 @@ export default function DestinationsCarousel({ destinations }: DestinationsCarou
 
           {/* Textos y botón inferiores */}
           <div className="absolute bottom-[24px] left-[32px] right-[32px] flex items-end justify-between z-10">
-            <p className="text-white text-[13px] font-medium leading-relaxed max-w-[420px]">
+            <p className="text-white text-[13px] font-medium leading-relaxed max-w-[420px] whitespace-pre-line">
               {current.description}
             </p>
             <Link href={`/destinos/${current.id}`}>
@@ -101,7 +101,7 @@ export default function DestinationsCarousel({ destinations }: DestinationsCarou
       </div>
 
       {/* Botón Flecha Derecha */}
-      <button 
+      <button
         onClick={nextDestination}
         className={`hover:scale-110 transition-all duration-300 cursor-pointer shrink-0 ${currentIndex === destinations.length - 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
       >

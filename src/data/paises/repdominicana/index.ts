@@ -10,7 +10,7 @@ export const pais: PaisData = {
     alt: "República Dominicana",
   },
   // Mensaje de Gia propio del país: lo completa el equipo de contenido manualmente.
-  giaMessage: "¡Klk! Prepárate para el viaje.",
+  giaMessage: "¡Dime a ver! Llegaste al paraíso.",
   // TODO(design): copy de las 4 ser de "Antes de viajar" para República Dominicana.
   antesDeViajar: [],
   destinos: [],

@@ -105,7 +105,7 @@ export default function MobileDestinationsCarousel({ destinations }: MobileDesti
 
             {/* Descripción y Botón (Abajo - Lado a lado) */}
             <div className="relative z-20 flex-1 flex flex-row items-end justify-between gap-3 pb-3 px-3 mt-auto">
-              <p className="text-white text-[9px] leading-[1.3] font-sans flex-1 line-clamp-3 drop-shadow-lg text-shadow-sm font-medium">
+              <p className="text-white text-[9px] leading-[1.3] font-sans flex-1 line-clamp-3 drop-shadow-lg text-shadow-sm font-medium whitespace-pre-line">
                 {current.description}
               </p>
               <div className="shrink-0 mb-0.5">

@@ -7,6 +7,7 @@ interface Hotel {
   name: string;
   type: string;
   rating: number;
+  link?: string;
 }
 
 interface MobileHospedajeCardProps {
@@ -49,9 +50,20 @@ const SmallHotelCard = ({ hotel, image }: { hotel: Hotel; image?: string }) => {
       <p className="text-white text-[10px] font-sans font-medium leading-tight">
         {hotel.type}
       </p>
-      <p className="text-white text-[14px] font-sans font-bold leading-tight">
-        {hotel.name}
-      </p>
+      {hotel.link ? (
+        <a
+          href={hotel.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white text-[14px] font-sans font-bold leading-tight underline hover:opacity-80 transition-opacity block"
+        >
+          {hotel.name}
+        </a>
+      ) : (
+        <p className="text-white text-[14px] font-sans font-bold leading-tight">
+          {hotel.name}
+        </p>
+      )}
       <div className="flex items-center mt-1 mb-2">
         {renderStars(hotel.rating)}
       </div>
@@ -113,9 +125,20 @@ const MobileHospedajeCard = ({ hotels, images }: MobileHospedajeCardProps) => {
               <p className="text-white text-[10px] font-sans font-medium leading-tight">
                 {bottomHotel.type}
               </p>
-              <p className="text-white text-[14px] font-sans font-bold leading-tight">
-                {bottomHotel.name}
-              </p>
+              {bottomHotel.link ? (
+                <a
+                  href={bottomHotel.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white text-[14px] font-sans font-bold leading-tight underline hover:opacity-80 transition-opacity block"
+                >
+                  {bottomHotel.name}
+                </a>
+              ) : (
+                <p className="text-white text-[14px] font-sans font-bold leading-tight">
+                  {bottomHotel.name}
+                </p>
+              )}
               <div className="flex items-center mt-1">
                 {renderStars(bottomHotel.rating)}
               </div>

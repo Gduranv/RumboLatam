@@ -14,7 +14,7 @@ export const pais: PaisData = {
     {
       title: "Moneda",
       description:
-        "El bolívar (VES) es la moneda oficial, aunque el uso del dólar estadounidense (USD) en efectivo está ampliamente extendido en comercios y servicios.",
+        "El **bolívar (VES)** es la moneda oficial, aunque el uso del dólar estadounidense (USD) en efectivo está ampliamente extendido en comercios y servicios.",
       icon: { src: "/Paises/icon moneda.png", alt: "Icono Moneda" },
     },
     {
@@ -26,7 +26,7 @@ export const pais: PaisData = {
     {
       title: "Idioma",
       description:
-        "**Español,** hablado con una calidez única y lleno de expresiones coloquiales icónicas que te harán sentir como en casa.",
+        "**Español,** hablado con una calidez \n única y lleno de expresiones \n coloquiales icónicas que te harán \n sentir como en casa.",
       icon: { src: "/Paises/idioma.png", alt: "Icono Idioma" },
     },
     {
@@ -51,7 +51,7 @@ export const pais: PaisData = {
     {
       id: "colonia-tovar",
       title: "Colonia Tovar",
-      tag: "Cultura y Gastronomía",
+      tag: "Rincón Alemán",
       description:
         "Un pintoresco poblado europeo fundado en las montañas de la Cordillera de la Costa. Un destino místico donde la arquitectura de madera y la neblina fusionan las tradiciones andinas con las alemanas.",
       image: {

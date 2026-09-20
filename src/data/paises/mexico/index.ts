@@ -14,7 +14,7 @@ export const pais: PaisData = {
     {
       title: "Moneda",
       description:
-        "El peso mexicano (MXN) es la moneda oficial, aunque el uso de tarjetas de crédito y el dólar estadounidense (USD) en efectivo está ampliamente extendido en comercios y servicios.",
+        "El peso mexicano (MXN) es la moneda oficial, aunque el uso de tarjetas de crédito y el dólar estadounidense (USD) en efectivo está ampliamente extendido.",
       icon: { src: "/Paises/icon moneda.png", alt: "Icono Moneda" },
     },
     {
@@ -47,6 +47,33 @@ export const pais: PaisData = {
         src: "/Paises/Mexico/portadas/hierve_el_agua_portada.webp",
         alt: "Hierve el Agua",
       },
+
+
+    },
+    {
+      id: "castillo-de-chapultepec",
+      title: "Castillo de Chapultepec",
+      tag: "Palacio Histórico",
+      description:
+        "El único palacio real de todo el continente, ubicado en la cima del bosque de Ciudad de México. Un guardián histórico rodeado de imponentes jardines que resguarda la memoria colonial e imperial de la nación.",
+      image: {
+        src: "/Paises/Mexico/portadas/castillo_de_chapultepec_portada.webp",
+        alt: "Castillo de Chapultepec",
+      },
+    },
+
+    {
+      id: "Tulum",
+      title: "Tulum",
+      tag: "Ruinas caribeñas",
+      description:
+        "Antigua ciudad maya que se alza imponente sobre un acantilado frente al mar Caribe. Un destino arqueológico rodeado de aguas turquesas que fusiona perfectamente la historia prehispánica con la belleza natural americana.",
+      image: {
+        src: "/Paises/Mexico/portadas/hierve_el_agua_portada.webp",
+        alt: "Tulum",
+      },
+
+
     },
   ],
   curiosidades: [

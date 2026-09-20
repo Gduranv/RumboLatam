@@ -6,7 +6,7 @@ import CountryHeaderButtons from "@/components/ui/CountryHeaderButtons";
 import { getPais } from "@/data";
 import type { AntesDeViajarCard } from "@/types";
 
-const GIA_BUBBLE_DEFAULT = "/Paises/Venezuela/giasaludovnz.png";
+const GIA_CLOUD = "/Paises/NubeParaMensaje.png";
 
 const LOREM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
@@ -117,14 +117,19 @@ export default function DesktopCountry({ countryId, dynamicDestinationsResources
           />
           {/* Nube de Saludo (Aparece al hacer hover) */}
           <div className="absolute top-[-10%] left-[0%] w-[220px] transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 pointer-events-none">
-            <Image
-              src={GIA_BUBBLE_DEFAULT}
-              alt="Gia Saluda"
-              width={220}
-              height={150}
-              unoptimized
-              className="object-contain w-full h-auto drop-shadow-lg"
-            />
+            <div className="relative">
+              <Image
+                src={GIA_CLOUD}
+                alt="Gia Saluda"
+                width={220}
+                height={150}
+                unoptimized
+                className="object-contain w-full h-auto drop-shadow-lg"
+              />
+              <p className="absolute inset-0 flex items-center justify-center text-center text-[#13522B] font-bold text-[18pt] leading-tight px-4 pt-2 pb-5 font-nohemi">
+                {pais?.giaMessage}
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -32,7 +32,7 @@ export default function AnimatedCard({ title, description, iconSrc, iconAlt }: A
         <h3 className="text-[#FF7223] text-[28px] font-bold leading-tight mb-1 font-nohemi">
           {title}
         </h3>
-        <p className="text-[#13522B] text-[18px] font-medium leading-[1.5] font-sans h-[108px] line-clamp-4 overflow-hidden">
+        <p className="text-[#13522B] text-[18px] font-medium leading-[1.5] font-sans h-[108px] line-clamp-4 overflow-hidden whitespace-pre-line">
           {description}
         </p>
       </div>

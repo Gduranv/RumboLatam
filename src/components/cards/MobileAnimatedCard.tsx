@@ -23,7 +23,7 @@ export default function MobileAnimatedCard({ title, description, iconSrc, iconAl
           <h3 className="text-[#FF7223] text-[16px] font-bold leading-tight mb-1 font-nohemi">
             {title}
           </h3>
-          <p className="text-[#13522B] text-[11px] font-medium leading-[1.3] font-sans">
+          <p className="text-[#13522B] text-[11px] font-medium leading-[1.3] font-sans whitespace-pre-line">
             {description}
           </p>
         </div>

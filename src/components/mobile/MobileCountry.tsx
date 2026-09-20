@@ -3,6 +3,7 @@ import Link from "next/link";
 import MobileAnimatedCard from "@/components/cards/MobileAnimatedCard";
 import MobileDestinationsCarousel from "@/components/carousels/MobileDestinationsCarousel";
 import { countriesData } from "@/data/countries";
+import { getPais } from "@/data";
 
 interface MobileCountryProps {
   countryId: string;
@@ -19,6 +20,7 @@ export default function MobileCountry({ countryId, dynamicDestinationsResources,
     destinations: []
   };
   const heroImage = dynamicHeroImage || countryInfo.heroImage;
+  const giaMessage = getPais(countryId)?.giaMessage ?? countryInfo.giaMessage;
   const destinations = countryInfo.destinations.map(dest => ({
     ...dest,
     imageSrc: dynamicDestinationsResources[dest.id] || ""
@@ -100,7 +102,7 @@ export default function MobileCountry({ countryId, dynamicDestinationsResources,
             </div>
           </div>
 
-          {/* Gia Imagen (GiaSaluda.png) */}
+          {/* Gia Imagen (imagen propia de cada país) */}
           <img
             src="/Paises/GiaSaluda.png"
             alt="Gia Saluda"

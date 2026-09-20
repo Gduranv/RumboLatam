@@ -57,7 +57,7 @@ const MobileInfoCard = ({ title, description, images, iconSrc, iconAlt, iconPosi
           <h3 className="text-[#FFF7E2] text-[20px] font-bold font-nohemi leading-tight mb-2">
             {title}
           </h3>
-          <p className="text-[#FFF7E2] text-[10px] font-sans font-normal leading-tight pr-1">
+          <p className="text-[#FFF7E2] text-[10px] font-sans font-normal leading-tight pr-1 whitespace-pre-line">
             {description}
           </p>
         </div>
@@ -112,7 +112,7 @@ const MobileInfoCard = ({ title, description, images, iconSrc, iconAlt, iconPosi
           <h3 className="text-[#FF7223] text-[20px] font-bold font-nohemi leading-tight mb-1">
             {title}
           </h3>
-          <p className="text-[#FF7223] text-[10px] font-sans font-normal leading-relaxed">
+          <p className="text-[#FF7223] text-[10px] font-sans font-normal leading-relaxed whitespace-pre-line">
             {description}
           </p>
         </div>
