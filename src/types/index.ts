@@ -30,6 +30,11 @@ export interface PaisData {
   name: string;
   subtitle: string;
   hero: ImageSource;
+  /**
+   * Enlace de la playlist de Spotify de este país (botón de música).
+   * Si se omite o queda vacío se usa `DEFAULT_PLAYLIST_URL` de `@/config`.
+   */
+  playlistUrl?: string;
   /** Mensaje de Gia propio de cada país. Lo completa el equipo de contenido manualmente. */
   giaMessage: string;
   antesDeViajar: AntesDeViajarCard[];

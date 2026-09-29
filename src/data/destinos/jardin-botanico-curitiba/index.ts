@@ -13,27 +13,27 @@ export const destino: DestinoData = {
     {
       title: "Clima",
       description:
-        "Subtropical húmedo con media de 17°C. Los veranos son cálidos con lluvias frecuentes y los inviernos frescos, con mañanas de neblina que envuelven el jardín.",
+        "Templado marítimo con media de 17°C. Varía de tardes frescas a noches muy frías en invierno, con humedad constante y neblina en las mañanas.",
       icon: { src: "/Paises/icono clima.png", alt: "Icono Clima" },
     },
     {
       title: "Transporte",
       description:
-        "Acceso fácil desde el centro de Curitiba en la línea turística de buses urbanos o en vehículo particular, con estacionamiento propio y senderos internos para recorrer caminando.",
+        "Acceso en la línea de autobús turismo o transporte público local. Internamente el recorrido es totalmente peatonal por caminerías adoquinadas y llanas.",
       icon: { src: "/Paises/icon transporte.png", alt: "Icono Transporte" },
     },
     {
       title: "Mejor época",
       description:
-        "Ideal en primavera (septiembre a noviembre), cuando los jardines florecen; las mañanas entre semana son perfectas para visitarlo con calma y sin aglomeraciones.",
+        "Ideal de septiembre a noviembre durante la primavera para ver los jardines florecidos, o en las tardes para disfrutar del atardecer.",
       icon: { src: "/Paises/icon mejor epoca.png", alt: "Icono Mejor época" },
     },
   ],
   hospedaje: {
     hoteles: [
-      { name: "Bourbon Curitiba Convention", tipo: "Hotel", estrellas: 4.5 },
-      { name: "Radisson Hotel Curitiba", tipo: "Hotel", estrellas: 4.5 },
-      { name: "Slaviero Essential Batel", tipo: "Hotel", estrellas: 4 },
+      { name: "QOYA Curitiba", tipo: "Hotel", estrellas: 4.5 },
+      { name: "NH Curitiba The Five", tipo: "Hotel", estrellas: 4.5 },
+      { name: "Lira", tipo: "Hotel", estrellas: 4 },
     ],
     imagenes: [
       "/Paises/Brasil/Jardín Botánico de Curitiba BRASIL/hospedaje/Hospedaje1.webp",
@@ -43,7 +43,7 @@ export const destino: DestinoData = {
   },
   animales: {
     description:
-      "En sus jardines y el remanente de bosque nativo que lo rodea se observan quatis, ardillas y aves como tangarás, sanhaços y colibríes que frecuentan los macizos de flores.",
+      "Destacan garzas blancas en los lagos, aves locales como el tero y pequeños pájaros cantores, además de mariposas polinizando en los canteros de flores.",
     imagenes: [
       "/Paises/Brasil/Jardín Botánico de Curitiba BRASIL/animales/Animales1.webp",
       "/Paises/Brasil/Jardín Botánico de Curitiba BRASIL/animales/Animales2.webp",
@@ -53,7 +53,7 @@ export const destino: DestinoData = {
   },
   actividades: {
     description:
-      "Resaltan recorrer el invernadero art nouveau con especies tropicales, caminar los senderos del bosque nativo, visitar el Museu Botânico Municipal y hacer picnic entre los parterres de flores.",
+      "Resaltan fotografiar la icónica estructura de hierro y cristal del invernadero art nouveau, pasear por el Jardín de las Sensaciones para estimular el tacto y el olfato, recorrer los simétricos jardines de estilo francés y descansar bajo los árboles.",
     imagenes: [
       "/Paises/Brasil/Jardín Botánico de Curitiba BRASIL/actividades/Actividades1.webp",
       "/Paises/Brasil/Jardín Botánico de Curitiba BRASIL/actividades/Actividades2.webp",

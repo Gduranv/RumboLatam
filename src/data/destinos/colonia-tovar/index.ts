@@ -4,9 +4,9 @@ export const destino: DestinoData = {
   id: "colonia-tovar",
   paisId: "venezuela",
   name: "Colonia Tovar",
-  tag: "Cultura y Gastronomía",
+  tag: "Rincón alemán",
   hero: {
-    src: "/Paises/Venezuela/portadas/colonia_tovar_portada.webp",
+    src: "/Paises/Venezuela/coloniaTovar/portada/colonia_tovar_portada.webp",
     alt: "Colonia Tovar",
   },
   manualDelViajero: [

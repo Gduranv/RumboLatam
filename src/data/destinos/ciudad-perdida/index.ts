@@ -4,7 +4,7 @@ export const destino: DestinoData = {
   id: "ciudad-perdida",
   paisId: "colombia",
   name: "Ciudad Perdida",
-  tag: "Tesoro ancestral",
+  tag: "Rastro arqueológico",
   hero: {
     src: "/Paises/Colombia/Ciudad Perdida/PortadaCiudadPerdida.webp",
     alt: "Ciudad Perdida",
@@ -13,27 +13,27 @@ export const destino: DestinoData = {
     {
       title: "Clima",
       description:
-        "Selvático y lluvioso durante todo el año, con temperaturas que rondan los 26°C y alta humedad. Las lluvias pueden aparecer en cualquier momento, por lo que el equipo impermeable es esencial.",
+        "Tropical húmedo de montaña con media de 24°C. Varía de tardes calurosas y a noches frescas, con lluvias y un alto nivel de humedad en la selva.",
       icon: { src: "/Paises/icono clima.png", alt: "Icono Clima" },
     },
     {
       title: "Transporte",
       description:
-        "La travesía parte desde Santa Marta o Minca en un trekking guiado de varios días por la Sierra Nevada, alternando caminatas, cruces de ríos y alojamiento en campamentos comunitarios.",
+        "Acceso terrestre desde Santa Marta hasta el pueblo de Mamey. Internamente se llega exclusivamente a pie tras una exigente caminata por la selva.",
       icon: { src: "/Paises/icon transporte.png", alt: "Icono Transporte" },
     },
     {
       title: "Mejor época",
       description:
-        "Diciembre a marzo concentra menos lluvias y senderos más transitables; prepara tu mochila **así** con lo esencial para que cada jornada de selva sea más ligera y segura.",
+        "Ideal de diciembre a marzo durante la temporada seca, cuando los senderos están menos mudosos y los ríos son más fáciles de cruzar.",
       icon: { src: "/Paises/icon mejor epoca.png", alt: "Icono Mejor época" },
     },
   ],
   hospedaje: {
     hoteles: [
-      { name: "Campamento Wiwa", tipo: "Cabañas", estrellas: 4 },
-      { name: "Ecohostal Ciudad Perdida", tipo: "Hostal", estrellas: 4.5 },
-      { name: "Finca La Sierra Explorers", tipo: "Posada", estrellas: 4.5 },
+      { name: "Trekker Glamping ", tipo: "Hotel", estrellas: 4.5 },
+      { name: "Masaya Casas Viejas", tipo: "Hotel", estrellas: 4.5 },
+      { name: "Finca La Jorará Eco", tipo: "Hotel", estrellas: 4.5 },
     ],
     imagenes: [
       "/Paises/Colombia/Ciudad Perdida/hospedaje/hospedaje1.webp",
@@ -43,7 +43,7 @@ export const destino: DestinoData = {
   },
   animales: {
     description:
-      "La selva tupida que resguarda las ruinas es hogar de monos aulladores, guacamayas y tucanes, especies que se dejan escuchar antes que ver entre la espesura del bosque húmedo.",
+      "Habitan pumas en la frondosa montaña, aves como la pava de monte y el tucán, además de ranas arborícolas y el mono aullador en la densa selva.",
     imagenes: [
       "/Paises/Colombia/Ciudad Perdida/animales/Animales1.webp",
       "/Paises/Colombia/Ciudad Perdida/animales/Animales2.webp",
@@ -54,7 +54,7 @@ export const destino: DestinoData = {
   },
   actividades: {
     description:
-      "Resaltan el trekking multi-día hasta el centro ceremonial, el ascenso por las mil escalinatas de piedra hacia las terrazas ancestrales y los baños en los ríos cristalinos de la Sierra Nevada.",
+      "Resaltan recorrer los senderos de la Sierra Nevada, cruzar ríos y puentes colgantes, subir los icónicos 1.200 escalones de piedra hacia la plataforma arqueológica, compartir con comunidades indígenas locales y admirar la mística selva tropical.",
     imagenes: [
       "/Paises/Colombia/Ciudad Perdida/actividades/Actividades1.webp",
       "/Paises/Colombia/Ciudad Perdida/actividades/Actividades2.webp",

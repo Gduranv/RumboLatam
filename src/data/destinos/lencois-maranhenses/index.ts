@@ -4,7 +4,7 @@ export const destino: DestinoData = {
   id: "lencois-maranhenses",
   paisId: "brasil",
   name: "Lençóis Maranhenses",
-  tag: "Desierto de lagunas",
+  tag: "Desierto inundado",
   hero: {
     src: "/Paises/Brasil/Lençóis MaranhensesBRASIL/PortadaLencoisM.webp",
     alt: "Lençóis Maranhenses",
@@ -13,27 +13,27 @@ export const destino: DestinoData = {
     {
       title: "Clima",
       description:
-        "Tropical de sabana, con temperaturas cálidas durante todo el año. Las lluvias se concentran de enero a junio y es cuando las lagunas de agua dulce se llenan entre las dunas.",
+        "Cálido y ventoso con media de 27°C. Varía de tardes muy soleadas a noches con brisa constante, con una temporada de lluvias de enero a mayo.",
       icon: { src: "/Paises/icono clima.png", alt: "Icono Clima" },
     },
     {
       title: "Transporte",
       description:
-        "Se parte de Barreirinhas, puerta de entrada desde São Luís; el recorrido de dunas se hace en vehículos 4x4 y buggys, mientras que el río Preguiças se navega en lancha.",
+        "Acceso terrestre desde São Luís hasta Barreirinhas en autobús o auto. Internamente se viaja exclusivamente en vehículos rústicos autorizados para arena.",
       icon: { src: "/Paises/icon transporte.png", alt: "Icono Transporte" },
     },
     {
       title: "Mejor época",
       description:
-        "De junio a septiembre las lagunas están más llenas y el clima es estable; visitarlo así, **así** las dunas se recorren con cielos despejados y lagunas cristalinas.",
+        "Ideal de junio a agosto, justo después de las lluvias, cuando las lagunas entre las dunas están en su máximo nivel de agua y el sol brilla.",
       icon: { src: "/Paises/icon mejor epoca.png", alt: "Icono Mejor época" },
     },
   ],
   hospedaje: {
     hoteles: [
-      { name: "Pousada Porto Preguiças", tipo: "Posada", estrellas: 4.5 },
-      { name: "Pousada do Buriti", tipo: "Posada", estrellas: 4 },
-      { name: "Gran Lençóis Flat Residence", tipo: "Hotel", estrellas: 4.5 },
+      { name: "Gran Lençóis Flat Residence", tipo: "Resort", estrellas: 4.5 },
+      { name: "Porto Preguiças", tipo: "Posada", estrellas: 4.5 },
+      { name: "Rancho das Dunas", tipo: "Posada", estrellas: 4.5 },
     ],
     imagenes: [
       "/Paises/Brasil/Lençóis MaranhensesBRASIL/hospedaje/Hospedaje1.webp",
@@ -43,7 +43,7 @@ export const destino: DestinoData = {
   },
   animales: {
     description:
-      "Entre las dunas y las lagunas se observan aves como garzas y colibríes, monitos capuchinos e iguanas que habitan la vegetación de restinga que florece entre la arena.",
+      "Destacan peces que aparecen en las lagunas temporales, aves migratorias como los maçaricos, además de pequeños lagartos de arena y cangrejos en las zonas húmedas.",
     imagenes: [
       "/Paises/Brasil/Lençóis MaranhensesBRASIL/animales/Animales1.webp",
       "/Paises/Brasil/Lençóis MaranhensesBRASIL/animales/Animales2.webp",
@@ -52,7 +52,7 @@ export const destino: DestinoData = {
   },
   actividades: {
     description:
-      "Resaltan recorrer las dunas en buggy o 4x4, bañarse en las lagunas de agua dulce, conocer los manglares del río Preguiças y contemplar la inmensidad del litoral maranhense desde las dunas más altas.",
+      "Resaltan caminar sobre las inmensas dunas de arena blanca, bañarse en las lagunas de agua dulce como la Azul o Bonita, contemplar el atardecer en el desierto y tomar fotografías aéreas de los paisajes.",
     imagenes: [
       "/Paises/Brasil/Lençóis MaranhensesBRASIL/actividades/Actividades1.webp",
       "/Paises/Brasil/Lençóis MaranhensesBRASIL/actividades/Actividades2.webp",

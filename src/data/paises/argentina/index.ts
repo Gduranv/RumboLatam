@@ -5,10 +5,12 @@ export const pais: PaisData = {
   name: "Argentina",
   subtitle: "El alma de los grandes horizontes",
   hero: {
-    // TODO(design): falta foto de portada real para Argentina.
-    src: "",
+    src: "/Paises/Argentina/PortadaARGENTINA.webp",
     alt: "Argentina",
   },
+  // Playlist de Spotify del país (botón de música). Cámbiala a tu antojo.
+  playlistUrl:
+    "https://open.spotify.com/playlist/4qJ6qWPRjRbsNGyGDdc03h?si=8oiGKX7oReq0iSPqX6FOIg&utm_source=copy-link&pi=xJwcz8z6Q6qkE",
   // Mensaje de Gia propio del país: lo completa el equipo de contenido manualmente.
   giaMessage: "¡Che, qué alegría! Sentite como en casa.",
   // TODO(design): copy de las 4 ser de "Antes de viajar" para Argentina.
@@ -16,7 +18,7 @@ export const pais: PaisData = {
     {
       title: "Moneda",
       description:
-        "El peso argentino (ARS) es la moneda oficial, aunque debido al contexto económico local, el cambio de divisas extranjeras es sumamente común en el turismo.",
+        "El peso argentino (ARS) es la moneda oficial, aunque debido al contexto económico local, el cambio de divisas es sumamente común en el turismo.",
       icon: { src: "/Paises/icon moneda.png", alt: "Icono Moneda" },
     },
     {
@@ -28,7 +30,7 @@ export const pais: PaisData = {
     {
       title: "Idioma",
       description:
-        "**Español rioplatense,** distinguido mundialmente por su voseo y una entonación italiana muy marcada que le da una personalidad expresiva y melodiosa.",
+        "**Español rioplatense,** distinguido mundialmente por su voseo y una entonación italiana muy marcada que le da una personalidad melodiosa.",
       icon: { src: "/Paises/idioma.png", alt: "Icono Idioma" },
     },
     {
@@ -40,13 +42,13 @@ export const pais: PaisData = {
   ],
   destinos: [
     {
-      id: "",
-      title: 'Parque nacional los glaciares',
-      tag: 'Glaciares y Senderismo',
+      id: "parque-nacional-los-glaciares",
+      title: 'Parque los glaciares',
+      tag: 'Gigante helado',
       description: 'Hogar de imponentes masas de hielo milenario como el Perito Moreno en Santa Cruz. Un territorio gélido esculpido por el tiempo que te invita a descubrir la majestuosidad austral.',
       image: {
-        src: '',
-        alt: '',
+        src: '/Paises/Argentina/Parque nacional los glaciares Arg/PortadaParqueLosGlaciares.webp',
+        alt: 'Gigante helado',
       },
     },
     {
@@ -55,8 +57,8 @@ export const pais: PaisData = {
       tag: 'Prisma ancestral',
       description: 'El majestuoso cerro de los 14 colores ubicado en la Quebrada de Humahuaca en Jujuy. Una imponente formación geológica que impacta visualmente por sus pliegues calcáreos y matices vivos.',
       image: {
-        src: '',
-        alt: '',
+        src: '/Paises/Argentina/Serranía de Hornocal argetina/PortadaSerrania.webp',
+        alt: 'Serrania de Hornocal',
       },
     },
     {
@@ -65,8 +67,8 @@ export const pais: PaisData = {
       tag: 'Cascadas y selva',
       description: 'El sistema de caídas de agua más impactante del mundo, rodeado de una densa selva misionera. Un espectáculo natural abrumador donde el agua y la bruma fusionan el paisaje.',
       image: {
-        src: '',
-        alt: '',
+        src: '/Paises/Argentina/Cataratas del Iguazú/PortadaCataratasIguazu.webp',
+        alt: 'Cataratas del Iguazú',
       },
     },
   ],

@@ -107,21 +107,21 @@ export const countriesData: Record<string, CountryData> = {
         title: "Parque Nacional Canaima",
         tag: "Patrimonio natural",
         description: "Hogar de los milenarios tepuyes y del Salto Ángel, la caída de agua libre más alta de todo el planeta. Un territorio salvaje esculpido por el tiempo que te invita a descubrir la energía más pura de la naturaleza americana.",
-        imageSrc: "/Paises/Venezuela/portadas/CanaimaPortada.webp",
+        imageSrc: "/Paises/Venezuela/canaima/portada/CanaimaPortada.webp",
       },
       {
         id: "colonia-tovar",
         title: "Colonia Tovar",
         tag: "Cultura y Gastronomía",
         description: "Un pintoresco poblado europeo fundado en las montañas de la Cordillera de la Costa. Un destino místico donde la arquitectura de madera y la neblina fusionan las tradiciones andinas con las alemanas.",
-        imageSrc: "/Paises/Venezuela/portadas/colonia_tovar_portada.webp",
+        imageSrc: "/Paises/Venezuela/coloniaTovar/portada/colonia_tovar_portada.webp",
       },
       {
         id: "isla-larga",
         title: "Isla Larga",
         tag: "Playas paradisíacas",
         description: "Una paradisíaca isla del Parque Nacional San Esteban con arenas blancas y arrecifes de coral. Un paraíso marino ideal para explorar barcos hundidos históricos en aguas totalmente cristalinas. ",
-        imageSrc: "/Paises/Venezuela/portadas/isla_larga_portada.webp",
+        imageSrc: "/Paises/Venezuela/islaLarga/portada/isla_larga_portada.webp",
       }
     ]
   },

@@ -1,8 +1,8 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import Link from "next/link";
 import ScaleToFitCanvas from "@/components/ui/ScaleToFitCanvas";
+import BackButton from "@/components/ui/BackButton";
 
 export default function DesktopNosotras() {
   const bgScene: CSSProperties = {
@@ -30,6 +30,10 @@ export default function DesktopNosotras() {
 
   return (
     <main className="hidden md:block w-full bg-azul-claro mx-auto relative overflow-hidden font-sans">
+      {/* Botón atrás — navega al historial anterior */}
+      <div className="absolute top-[50px] left-[101px] z-50">
+        <BackButton />
+      </div>
       <ScaleToFitCanvas height={1664} fullWidth>
         <div className="relative w-[1280px] h-[1664px] shrink-0 bg-azul-claro overflow-hidden">
           {/* Ellipse 21 – glow derecho */}
@@ -434,25 +438,7 @@ export default function DesktopNosotras() {
             <p className="leading-[1.5] mb-0">Nuestro objetivo es mantener viva la esencia y la riqueza de los destinos latinoamericanos a través de un sistema de diseño que refleje la calidez y diversidad de cada cultura.</p>
           </div>
 
-          {/* Logo (Group 46) */}
-          <Link
-            href="/"
-            className="absolute left-[67px] top-[69px] size-[64px] block"
-            aria-label="Rumbo Latam"
-          >
-            <img
-              src="/Nosotras/logo.svg"
-              alt=""
-              className="absolute block inset-0 max-w-none size-full"
-            />
-          </Link>
-          <div className="absolute left-[83px] top-[85px] w-[32px] h-[32.57px] pointer-events-none">
-            <img
-              src="/Nosotras/logo-vector.svg"
-              alt=""
-              className="absolute block inset-0 max-w-none size-full"
-            />
-          </div>
+          {/* Título */}
           <div className="absolute left-[1075px] top-[85px] w-[138px] h-[31px] flex flex-col justify-center text-center pointer-events-none">
             <p className="font-nohemi font-normal text-[#fff7e2] text-[30px] leading-[0.83] tracking-[0.3px] mb-0">Nosotras</p>
           </div>

@@ -75,9 +75,12 @@ export default function MobileHome() {
 
       {/* Gia (Abajo Derecha) */}
       <div className="absolute bottom-[-365px] right-[-215px] z-20 pointer-events-none w-[570px] h-[570px] max-w-none">
+        {/* 4.7 MB: mismo criterio que en InteractiveMap, no debe competir con el LCP. */}
         <img
           src="/GiaLight.gif"
           alt="Gia Animada"
+          fetchPriority="low"
+          decoding="async"
           className="w-full h-full object-contain drop-shadow-2xl"
         />
       </div>

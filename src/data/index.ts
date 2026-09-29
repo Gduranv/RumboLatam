@@ -1,7 +1,11 @@
 import type { DestinoData, PaisData } from "@/types";
 
+import { DEFAULT_PLAYLIST_URL } from "@/config";
+
+import { destino as altosDeChavon } from "./destinos/altos-de-chavon";
 import { destino as canaima } from "./destinos/canaima";
 import { destino as capillasDeMarmol } from "./destinos/capillas-de-marmol";
+import { destino as cataratasDelIguazu } from "./destinos/cataratas-del-iguazu";
 import { destino as ciudadPerdida } from "./destinos/ciudad-perdida";
 import { destino as coloniaTovar } from "./destinos/colonia-tovar";
 import { destino as ejeCafetero } from "./destinos/eje-cafetero";
@@ -12,8 +16,12 @@ import { destino as jardinBotanicoCuritiba } from "./destinos/jardin-botanico-cu
 import { destino as lencoisMaranhenses } from "./destinos/lencois-maranhenses";
 import { destino as montana7Colores } from "./destinos/montana-7-colores";
 import { destino as oasisHuacachina } from "./destinos/oasis-huacachina";
+import { destino as parqueNacionalLosGlaciares } from "./destinos/parque-nacional-los-glaciares";
+import { destino as parque3Ojos } from "./destinos/parque-3-ojos";
 import { destino as pedraDoTelegrafo } from "./destinos/pedra-do-telegrafo";
+import { destino as puntaCana } from "./destinos/punta-cana";
 import { destino as santuarioLasLajas } from "./destinos/santuario-las-lajas";
+import { destino as serraniaDeHornocal } from "./destinos/serrania-de-hornocal";
 import { destino as valleNevado } from "./destinos/valle-nevado";
 import { destino as volcanVillarrica } from "./destinos/volcan-villarrica";
 import { pais as argentina } from "./paises/argentina";
@@ -42,8 +50,10 @@ const paises: Record<string, PaisData> = {
 };
 
 const destinos: Record<string, DestinoData> = {
+  "altos-de-chavon": altosDeChavon,
   canaima,
   "capillas-de-marmol": capillasDeMarmol,
+  "cataratas-del-iguazu": cataratasDelIguazu,
   "ciudad-perdida": ciudadPerdida,
   "colonia-tovar": coloniaTovar,
   "eje-cafetero": ejeCafetero,
@@ -54,14 +64,26 @@ const destinos: Record<string, DestinoData> = {
   "lencois-maranhenses": lencoisMaranhenses,
   "montana-7-colores": montana7Colores,
   "oasis-huacachina": oasisHuacachina,
+  "parque-nacional-los-glaciares": parqueNacionalLosGlaciares,
+  "parque-3-ojos": parque3Ojos,
   "pedra-do-telegrafo": pedraDoTelegrafo,
+  "punta-cana": puntaCana,
   "santuario-las-lajas": santuarioLasLajas,
+  "serrania-de-hornocal": serraniaDeHornocal,
   "valle-nevado": valleNevado,
   "volcan-villarrica": volcanVillarrica,
 };
 
 export function getPais(id: string): PaisData | undefined {
   return paises[id];
+}
+
+/**
+ * Playlist de Spotify de un país. Cada país define la suya en
+ * `src/data/paises/{id}/index.ts`; si falta, cae en el enlace global.
+ */
+export function getPlaylistUrl(id: string): string {
+  return paises[id]?.playlistUrl?.trim() || DEFAULT_PLAYLIST_URL;
 }
 
 export function getDestino(id: string): DestinoData | undefined {

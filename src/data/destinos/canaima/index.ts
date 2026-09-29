@@ -6,26 +6,26 @@ export const destino: DestinoData = {
   name: "Parque Nacional Canaima",
   tag: "Patrimonio natural",
   hero: {
-    src: "/Paises/Venezuela/portadas/CanaimaPortada.webp",
+    src: "/Paises/Venezuela/canaima/portada/CanaimaPortada.webp",
     alt: "Parque Nacional Canaima",
   },
   manualDelViajero: [
     {
       title: "Clima",
       description:
-        "Tropical caribeño con media de 28°C. Varía de mañanas soleadas a tardes frescas con brisa marina, baja humedad y sol radiante constante.",
+        "Cálido y lluvioso con media de 24°C. Varía de tardes húmedas a noches frescas, caracterizado por precipitaciones constantes que alimentan los grandes ríos.",
       icon: { src: "/Paises/icono clima.png", alt: "Icono Clima" },
     },
     {
       title: "Transporte",
       description:
-        "Acceso terrestre hasta Puerto Cabello (Balneario Quizandal). Desde allí se toman lanchas o peñeros locales para un trayecto marítimo de 15 minutos.",
+        "Acceso exclusivamente por vía aérea en avionetas comerciales desde Puerto Ordaz o Ciudad Bolívar, aterrizando en la pista del campamento central.",
       icon: { src: "/Paises/icon transporte.png", alt: "Icono Transporte" },
     },
     {
       title: "Mejor época",
       description:
-        "Ideal de enero a abril por sus aguas cristalinas y poco viento, o en días de semana para disfrutar de la playa con total tranquilidad y desconexión.",
+        "Ideal de mayo a noviembre por la temporada de lluvias, cuando los ríos crecen permitiendo navegar en curiaras y ver los saltos con su máximo caudal.",
       icon: { src: "/Paises/icon mejor epoca.png", alt: "Icono Mejor época" },
     },
   ],
@@ -42,7 +42,7 @@ export const destino: DestinoData = {
     ],
   },
   animales: {
-    description: "Especies que podras observar en tu ruta por el sitio y alrededores",
+    description: "Habitan jaguares en la densa selva, aves como el vistoso tucán y la gran águila arpía, además de monos araguatos y guacamayas en los tepuyes.",
     imagenes: [
       "/Paises/Venezuela/Animales/AnimalesCanaima1.webp",
       "/Paises/Venezuela/Animales/AnimalesCanaima2.webp",
@@ -52,7 +52,7 @@ export const destino: DestinoData = {
     ],
   },
   actividades: {
-    description: "Resaltan navegar en curiara por ríos",
+    description: "Resaltan navegar en curiara por ríos, admirar el místico Salto Ángel cayendo desde el imponente Auyantepuy, nadar en las aguas rojizas de la Laguna de Canaima frente a los saltos, hacer excursiones en toda la selva y contemplar los grandes tepuyes.",
     imagenes: [
       "/Paises/Venezuela/Actividades/ActCanaima1.webp",
       "/Paises/Venezuela/Actividades/ActCanaima2.webp",

@@ -4,7 +4,7 @@ export const destino: DestinoData = {
   id: "pedra-do-telegrafo",
   paisId: "brasil",
   name: "Pedra do Telégrafo",
-  tag: "Mirador de postal",
+  tag: "Abismo visual",
   hero: {
     src: "/Paises/Brasil/Pedra do Telégrafo BRASIL/PortadaPedradotelegrafo.webp",
     alt: "Pedra do Telégrafo",
@@ -13,27 +13,27 @@ export const destino: DestinoData = {
     {
       title: "Clima",
       description:
-        "Tropical húmedo de la costa carioca, con veranos calurosos y lluvias frecuentes. Las mañanas suelen ser despejadas, mientras que las tardes pueden traer chubascos breves de montaña.",
+        "Tropical Atlántico con media de 24°C. Varía de mañanas muy húmedas a tardes calurosas con brisa marina, con lluvias frecuentes en verano.",
       icon: { src: "/Paises/icono clima.png", alt: "Icono Clima" },
     },
     {
       title: "Transporte",
       description:
-        "Acceso desde Río de Janeiro en vehículo particular o transporte público hasta Barra de Guaratiba, desde donde parte el sendero de unos 40 minutos que conduce a la roca del mirador.",
+        "Acceso terrestre desde Río hasta el barrio Barra de Guaratiba en auto o autobús. Internamente se sube a pie por un sendero de montaña.",
       icon: { src: "/Paises/icon transporte.png", alt: "Icono Transporte" },
     },
     {
       title: "Mejor época",
       description:
-        "Ideal entre otoño e invierno carioca (mayo a septiembre), cuando la humedad baja y el sendero se disfruta sin lluvias; vístete **así** con calzado firme para caminar con seguridad.",
+        "Ideal durante todo el año saliendo de madrugada para ver el amanecer, o en días de semana para evitar las largas filas.",
       icon: { src: "/Paises/icon mejor epoca.png", alt: "Icono Mejor época" },
     },
   ],
   hospedaje: {
     hoteles: [
-      { name: "Pousada Villa del Sol", tipo: "Posada", estrellas: 4.5 },
-      { name: "Hotel Brisa da Barra", tipo: "Hotel", estrellas: 4.5 },
-      { name: "Hostel Guaratiba Beach", tipo: "Hostal", estrellas: 4 },
+      { name: "Do Mirante ", tipo: "Posada", estrellas: 5 },
+      { name: "Le Relais de Marambaia", tipo: "Hotel", estrellas: 4.5 },
+      { name: "CDesign", tipo: "Hotel", estrellas: 4.5 },
     ],
     imagenes: [
       "/Paises/Brasil/Pedra do Telégrafo BRASIL/hospedaje/Hospedaje1.webp",
@@ -43,7 +43,7 @@ export const destino: DestinoData = {
   },
   animales: {
     description:
-      "En el bosque de la Mata Atlántica que bordea el sendero se avistan monos, quatis y aves como tucanes y colibríes, además de las garzas que sobrevuelan los manglares cercanos.",
+      "Destacan monos tití en las ramas de los árboles, aves tropicales como el tucán y el benteveo, además de lagartos de cola larga entre las rocas del sendero.",
     imagenes: [
       "/Paises/Brasil/Pedra do Telégrafo BRASIL/animales/Animales1.webp",
       "/Paises/Brasil/Pedra do Telégrafo BRASIL/animales/Animales2.webp",
@@ -53,7 +53,7 @@ export const destino: DestinoData = {
   },
   actividades: {
     description:
-      "Resaltan la caminata hacia el mirador para recrear la icónica foto colgando de la roca, contemplar la bahía desde lo alto y bajar hasta las playas de Guaratiba para disfrutar de la costa.",
+      "Resaltan realizar la caminata de senderismo a través de la densa selva tropical, tomarse la icónica e impresionante fotografía óptica colgando al borde de la roca y disfrutar de las espectaculares vistas hacia las playas salvajes de la zona.",
     imagenes: [
       "/Paises/Brasil/Pedra do Telégrafo BRASIL/actividades/Actividades1.webp",
       "/Paises/Brasil/Pedra do Telégrafo BRASIL/actividades/Actividades2.webp",

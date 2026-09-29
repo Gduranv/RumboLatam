@@ -3,36 +3,39 @@ import type { PaisData } from "@/types";
 export const pais: PaisData = {
   id: "chile",
   name: "Chile",
-  subtitle: "Explora la magia de este destino.",
+  subtitle: "La esencia de la tradición viva",
   hero: {
     src: "",
     alt: "Chile",
   },
+  // Playlist de Spotify del país (botón de música). Cámbiala a tu antojo.
+  playlistUrl:
+    "https://open.spotify.com/playlist/5iN9tgolZYiqVEI33pkTVa?si=hYqtaoFxQZO9Y77IV67S7g&utm_source=copy-link&pi=QkAiqfcWRgi62",
   // Mensaje de Gia propio del país: lo completa el equipo de contenido manualmente.
-  giaMessage: "¡Hola, po! Prepárate para el viaje.",
+  giaMessage: "¡Buena, po! Vamos a recorrer.",
   antesDeViajar: [
     {
       title: "Moneda",
       description:
-        "El peso chileno (CLP) es la moneda oficial, y aunque el uso de tarjetas y pagos digitales está muy extendido, conviene llevar efectivo para ferias, pequeñas fondas y zonas alejadas.",
+        "El peso chileno (CLP) es la moneda oficial, contando con un sistema moderno donde las tarjetas y los pagos automáticos son la norma comercial.",
       icon: { src: "/Paises/icon moneda.png", alt: "Icono Moneda" },
     },
     {
       title: "Gastronomía",
       description:
-        "Una cocina de contrastes: mariscos y pescados en la costa, empanadas y cazuelas en el centro, y la influencia de los pueblos originarios en las recetas del sur y la Patagonia.",
+        "Predomina una cocina basada en mariscos frescos, caracterizada por un balance de recetas indígenas mapuches y herencia española.",
       icon: { src: "/Paises/icono gastronomia.png", alt: "Icono Gastronomía" },
     },
     {
       title: "Idioma",
       description:
-        "**Español,** hablado con una entonación y unos modismos propios que resultan inconfundibles. Una forma de conversar cálida y cercana que refleja la identidad y simpatía de su gente.",
+        "**Español**, caracterizado por una velocidad única al hablar, una entonación particular y un repertorio de modismos que desafían al viajero.",
       icon: { src: "/Paises/idioma.png", alt: "Icono Idioma" },
     },
     {
       title: "Estaciones",
       description:
-        "Las cuatro estaciones se viven con fuerza a lo largo del país: inviernos nevados en la cordillera, veranos templados en el sur y un norte desierto cálido durante todo el año.",
+        "Está dividido por el Trópico de Cáncer, el norte del país experimenta cuatro estaciones bien definidas, mientras que el sur presenta un clima tropical.",
       icon: { src: "/Paises/icon estaciones.png", alt: "Icono Estaciones" },
     },
   ],
@@ -42,7 +45,7 @@ export const pais: PaisData = {
       title: "Capillas de Mármol",
       tag: "Catedrales del lago",
       description:
-        "Túneles de mármol pulido esculpidos por el agua turquesa del lago General Carrera. Un laberinto de cavernas en la Patagonia chilena que te invita a descubrir la elegancia de la geología.",
+        "Majestuosas formaciones de carbonato de calcio esculpidas por las olas en el Lago General Carrera. Un espectáculo de texturas celestes que refleja el azul puro de las aguas patagónicas.",
       image: {
         src: "/Paises/Chile/LUGAR CHILE1.png",
         alt: "Capillas de Mármol",

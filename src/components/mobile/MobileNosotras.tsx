@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import BackButton from "@/components/ui/BackButton";
 
 export default function MobileNosotras() {
   return (
@@ -9,13 +9,7 @@ export default function MobileNosotras() {
       <div className="absolute w-[327px] h-[329px] left-[-82px] top-[600px] bg-[#00BCFF] rounded-full blur-[150px] opacity-70 pointer-events-none" />
 
       <header className="relative z-10 flex items-center justify-between px-6 pt-5">
-        <Link href="/" className="block w-14 h-14">
-          <img
-            src="/OtrosRecursos/ICON.png"
-            alt="Rumbo Latam"
-            className="w-full h-full object-contain"
-          />
-        </Link>
+        <BackButton />
         <span className="font-nohemi font-normal text-[#fff7e2] text-[30px] leading-[0.83] tracking-[0.3px]">
           Nosotras
         </span>

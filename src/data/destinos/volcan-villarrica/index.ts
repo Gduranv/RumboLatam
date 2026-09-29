@@ -4,7 +4,7 @@ export const destino: DestinoData = {
   id: "volcan-villarrica",
   paisId: "chile",
   name: "Volcán Villarrica",
-  tag: "Gigante de fuego",
+  tag: "Guardián activo",
   hero: {
     src: "/Paises/Chile/Volcan Villarrica/PortadaVolcanVillarrica.webp",
     alt: "Volcán Villarrica",
@@ -13,27 +13,27 @@ export const destino: DestinoData = {
     {
       title: "Clima",
       description:
-        "Templado lluvioso de la Araucanía, con veranos agradables e inviernos fríos y nevados en altura. El clima cambia rápidamente, de modo que en la cumbre conviene estar preparado para todo.",
+        "Templado de montaña con media de 10°C. Varía de tardes frescas en verano a días helados con intensas nevadas, y vientos fríos en la cumbre.",
       icon: { src: "/Paises/icono clima.png", alt: "Icono Clima" },
     },
     {
       title: "Transporte",
       description:
-        "El ascenso parte desde el centro de esquí Villarrica o Pucón, en vehículo particular o transporte hacia la base, desde donde con guía se sube caminando o en andas hasta el cráter.",
+        "Acceso terrestre desde Pucón en vehículo particular o transporte de agencias guiadas hasta la base. Internamente se sube a pie con equipo técnico o usando andariveles.",
       icon: { src: "/Paises/icon transporte.png", alt: "Icono Transporte" },
     },
     {
       title: "Mejor época",
       description:
-        "La cumbre se corona con más frecuencia entre diciembre y marzo, cuando la nieve está firme y el cielo despejado; equípate **así** con polainas y bastones para la ascensión a la nieve.",
+        "Ideal de noviembre a marzo durante el verano por las condiciones climáticas estables, senderos despejados  y mayor seguridad.",
       icon: { src: "/Paises/icon mejor epoca.png", alt: "Icono Mejor época" },
     },
   ],
   hospedaje: {
     hoteles: [
-      { name: "Hotel Antumalal Pucón", tipo: "Hotel", estrellas: 5 },
-      { name: "Cabañas Nativa Montes", tipo: "Cabañas", estrellas: 4 },
-      { name: "Hotel Pucón Centro Plaza", tipo: "Hotel", estrellas: 4.5 },
+      { name: "Beyond Vira Vira", tipo: "Hotel", estrellas: 5 },
+      { name: "Aqua Vista", tipo: "Posada", estrellas: 4 },
+      { name: "Gran Pucón", tipo: "Hotel", estrellas: 4 },
     ],
     imagenes: [
       "/Paises/Chile/Volcan Villarrica/hospedaje/Hospedaje1.webp",
@@ -43,7 +43,7 @@ export const destino: DestinoData = {
   },
   animales: {
     description:
-      "Los bosques de la base del volcán son hábitat de aves como el chucao y el carpintero negro, y de pequeños mamíferos como el pudú, el ciervo nativo más pequeño de Sudamérica.",
+      "Destacan el cóndor andino sobrevolando la cima, marsupiales como el monito del monte, además de carpinteros negros y zorros chillas en los bosques de la base.",
     imagenes: [
       "/Paises/Chile/Volcan Villarrica/animales/Animales1.webp",
       "/Paises/Chile/Volcan Villarrica/animales/Animales2.webp",
@@ -53,7 +53,7 @@ export const destino: DestinoData = {
   },
   actividades: {
     description:
-      "Resaltan el ascenso guiado hasta el cráter humeante para asomarse a su laguna de lava, las termas de los faldeos, el esquí de montaña y las vistas sobre el lago Villarrica y Pucón.",
+      "Resaltan realizar el emocionante ascenso guiado hasta el borde del cráter activo, contemplar las impresionantes fumarolas de gas y el lago de lava interna y deslizarse sobre la nieve de regreso bajando la montaña en trineos plásticos.",
     imagenes: [
       "/Paises/Chile/Volcan Villarrica/actividades/Actividades1.webp",
       "/Paises/Chile/Volcan Villarrica/actividades/Actividades2.webp",

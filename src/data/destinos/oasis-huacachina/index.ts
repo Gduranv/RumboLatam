@@ -4,7 +4,7 @@ export const destino: DestinoData = {
   id: "oasis-huacachina",
   paisId: "peru",
   name: "Oasis de Huacachina",
-  tag: "Perla del desierto",
+  tag: "Espejismo natural",
   hero: {
     src: "/Paises/Peru/Oasis de Huacachina peru/OasisDHuacachinaPortada.webp",
     alt: "Oasis de Huacachina",
@@ -13,27 +13,27 @@ export const destino: DestinoData = {
     {
       title: "Clima",
       description:
-        "Desértico con temperaturas cálidas durante el día que superan los 28°C, y noches frescas que descienden notablemente. La humedad es baja y el sol es intenso durante las horas centrales.",
+        "Árido y cálido con media de 23°C. Varía de tardes muy soleadas y calurosas a noches frescas, con cielos despejados,  y ausencia de lluvia.",
       icon: { src: "/Paises/icono clima.png", alt: "Icono Clima" },
     },
     {
       title: "Transporte",
       description:
-        "El oasis se ubica a unos pocos minutos en vehículo desde la ciudad de Ica, con la que se conecta por una ruta asfaltada; desde Lima se llega en bus en aproximadamente cuatro horas.",
+        "Acceso terrestre en auto o autobús desde Lima hasta Ica, y luego en mototaxi o taxi al oasis. Internamente el pueblo se recorre a pie y las dunas en carros areneros.",
       icon: { src: "/Paises/icon transporte.png", alt: "Icono Transporte" },
     },
     {
       title: "Mejor época",
       description:
-        "Ideal de mayo a noviembre, cuando las dunas se recorren con temperaturas más agradables y poca bruma; protege tu piel **así** con bloqueador solar y agua antes de cada descenso en sandboard.",
+        "Ideal de febrero a mayo durante el verano por las temperaturas cálidas, o al final de la tarde para disfrutar de los mejores atardeceres.",
       icon: { src: "/Paises/icon mejor epoca.png", alt: "Icono Mejor época" },
     },
   ],
   hospedaje: {
     hoteles: [
-      { name: "Hotel Mossone Huacachina", tipo: "Hotel", estrellas: 4.5 },
-      { name: "Hostal Las Dunas Ica", tipo: "Hostal", estrellas: 4 },
-      { name: "Casa Andina Standard Ica", tipo: "Hotel", estrellas: 4.5 },
+      { name: "Viajero Huacachina", tipo: "Hostel", estrellas: 5 },
+      { name: "Wild Rover Huacachina", tipo: "Hostal", estrellas: 5 },
+      { name: "Suiza", tipo: "Hostería", estrellas: 4 },
     ],
     imagenes: [
       "/Paises/Peru/Oasis de Huacachina peru/hospedaje/Hospedaje1.webp",
@@ -43,7 +43,7 @@ export const destino: DestinoData = {
   },
   animales: {
     description:
-      "La laguna y el desierto circundante son refugio de aves como garzas y patos silvestres, mientras que en los arenales cercanos se observan lagartijas y pequeños roedores adaptados a la aridez.",
+      "Destacan pequeñas lagartijas de arena, garzas y la mítica rana del oasis en la laguna, además de aves migratorias que descansan entre las ramas de las palmeras.",
     imagenes: [
       "/Paises/Peru/Oasis de Huacachina peru/animales/Animales1.webp",
       "/Paises/Peru/Oasis de Huacachina peru/animales/Animales2.webp",
@@ -52,7 +52,7 @@ export const destino: DestinoData = {
   },
   actividades: {
     description:
-      "Resaltan los descensos en sandboard por las dunas gigantes, los paseos en areneros (buggies de arena) al atardecer, remear en la laguna y contemplar el oasis desde el mirador.",
+      "Resaltan pasear en los emocionantes carros tubulares a alta velocidad por el desierto, deslizarse en tablas de sandboard por las inmensas dunas de arena y contemplar la caída del sol desde la cima de los cerros de arena.",
     imagenes: [
       "/Paises/Peru/Oasis de Huacachina peru/actividades/Actividades1.webp",
       "/Paises/Peru/Oasis de Huacachina peru/actividades/Actividades2.webp",

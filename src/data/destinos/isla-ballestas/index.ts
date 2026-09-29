@@ -4,7 +4,7 @@ export const destino: DestinoData = {
   id: "isla-ballestas",
   paisId: "peru",
   name: "Islas Ballestas",
-  tag: "Santuario marino",
+  tag: "Refugio marino",
   hero: {
     src: "/Paises/Peru/Isla Ballestas/IslasBallestasPortada.webp",
     alt: "Islas Ballestas",
@@ -13,27 +13,27 @@ export const destino: DestinoData = {
     {
       title: "Clima",
       description:
-        "Árido y templado de la costa peruana, con apenas lluvias durante el año. Las mañanas suelen tener neblina costera que se disipa con el sol, dejando cielo despejado a mediodía.",
+        "Desértico y fresco con media de 19°C. Varía de mañanas con neblina y viento fuerte a tardes soleadas, con humedad baja y casi total ausencia de lluvias.",
       icon: { src: "/Paises/icono clima.png", alt: "Icono Clima" },
     },
     {
       title: "Transporte",
       description:
-        "Las lanchas salen desde el muelle del Chaco en Paracas, en un trayecto marítimo de alrededor de 30 minutos que se puede combinar con un traslado desde Lima o Ica por tierra.",
+        "Acceso exclusivo por vía marítima tomando un deslizador a motor desde el embarcadero de Paracas. Internamente el recorrido se realiza sin bajar de la lancha.",
       icon: { src: "/Paises/icon transporte.png", alt: "Icono Transporte" },
     },
     {
       title: "Mejor época",
       description:
-        "De mayo a noviembre las aguas están más tranquilas y la fauna marina se muestra en plenitud; reserva **así** tu paseo en lancha durante la mañana para ver la mayor actividad de aves y lobos.",
+        "Ideal de noviembre a marzo durante el verano en días más soleados, aguas más tranquilas para navegar y mayor actividad de las aves en los acantilados.",
       icon: { src: "/Paises/icon mejor epoca.png", alt: "Icono Mejor época" },
     },
   ],
   hospedaje: {
     hoteles: [
-      { name: "Hotel Paracas Resort", tipo: "Resort", estrellas: 5 },
-      { name: "Hostal Villa Jazmín", tipo: "Hostal", estrellas: 4 },
-      { name: "Hotel Gran Palma", tipo: "Hotel", estrellas: 4.5 },
+      { name: "Kokopelli Paracas", tipo: "Hostel", estrellas: 4.5 },
+      { name: "Emancipador", tipo: "Hotel", estrellas: 4 },
+      { name: "San Agustín Paracas", tipo: "Hotel", estrellas: 4 },
     ],
     imagenes: [
       "/Paises/Peru/Isla Ballestas/hospedaje/Hospedaje1.webp",
@@ -43,7 +43,7 @@ export const destino: DestinoData = {
   },
   animales: {
     description:
-      "Las islas albergan colonias de lobos marinos, pingüinos de Humboldt y una enorme variedad de aves guaneras como pelícanos, piqueros y cormoranes, junto a delfines que asoman en el trayecto.",
+      "Destacan miles de lobos marinos descansando en las rocas, pingüinos de Humboldt, además de gigantescas colonias de aves guaneras como el guanay, el piquero y el pelícano.",
     imagenes: [
       "/Paises/Peru/Isla Ballestas/animales/Animales1.webp",
       "/Paises/Peru/Isla Ballestas/animales/Animales2.webp",
@@ -54,7 +54,7 @@ export const destino: DestinoData = {
   },
   actividades: {
     description:
-      "Resaltan la navegación entre los riscos de las islas, la observación de lobos marinos y aves guaneras, y el paso por el enigmático geoglifo del Candelabro tallado en la ladera costera.",
+      "Resaltan navegar en lancha rápida bordeando las formaciones rocosas y cuevas del archipiélago, observar de cerca el misterioso y gigante geoglifo del Candelabro grabado en la arena del desierto y fotografiar la increíble fauna marina en su hábitat natural.",
     imagenes: [
       "/Paises/Peru/Isla Ballestas/actividades/Actividades1.webp",
       "/Paises/Peru/Isla Ballestas/actividades/Actividades2.webp",

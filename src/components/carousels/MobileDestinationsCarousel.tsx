@@ -90,7 +90,7 @@ export default function MobileDestinationsCarousel({ destinations }: MobileDesti
             </svg>
             
             {/* Cabecera de la Tarjeta: Notch Verde (Efecto Carpeta/Folio) */}
-            <div className="absolute top-0 left-0 bg-[#13522B] rounded-br-[12px] z-20 flex items-center justify-center px-3 py-1.5 shadow-sm max-w-[75%]">
+            <div className="absolute top-0 left-0 bg-[#13522B] rounded-tl-[14.5px] rounded-br-[12px] z-20 flex items-center justify-center px-3 py-1.5 shadow-sm max-w-[75%]">
               <h3 className="text-white text-[12px] font-bold font-nohemi tracking-tight leading-tight truncate">
                 {current.title}
               </h3>

@@ -3,36 +3,39 @@ import type { PaisData } from "@/types";
 export const pais: PaisData = {
   id: "peru",
   name: "Perú",
-  subtitle: "Explora la magia de este destino.",
+  subtitle: "La esencia de la tradición ancestral",
   hero: {
     src: "",
     alt: "Perú",
   },
+  // Playlist de Spotify del país (botón de música). Cámbiala a tu antojo.
+  playlistUrl:
+    "https://open.spotify.com/playlist/4CjrZqk8p3SmKHOrtHxKQG?si=dcxH4l1IT1aZjCTSPMOD7g&utm_source=copy-link&pi=k7QfWGboQqSNx",
   // Mensaje de Gia propio del país: lo completa el equipo de contenido manualmente.
-  giaMessage: "¡Hola, pata! Prepárate para el viaje.",
+  giaMessage: "¡Hola, causita! Adelante.",
   antesDeViajar: [
     {
       title: "Moneda",
       description:
-        "El sol peruano (PEN) es la moneda oficial, y aunque los pagos con tarjeta están muy extendidos en las ciudades, el efectivo sigue siendo imprescindible en mercados y zonas rurales.",
+        "El sol (PEN) es la moneda oficial, siendo el efectivo la opción más recomendada en mercados locales, mientras que las tarjetas son aceptadas en comercios principales.",
       icon: { src: "/Paises/icon moneda.png", alt: "Icono Moneda" },
     },
     {
       title: "Gastronomía",
       description:
-        "Considerada una de las cocinas más ricas del mundo, combina el maíz, la papa y el ají con influencias prehispánicas, españolas, asiáticas y africanas en platos como el ceviche.",
+        "Predomina una cocina basada en papas nativas y pescados frescos, declarada una de las mejores del mundo por su balance de técnicas ancestrales y fusión moderna.",
       icon: { src: "/Paises/icono gastronomia.png", alt: "Icono Gastronomía" },
     },
     {
       title: "Idioma",
       description:
-        "**Español,** convive con el quechua y el aimara, lenguas ancestrales que siguen vivas en los Andes. Una mezcla de voces que refleja la riqueza cultural y la calidez de su pueblo.",
+        "Español, enriquecido con una fuerte presencia de lenguas originarias como el quechua y el aimara, aportando expresiones culturales únicas y llenas de historia.",
       icon: { src: "/Paises/idioma.png", alt: "Icono Idioma" },
     },
     {
       title: "Estaciones",
       description:
-        "En la costa y los Andes predominan una estación seca (abril a octubre) y una de lluvias (noviembre a marzo); en la selva el clima es cálido y húmedo durante todo el año.",
+        "Al poseer una geografía compleja entre costa, sierra y selva, las estaciones varían: la sierra y selva se dividen en época seca y de lluvias intensas.",
       icon: { src: "/Paises/icon estaciones.png", alt: "Icono Estaciones" },
     },
   ],
@@ -51,9 +54,9 @@ export const pais: PaisData = {
     {
       id: "montana-7-colores",
       title: "Montaña de 7 Colores",
-      tag: "Ruta del arcoíris",
+      tag: "Arcoíris mineral",
       description:
-        "Una cumbre andina que despliega franjas de colores esculpidas por la tierra y el tiempo. Una caminata de altura entre vicuñas y glaciares que te invita a contemplar la mayor obra de arte natural del Perú.",
+        "Una imponente cumbre andina teñida por franjas de diversos minerales a más de 5.000 metros de altura. Un espectáculo visual que desafía el horizonte con sus pliegues de color vivo.",
       image: {
         src: "/Paises/Peru/LUGAR PERU2.png",
         alt: "Montaña de 7 Colores",

@@ -3,7 +3,7 @@ import Link from "next/link";
 import AnimatedCard from "@/components/cards/AnimatedCard";
 import DestinationsCarousel from "@/components/carousels/DestinationsCarousel";
 import CountryHeaderButtons from "@/components/ui/CountryHeaderButtons";
-import { getPais } from "@/data";
+import { getPais, getPlaylistUrl } from "@/data";
 import type { AntesDeViajarCard } from "@/types";
 
 const GIA_CLOUD = "/Paises/NubeParaMensaje.png";
@@ -49,7 +49,7 @@ export default function DesktopCountry({ countryId, dynamicDestinationsResources
     title: destino.title,
     tag: destino.tag,
     description: destino.description,
-    imageSrc: dynamicDestinationsResources[destino.id] || "",
+    imageSrc: dynamicDestinationsResources[destino.id] || destino.image.src,
   }));
 
   return (
@@ -83,13 +83,16 @@ export default function DesktopCountry({ countryId, dynamicDestinationsResources
         style={{ clipPath: 'polygon(0 0, 100% 0, 100% 765px, 50% 911px, 0 765px)' }}
       >
         {/* Fondo de País (o placeholder de cortina mientras no exista la foto) */}
-        <div className="absolute inset-0 -z-10">
+        {/* El degradado es lo que se ve mientras el hero descarga. Sin él asoma el
+            crema del <main> y la página parece rota en vez de cargando. */}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#1a3d2b] to-[#0b1f14]">
           {heroSrc ? (
             <Image
               src={heroSrc}
               alt={`Foto de ${name}`}
               fill
-              priority
+              preload
+              sizes="100vw"
               className="object-cover"
             />
           ) : (
@@ -100,7 +103,7 @@ export default function DesktopCountry({ countryId, dynamicDestinationsResources
         </div>
 
         {/* Textos del Hero */}
-        <div className="absolute left-[56px] top-[420px] text-white z-10 font-nohemi">
+        <div className="absolute left-[100px] top-[420px] text-white z-10 font-nohemi">
           <h1 className="text-[56px] font-bold leading-tight tracking-tight">{name}:</h1>
           <p className="text-[24px] font-bold -mt-1">{subtitle}</p>
         </div>
@@ -108,11 +111,16 @@ export default function DesktopCountry({ countryId, dynamicDestinationsResources
         {/* Gia (Posicionada al fondo para que el clip-path en V la recorte automáticamente) */}
         <div className="absolute right-[-70px] bottom-0 w-[525px] h-[545px] z-10 group cursor-pointer scale-[1.2] origin-bottom">
           {/* Gia Animada (Siempre visible) */}
+          {/* 6.3 MB sin optimizar: la petición más pesada de todo el proyecto.
+              Con fetchPriority baja al final de la cola y deja de retrasar al hero,
+              que es el LCP de la página. Medido: tardaba 5.9 s en descargarse. */}
           <Image
             src="/Paises/Venezuela/giacortada.gif"
             alt="Gia"
             fill
             unoptimized
+            fetchPriority="low"
+            decoding="async"
             className="object-contain"
           />
           {/* Nube de Saludo (Aparece al hacer hover) */}
@@ -157,10 +165,10 @@ export default function DesktopCountry({ countryId, dynamicDestinationsResources
       {/* Botón Playlist (Superpuesto entre la foto y la sección verde a la izquierda) */}
       {/* Calculado en top-[719px] para que cruce exactamente la línea diagonal */}
       <a
-        href="https://open.spotify.com/playlist/5bywhsxxSqQbOoneg9vdPI?si=UEAJ74YLRTihwv_shlzdEw&utm_source=whatsapp&pi=BKfbh5UxS_yP8"
+        href={getPlaylistUrl(countryId)}
         target="_blank"
         rel="noopener noreferrer"
-        className="absolute top-[719px] left-[56px] z-30 hover:scale-105 transition-transform cursor-pointer block"
+        className="absolute top-[719px] left-[100px] z-30 hover:scale-105 transition-transform cursor-pointer block"
       >
         <svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M127.934 65.5855C127.402 69.1115 125.438 72.483 122.838 75.7435C119.904 79.4115 116.185 82.9375 112.837 86.4078C108.458 90.786 104.072 95.1765 99.6987 99.5546L99.5813 99.6719C93.4723 105.742 87.0359 112.331 80.7662 118.389C75.2749 123.415 68.7643 129.67 60.8331 127.589C54.8599 126.033 48.6088 119.778 42.4751 113.708C38.5156 109.75 34.55 105.773 30.6029 101.839C26.9215 98.159 23.3141 94.5651 19.6141 90.8662C15.0493 86.1732 9.59501 81.2084 5.42555 76.0337C4.48047 74.8481 3.59099 73.6501 2.79415 72.4336C-1.08499 66.5303 -0.825558 61.0098 2.95476 55.3781C6.593 49.8946 11.7817 45.0843 16.4453 40.3356C27.9221 29.0723 38.6515 17.6299 50.4125 6.75557C54.2793 3.38398 58.9553 0.0247003 63.8598 0C73.5206 0.111151 82.6131 11.9426 89.4449 18.2288C97.6294 26.4046 105.468 34.2346 113.702 42.4598C119.576 48.8078 128.916 56.2365 127.927 65.5855H127.934Z" fill="#70B694" />

@@ -3,36 +3,39 @@ import type { PaisData } from "@/types";
 export const pais: PaisData = {
   id: "colombia",
   name: "Colombia",
-  subtitle: "Explora la magia de este destino.",
+  subtitle: "El encanto del país de la biodiversidad",
   hero: {
     src: "",
     alt: "Colombia",
   },
+  // Playlist de Spotify del país (botón de música). Cámbiala a tu antojo.
+  playlistUrl:
+    "https://open.spotify.com/playlist/06nIcDNJcse2iaNPm7vamH?si=NkI25sMkTYejsaiBrB8NqQ&utm_source=copy-link&pi=RPXf5oNnSfiMa",
   // Mensaje de Gia propio del país: lo completa el equipo de contenido manualmente.
-  giaMessage: "¡Quiubo, parce! Prepárate para el viaje.",
+  giaMessage: "¡Qué más, parce! Lléguese.",
   antesDeViajar: [
     {
       title: "Moneda",
       description:
-        "El peso colombiano (COP) es la moneda oficial, y el uso de efectivo es común en pequeños comercios, mientras que las tarjetas y pagos digitales están generalizados en las ciudades.",
+        "El peso colombiano (COP) es la moneda oficial, aunque el uso de tarjetas de crédito y plataformas digitales de pago está ampliamente extendido en todo el territorio.",
       icon: { src: "/Paises/icon moneda.png", alt: "Icono Moneda" },
     },
     {
       title: "Gastronomía",
       description:
-        "Una cocina vibrante que mezcla la arepa, el sancocho y los frutos tropicales, con raíces indígenas, africanas y españolas que cambian de plato en plato según la región.",
+        "Predomina una cocina diversa basada en el maíz, el plátano y tubérculos, caracterizada por un balance perfecto de sabores tradicionales, caldos reconfortantes y arepas locales.",
       icon: { src: "/Paises/icono gastronomia.png", alt: "Icono Gastronomía" },
     },
     {
       title: "Idioma",
       description:
-        "**Español,** hablado con una calidez y una cadencia propias, lleno de expresiones cariñosas y variadas que reflejan la alegría y hospitalidad de su gente.",
+        "**Español**, reconocido por una pronunciación clara y una enorme riqueza de expresiones amables que reflejan la hospitalidad característica de sus regiones.",
       icon: { src: "/Paises/idioma.png", alt: "Icono Idioma" },
     },
     {
       title: "Estaciones",
       description:
-        "Cerca del ecuador, el país vive dos temporadas de lluvias y dos de sequía al año; las temperaturas varían más por la altitud que por la estación, desde el calor costero hasta el frío andino.",
+        "Al ser un país tropical, no existen las estaciones tradicionales, sino dos períodos climáticos principales: el de sequía (verano) y el de lluvias (invierno).",
       icon: { src: "/Paises/icon estaciones.png", alt: "Icono Estaciones" },
     },
   ],
@@ -62,9 +65,9 @@ export const pais: PaisData = {
     {
       id: "santuario-las-lajas",
       title: "Santuario de las Lajas",
-      tag: "Fe entre montañas",
+      tag: "Templo místico",
       description:
-        "Una basílica gótica suspendida sobre el cañón del río Guáitara, rodeada de montañas y leyendas. Un templo asombroso en el sur de Colombia que te invita a descubrir la fe en su forma más hermosa.",
+        "Una imponente iglesia neogótica edificada sobre un cañón profundo en Ipiales. Un milagro de la arquitectura que desafía la gravedad y te invita a descubrir la fe y el misterio andino.",
       image: {
         src: "/Paises/Colombia/LUGAR COLOMBIA3.png",
         alt: "Santuario de las Lajas",

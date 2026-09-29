@@ -1,9 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import MobileManualCarousel from "@/components/carousels/MobileManualCarousel";
 import MobileHospedajeCard from "@/components/cards/MobileHospedajeCard";
 import MobileInfoCard from "@/components/cards/MobileInfoCard";
 import MobileStampCarousel from "@/components/carousels/MobileStampCarousel";
-import { destinosData } from "@/data/destinations";
+import { getDestino, getPlaylistUrl } from "@/data";
 
 interface MobileDestinoProps {
   destinoId: string;
@@ -18,30 +19,42 @@ interface MobileDestinoProps {
 
 /** Versión móvil de la página de destino turístico */
 const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
-  const destino = destinosData[destinoId] || destinosData["canaima"];
-  const backToCountry = `/paises/${destino.countryId || "venezuela"}`;
+  const destino = getDestino(destinoId) || getDestino("canaima")!;
+  const backToCountry = `/paises/${destino.paisId || (destino as any).countryId || "venezuela"}`;
 
   const hospedajeImages = dynamicResources.hospedajeImages;
   const animalesImages = dynamicResources.animalesImages;
   const actividadesImages = dynamicResources.actividadesImages;
 
+  const manualClima = destino.manualDelViajero?.[0]?.description || (destino as any).manual?.clima || "";
+  const manualTransporte = destino.manualDelViajero?.[1]?.description || (destino as any).manual?.transporte || "";
+  const manualMejorEpoca = destino.manualDelViajero?.[2]?.description || (destino as any).manual?.mejorEpoca || "";
+
+  const rawHotels = destino.hospedaje?.hoteles || (destino.hospedaje as any)?.hotels || [];
+  const normalizedHotels = rawHotels.map((h: any) => ({
+    name: h.name,
+    type: h.tipo || h.type || "Hospedaje",
+    rating: h.estrellas || h.rating || 5,
+    link: h.link,
+  }));
+
   /** Cards del manual del viajero para el carrusel */
   const manualCards = [
     {
       title: "Clima",
-      description: destino.manual.clima,
+      description: manualClima,
       iconSrc: "/Paises/icono clima.png",
       iconAlt: "Icono Clima",
     },
     {
       title: "Transporte",
-      description: destino.manual.transporte,
+      description: manualTransporte,
       iconSrc: "/Paises/icon transporte.png",
       iconAlt: "Icono Transporte",
     },
     {
       title: "Mejor época",
-      description: destino.manual.mejorEpoca,
+      description: manualMejorEpoca,
       iconSrc: "/Paises/icon mejor epoca.png",
       iconAlt: "Icono Mejor Época",
     },
@@ -61,10 +74,13 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
         {/* Fondo de Destino */}
         <div className="absolute inset-0 z-0 h-full">
           {dynamicResources.portadaImage ? (
-            <img
+            <Image
               src={dynamicResources.portadaImage}
               alt={`Foto de ${destino.name}`}
-              className="w-full h-full object-cover"
+              fill
+              loading="eager"
+              sizes="100vw"
+              className="object-cover"
             />
           ) : (
             <div className="w-full h-full bg-gray-800 flex items-center justify-center text-white text-xl font-bold font-nohemi">
@@ -97,7 +113,7 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
 
             {/* Botón Música */}
             <a
-              href="https://open.spotify.com/playlist/5bywhsxxSqQbOoneg9vdPI?si=UEAJ74YLRTihwv_shlzdEw&utm_source=whatsapp&pi=BKfbh5UxS_yP8"
+              href={getPlaylistUrl(destino.paisId)}
               target="_blank"
               rel="noopener noreferrer"
               className="absolute right-4 top-[96px] z-20 flex items-center justify-center hover:scale-105 transition-transform drop-shadow-md"
@@ -141,7 +157,7 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
       {/* ============================================= */}
       <section className="w-full px-4 pt-8 pb-6 bg-[#FFF7E2] -mt-[10px]">
         <MobileHospedajeCard
-          hotels={destino.hospedaje.hotels}
+          hotels={normalizedHotels}
           images={hospedajeImages}
         />
       </section>

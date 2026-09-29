@@ -37,7 +37,7 @@ export const destinosData: Record<string, DestinoData> = {
     folderName: "canaima",
     name: "Parque Nacional Canaima",
     tag: "Patrimonio natural",
-    heroImage: "/Paises/Venezuela/portadas/CanaimaPortada.webp",
+    heroImage: "/Paises/Venezuela/canaima/portada/CanaimaPortada.webp",
     manual: {
       clima: "Cálido y lluvioso con media de 24°C. Varía de tardes húmedas a noches frescas, caracterizado por precipitaciones constantes que alimentan los grandes ríos.",
       transporte: "Acceso exclusivamente por vía aérea en avionetas comerciales desde Puerto Ordaz o Ciudad Bolívar, aterrizando en la pista del campamento central.",
@@ -87,7 +87,7 @@ export const destinosData: Record<string, DestinoData> = {
     folderName: "coloniaTovar",
     name: "Colonia Tovar",
     tag: "Rincón Alemán",
-    heroImage: "/Paises/Venezuela/portadas/colonia_tovar_portada.webp",
+    heroImage: "/Paises/Venezuela/coloniaTovar/portada/colonia_tovar_portada.webp",
     manual: {
       clima: "Templado de montaña con media de 16°C. Varía de tardes frescas a noches de 10°C, con alta humedad y neblina constante.",
       transporte: "Acceso por carretera desde Caracas o Aragua. Internamente se usan vehículos particulares, buses locales y rústicos 4x4 para rutas empinadas.",
@@ -116,7 +116,7 @@ export const destinosData: Record<string, DestinoData> = {
     folderName: "islaLarga",
     name: "Isla Larga",
     tag: "Refugio caribeño",
-    heroImage: "/Paises/Venezuela/portadas/isla_larga_portada.webp",
+    heroImage: "/Paises/Venezuela/islaLarga/portada/isla_larga_portada.webp",
     manual: {
       clima: "Tropical caribeño con media \n de 28°C. Varía de mañanas soleadas a tardes frescas con \n brisa marina, baja humedad y \n sol radiante constante.",
       transporte: "Acceso terrestre hasta Puerto Cabello (Balneario Quizandal). Desde allí se toman lanchas o peñeros locales para un trayecto marítimo de 15 minutos.",

@@ -8,13 +8,16 @@ export const pais: PaisData = {
     src: "/Paises/Mexico/FotoMexico.webp",
     alt: "México",
   },
+  // Playlist de Spotify del país (botón de música). Cámbiala a tu antojo.
+  playlistUrl:
+    "https://open.spotify.com/playlist/6BE3A2PWgXejlIQ7bXjeaW?si=g_jGifuoToqWdDv4Qqx-2Q&utm_source=copy-link&pi=fKtRvsMpSyOSj",
   // Mensaje de Gia propio del país: lo completa el equipo de contenido manualmente.
   giaMessage: "¡Qué onda, compa! Pásale.",
   antesDeViajar: [
     {
       title: "Moneda",
       description:
-        "El peso mexicano (MXN) es la moneda oficial, aunque el uso de tarjetas de crédito y el dólar estadounidense (USD) en efectivo está ampliamente extendido.",
+        "El peso mexicano (MXN) es la moneda oficial, aunque el uso de tarjetas de crédito y el dólar estadounidense (USD) en efectivo está ampliamente extendido en comercios y servicios.",
       icon: { src: "/Paises/icon moneda.png", alt: "Icono Moneda" },
     },
     {

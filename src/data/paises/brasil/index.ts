@@ -8,6 +8,9 @@ export const pais: PaisData = {
     src: "/Paises/Brasil/FotoBrasil.webp",
     alt: "Brasil",
   },
+  // Playlist de Spotify del país (botón de música). Cámbiala a tu antojo.
+  playlistUrl:
+    "https://open.spotify.com/playlist/6K9YI81jTQ96k9tMLXMhtK?si=khPFAr7JQVCCOFUA52BesA&utm_source=copy-link&pi=0yFA3JzXQ9O1d",
   // Mensaje de Gia propio del país: lo completa el equipo de contenido manualmente.
   giaMessage: "¡Tudo bem! Siente la energía.",
   antesDeViajar: [
@@ -40,7 +43,7 @@ export const pais: PaisData = {
     {
       id: "jardin-botanico-curitiba",
       title: "Jardín Botánico de Curitiba",
-      tag: "Invernadero icónico",
+      tag: "Invernadero",
       description:
         "Un palacio de cristal de estilo art nouveau francés rodeado de perfectos jardines geométricos. Una joya arquitectónica que resguarda la flora tropical y deleita la simetría visual.",
       image: {

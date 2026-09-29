@@ -6,7 +6,7 @@ export const destino: DestinoData = {
   name: "Isla Larga",
   tag: "Refugio caribeño",
   hero: {
-    src: "/Paises/Venezuela/portadas/isla_larga_portada.webp",
+    src: "/Paises/Venezuela/islaLarga/portada/isla_larga_portada.webp",
     alt: "Isla Larga",
   },
   manualDelViajero: [

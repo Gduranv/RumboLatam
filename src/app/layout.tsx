@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Albert_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import { SITE_URL } from "@/config";
+import { RouteGate } from "@/components/providers/RouteGate";
 import "./globals.css";
 
 const albertSans = Albert_Sans({
@@ -27,7 +28,10 @@ const nohemi = localFont({
       style: "normal",
     },
   ],
-  variable: "--font-nohemi",
+  // El nombre de la variable no puede ser --font-nohemi: Tailwind ya define una
+  // utilidad `font-nohemi` con ese nombre y la referencia quedaría circular.
+  // Ver la nota de @theme inline en globals.css.
+  variable: "--nohemi",
 });
 
 export const metadata: Metadata = {
@@ -60,7 +64,10 @@ export default function RootLayout({
       className={`${albertSans.variable} ${nohemi.variable} font-sans h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>{children}</body>
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        {children}
+        <RouteGate />
+      </body>
     </html>
   );
 }

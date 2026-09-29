@@ -13,27 +13,27 @@ export const destino: DestinoData = {
     {
       title: "Clima",
       description:
-        "Riguroso de la Patagonia norte, con veranos templados y mucha humedad. El viento y la lluvia pueden cambiar el panorama en minutos, por lo que conviene vestirse en capas.",
+        "Frío con media de 9°C. Varía de mañanas con viento  a tardes frescas, con lluvias constantes y temperaturas muy bajas durante el invierno.",
       icon: { src: "/Paises/icono clima.png", alt: "Icono Clima" },
     },
     {
       title: "Transporte",
       description:
-        "Se accede desde Puerto Tranquilo, a orillas del lago General Carrera, desde donde parten las lanchas y catamaranes que recorren los laberintos de mármol durante una hora.",
+        "Acceso por la Carretera Austral hasta Puerto Río Tranquilo en auto o autobús. Internamente se llega navegando exclusivamente en lanchas sobre el lago.",
       icon: { src: "/Paises/icon transporte.png", alt: "Icono Transporte" },
     },
     {
       title: "Mejor época",
       description:
-        "De diciembre a marzo la navegación es más segura y el lago adquiere su característico tono turquesa; reserva **así** el paseo en lancha por la mañana con el agua más tranquila.",
+        "Ideal de noviembre a marzo durante el verano por el clima templado y cielos despejados que permiten que el sol ilumine el mármol.",
       icon: { src: "/Paises/icon mejor epoca.png", alt: "Icono Mejor época" },
     },
   ],
   hospedaje: {
     hoteles: [
-      { name: "Cabañas Puerto Tranquilo", tipo: "Cabañas", estrellas: 4 },
-      { name: "Hostal El Durazno", tipo: "Hostal", estrellas: 4 },
-      { name: "Hotel Domo Patagonia", tipo: "Hotel", estrellas: 4.5 },
+      { name: "Rys Patagonia", tipo: "Cabañas", estrellas: 5 },
+      { name: "Chelenko Lodge", tipo: "Hotel", estrellas: 4 },
+      { name: "Valle Exploradores", tipo: "Cabañas", estrellas: 4 },
     ],
     imagenes: [
       "/Paises/Chile/Capillas de marmol/hospedaje/Hospedaje1.webp",
@@ -43,7 +43,7 @@ export const destino: DestinoData = {
   },
   animales: {
     description:
-      "En el lago y sus orillas se observan aves acuáticas como cormoranes, caiquenes y patos silvestres, además de zorros que se asoman entre los bosques de lenga y ñire de la ribera.",
+      "Destacan aves patagónicas como el martín pescador y el cormorán de las rocas, peces en las aguas cristalinas, además de sutiles huemules en los bosques cercanos.",
     imagenes: [
       "/Paises/Chile/Capillas de marmol/animales/Animales1.webp",
       "/Paises/Chile/Capillas de marmol/animales/Animales2.webp",
@@ -53,7 +53,7 @@ export const destino: DestinoData = {
   },
   actividades: {
     description:
-      "Resaltan el paseo en lancha entre las cavernas esculpidas en la roca, la visita a la Capilla y la Catedral de mármol, y la navegación hacia la isla de los Témpanos cercana al glaciar.",
+      "Resaltan navegar en lanchas a motor bordeando los imponentes acantilados del lago General Carrera, adentrarse por las cavernas y túneles de roca mineral y fotografiar los asombrosos reflejos turquesas del agua sobre los muros de mármol.",
     imagenes: [
       "/Paises/Chile/Capillas de marmol/actividades/Actividades1.webp",
       "/Paises/Chile/Capillas de marmol/actividades/Actividades2.webp",

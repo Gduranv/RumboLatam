@@ -4,7 +4,7 @@ export const destino: DestinoData = {
   id: "montana-7-colores",
   paisId: "peru",
   name: "Montaña de 7 Colores",
-  tag: "Ruta del arcoíris",
+  tag: "Arcoíris mineral",
   hero: {
     src: "/Paises/Peru/Montaña 7 colores Peru/PortadaMontana7Colores.webp",
     alt: "Montaña de 7 Colores",
@@ -13,27 +13,27 @@ export const destino: DestinoData = {
     {
       title: "Clima",
       description:
-        "Frío de alta montaña, con temperaturas que van de los 10°C durante el día hasta varios grados bajo cero por la noche. El sol alterna con viento fuerte y ráfagas de lluvia o granizo.",
+        "Frígido con media de 8°C. Varía de mañanas secas y soleadas a tardes heladas con vientos fuertes, gran altitud y probabilidad de nevadas.",
       icon: { src: "/Paises/icono clima.png", alt: "Icono Clima" },
     },
     {
       title: "Transporte",
       description:
-        "Se parte de Cusco en vehículo hasta la comunidad de Pitumarca o Cusipata, y el último tramo se recorre caminando o a caballo hasta el mirador situado a más de 5.000 metros sobre el nivel del mar.",
+        "Acceso por carretera o tour guiado desde Cusco hasta el punto de inicio. Internamente se sube a pie por un sendero empinado o en caballos locales.",
       icon: { src: "/Paises/icon transporte.png", alt: "Icono Transporte" },
     },
     {
       title: "Mejor época",
       description:
-        "De mayo a septiembre el cielo es más seco y despejado, ideal para apreciar los tonos de la montaña; aclimátate **así** en Cusco antes de la caminata para evitar el mal de altura.",
+        "Ideal de mayo a septiembre durante la temporada seca, cuando los días son despejados y la montaña no se encuentra cubierta de nieve.",
       icon: { src: "/Paises/icon mejor epoca.png", alt: "Icono Mejor época" },
     },
   ],
   hospedaje: {
     hoteles: [
-      { name: "Hotel Taypikala Cusco", tipo: "Hotel", estrellas: 4.5 },
-      { name: "Hostal El Mirador de Colores", tipo: "Hostal", estrellas: 4 },
-      { name: "Posada Andina Pitumarca", tipo: "Posada", estrellas: 4 },
+      { name: "Apusangate lodge", tipo: "Hotel", estrellas: 5 },
+      { name: "JW Marriot el convento cusco", tipo: "Hotel", estrellas: 4.5 },
+      { name: "Tierra viva cusco centro", tipo: "Hotel", estrellas: 4.5 },
     ],
     imagenes: [
       "/Paises/Peru/Montaña 7 colores Peru/hospedaje/Hospedaje1.webp",
@@ -43,7 +43,7 @@ export const destino: DestinoData = {
   },
   animales: {
     description:
-      "En los altos pastizales andinos pastan llamas y alpacas, mientras que las vicuñas y aves como el cóndor andino sobrevuelan las laderas de la montaña colorida.",
+      "Destacan manadas de alpacas y llamas pastando en las faldas de la cordillera, el majestuoso cóndor andino sobrevolando los picos, además de esquivos zorros andinos.",
     imagenes: [
       "/Paises/Peru/Montaña 7 colores Peru/animales/Animales1.webp",
       "/Paises/Peru/Montaña 7 colores Peru/animales/Animales2.webp",

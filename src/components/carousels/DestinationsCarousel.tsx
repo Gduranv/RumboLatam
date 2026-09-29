@@ -57,7 +57,7 @@ export default function DestinationsCarousel({ destinations }: DestinationsCarou
         {/* Contenido de la estampa (Foto y textos) con key para animar el cambio */}
         <div
           key={current.title}
-          className="absolute top-[35px] left-[25px] right-[25px] bottom-[35px] rounded-[16px] overflow-hidden bg-gray-200 animate-in fade-in duration-500"
+          className="absolute top-[35px] left-[25px] right-[25px] bottom-[35px] rounded-[20px] overflow-hidden bg-[#13522B] animate-in fade-in duration-500"
         >
           {current.imageSrc ? (
             <Image
@@ -72,27 +72,27 @@ export default function DestinationsCarousel({ destinations }: DestinationsCarou
             </div>
           )}
           {/* Gradiente oscuro en la base para leer el texto */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none"></div>
 
           {/* Notch Verde Superior Izquierdo */}
-          <div className="absolute top-0 left-0 w-[55%] h-[60px] bg-[#13522B] rounded-br-[16px] z-10 flex items-center pl-6">
-            <h3 className="text-white text-[24px] font-bold tracking-tight font-nohemi">
+          <div className="absolute top-0 left-0 w-auto min-w-[54%] max-w-[75%] h-[78px] bg-[#13522B] rounded-tl-[20px] rounded-br-[20px] z-10 flex items-center pl-8 pr-8">
+            <h3 className="text-[#FFF7E2] text-[37.33px] font-bold tracking-tight font-nohemi whitespace-nowrap">
               {current.title}
             </h3>
           </div>
 
           {/* Etiqueta Superior Derecha (Sobre la foto) */}
-          <div className="absolute top-[18px] right-[24px] z-10">
-            <span className="text-white font-bold text-[15px]">{current.tag}</span>
+          <div className="absolute top-0 right-[32px] h-[78px] z-10 flex items-center">
+            <span className="text-white font-extrabold text-[24px] font-sans drop-shadow-md">{current.tag}</span>
           </div>
 
           {/* Textos y botón inferiores */}
-          <div className="absolute bottom-[24px] left-[32px] right-[32px] flex items-end justify-between z-10">
-            <p className="text-white text-[13px] font-medium leading-relaxed max-w-[420px] whitespace-pre-line">
+          <div className="absolute bottom-[28px] left-[34px] right-[32px] flex items-end justify-between z-10">
+            <p className="text-white text-[18px] font-medium leading-relaxed max-w-[460px] line-clamp-4 overflow-hidden whitespace-pre-line drop-shadow">
               {current.description}
             </p>
             <Link href={`/destinos/${current.id}`}>
-              <button className="bg-[#FF7223] text-white font-bold text-[14px] px-8 py-2.5 rounded-full hover:scale-105 transition-transform shadow-md cursor-pointer">
+              <button className="bg-[#FF7223] text-white font-bold text-[15px] mb-5 px-8 py-3 rounded-full hover:scale-105 transition-transform shadow-lg cursor-pointer">
                 Ver más
               </button>
             </Link>

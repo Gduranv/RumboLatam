@@ -3,7 +3,7 @@ import Link from "next/link";
 import MobileAnimatedCard from "@/components/cards/MobileAnimatedCard";
 import MobileDestinationsCarousel from "@/components/carousels/MobileDestinationsCarousel";
 import { countriesData } from "@/data/countries";
-import { getPais } from "@/data";
+import { getPais, getPlaylistUrl } from "@/data";
 
 interface MobileCountryProps {
   countryId: string;
@@ -23,7 +23,7 @@ export default function MobileCountry({ countryId, dynamicDestinationsResources,
   const giaMessage = getPais(countryId)?.giaMessage ?? countryInfo.giaMessage;
   const destinations = countryInfo.destinations.map(dest => ({
     ...dest,
-    imageSrc: dynamicDestinationsResources[dest.id] || ""
+    imageSrc: dynamicDestinationsResources[dest.id] || dest.imageSrc
   }));
 
   return (
@@ -33,12 +33,17 @@ export default function MobileCountry({ countryId, dynamicDestinationsResources,
       <section className="relative w-full min-h-[550px] flex flex-col overflow-hidden">
 
         {/* Fondo de País (se extiende por todo el hero) */}
-        <div className="absolute inset-0 z-0 h-full">
+        {/* Degradado de marca: es lo que se ve mientras el hero descarga, para que
+            el hueco no parezca una imagen rota. */}
+        <div className="absolute inset-0 z-0 h-full bg-gradient-to-b from-[#1a3d2b] to-[#0b1f14]">
           {heroImage ? (
-            <img
+            <Image
               src={heroImage}
               alt={`Foto de ${countryInfo.name}`}
-              className="w-full h-full object-cover"
+              fill
+              loading="eager"
+              sizes="100vw"
+              className="object-cover"
             />
           ) : (
             <div className="w-full h-full bg-gray-800 flex items-center justify-center text-white text-3xl font-bold font-nohemi">
@@ -74,7 +79,7 @@ export default function MobileCountry({ countryId, dynamicDestinationsResources,
 
             {/* Botón Música (Posicionado en el borde derecho) */}
             <a
-              href="https://open.spotify.com/playlist/5bywhsxxSqQbOoneg9vdPI?si=UEAJ74YLRTihwv_shlzdEw&utm_source=whatsapp&pi=BKfbh5UxS_yP8"
+              href={getPlaylistUrl(countryId)}
               target="_blank"
               rel="noopener noreferrer"
               className="absolute right-4 top-[96px] z-20 flex items-center justify-center hover:scale-105 transition-transform drop-shadow-md"

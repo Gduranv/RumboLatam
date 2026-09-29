@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# configuracion local de opencode
+/.opencode/
+/.opencode-tmp/
+/.tickets/
+/opencode.json

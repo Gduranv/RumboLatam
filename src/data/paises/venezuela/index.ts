@@ -5,9 +5,12 @@ export const pais: PaisData = {
   name: "Venezuela",
   subtitle: "La magia de la tierra de gracia.",
   hero: {
-    src: "/Paises/Venezuela/FotoVenezuela.png",
+    src: "/Paises/Venezuela/portada/FotoVenezuela.png",
     alt: "Venezuela",
   },
+  // Playlist de Spotify del país (botón de música). Cámbiala a tu antojo.
+  playlistUrl:
+    "https://open.spotify.com/playlist/5bywhsxxSqQbOoneg9vdPI?si=UEAJ74YLRTihwv_shlzdEw&utm_source=whatsapp&pi=BKfbh5UxS_yP8",
   // Mensaje de Gia propio del país: lo completa el equipo de contenido manualmente.
   giaMessage: "¡Epa, chamo! Prepárate para el viaje.",
   antesDeViajar: [
@@ -42,9 +45,9 @@ export const pais: PaisData = {
       title: "Parque Nacional Canaima",
       tag: "Patrimonio natural",
       description:
-        "Hogar de los milenarios tepuyes y del Salto Ángel, la caída de agua libre más alta de todo el planeta. Un territorio salvaje esculpido por el tiempo que te invita a descubrir la energía más pura de la naturaleza americana.",
+        "Hogar de los milenarios tepuyes y del Salto Ángel, la caída de agua libre más alta de todo el planeta. Un territorio esculpido por el tiempo que te invita a descubrir la energía más pura de la naturaleza.",
       image: {
-        src: "/Paises/Venezuela/portadas/CanaimaPortada.webp",
+        src: "/Paises/Venezuela/canaima/portada/CanaimaPortada.webp",
         alt: "Parque Nacional Canaima",
       },
     },
@@ -55,7 +58,7 @@ export const pais: PaisData = {
       description:
         "Un pintoresco poblado europeo fundado en las montañas de la Cordillera de la Costa. Un destino místico donde la arquitectura de madera y la neblina fusionan las tradiciones andinas con las alemanas.",
       image: {
-        src: "/Paises/Venezuela/portadas/colonia_tovar_portada.webp",
+        src: "/Paises/Venezuela/coloniaTovar/portada/colonia_tovar_portada.webp",
         alt: "Colonia Tovar",
       },
     },
@@ -66,7 +69,7 @@ export const pais: PaisData = {
       description:
         "Una paradisíaca isla del Parque Nacional San Esteban con arenas blancas y arrecifes de coral. Un paraíso marino ideal para explorar barcos hundidos históricos en aguas totalmente cristalinas.",
       image: {
-        src: "/Paises/Venezuela/portadas/isla_larga_portada.webp",
+        src: "/Paises/Venezuela/islaLarga/portada/isla_larga_portada.webp",
         alt: "Isla Larga",
       },
     },
