@@ -1,11 +1,22 @@
 import MobileCuriosidades from "@/components/mobile/MobileCuriosidades";
 import DesktopCuriosidades from "@/components/desktop/DesktopCuriosidades";
-import { getPais, isValidPais } from "@/data";
+import { getPais, isValidPais, listPaises } from "@/data";
 import { getCountryResources } from "@/utils/getResources";
 import { notFound } from "next/navigation";
 
 interface PageProps {
   params: Promise<{ id: string }>;
+}
+
+/** Prerenderizado en el build; ver el comentario en `/destinos/[id]`. */
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  // Sólo los países que declaran curiosidades: el resto ya daba notFound() y
+  // no tiene nada que prerenderizar.
+  return listPaises()
+    .filter((pais) => pais.curiosidades.length > 0)
+    .map((pais) => ({ id: pais.id }));
 }
 
 export default async function CuriosidadesPage({ params }: PageProps) {

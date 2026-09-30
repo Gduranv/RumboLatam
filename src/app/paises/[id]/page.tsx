@@ -1,10 +1,21 @@
 import MobileCountry from "@/components/mobile/MobileCountry";
 import DesktopCountry from "@/components/desktop/DesktopCountry";
-import { getDestino, getPais } from "@/data";
+import { getDestino, getPais, listPaises } from "@/data";
 import { getCountryResources, getDestinationResources } from "@/utils/getResources";
 
 interface PageProps {
   params: Promise<{ id: string }>;
+}
+
+/**
+ * Prerenderizado en el build por la misma razón que `/destinos/[id]`: la
+ * resolución de recursos lee /public con `fs`, y /public no va dentro de la
+ * function de Netlify. Ver el comentario en la página de destinos.
+ */
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return listPaises().map((pais) => ({ id: pais.id }));
 }
 
 export default async function CountryPage({ params }: PageProps) {

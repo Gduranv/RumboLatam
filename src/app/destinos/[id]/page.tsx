@@ -6,8 +6,24 @@ import HospedajeCard from "@/components/cards/HospedajeCard";
 import InfoHorizontalCard from "@/components/ui/InfoHorizontalCard";
 import StampCarousel from "@/components/carousels/StampCarousel";
 import MobileDestino from "@/components/mobile/MobileDestino";
-import { getDestino, getPais } from "@/data";
+import { getDestino, getPais, listDestinos } from "@/data";
 import { getDestinationResources, existe } from "@/utils/getResources";
+
+/**
+ * Los destinos se prerenderizan en el build, no se sirven por SSR.
+ *
+ * No es sólo rendimiento: `getDestinationResources()` descubre las imágenes con
+ * `fs.readdirSync` sobre /public, y /public no viaja dentro de la function de
+ * Netlify (pesa 235 MB y el límite es 250 MB). Si la ruta se renderizara en
+ * runtime, esa lectura fallaría y cada destino mostraría "Falta el recurso".
+ * Prerenderizando, el disco se lee en el build — donde /public sí está — y en
+ * production sólo se sirve HTML ya generado.
+ */
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return listDestinos().map((destino) => ({ id: destino.id }));
+}
 
 export default async function DestinoPage({
   params,
