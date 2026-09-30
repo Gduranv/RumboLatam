@@ -27,7 +27,7 @@ const MobileStamp = ({ color, image, width, rotation }: { color: string; image: 
       <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ padding: '6% 3% 6% 3%' }}>
         <div className="w-[95%] h-[95%] bg-[#FFF7E2] flex items-center justify-center p-1.5 rounded-[2px] shadow-sm">
           <div className="relative w-full h-full overflow-hidden">
-            <Image src={image?.src || "/placeholder"} alt={image?.alt || "Stamp photo"} fill className="object-cover" />
+            <Image src={image?.src || "/placeholder"} alt={image?.alt || "Stamp photo"} fill sizes="200px" className="object-cover" />
           </div>
         </div>
       </div>

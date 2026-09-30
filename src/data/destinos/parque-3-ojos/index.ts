@@ -20,7 +20,7 @@ export const destino: DestinoData = {
       title: "Transporte",
       description:
         "Acceso sencillo en taxi, vehículo particular o transporte público desde el centro de Santo Domingo. Internamente se recorre a pie.",
-      icon: { src: "/Paises/icono transporte.png", alt: "Icono Transporte" },
+      icon: { src: "/Paises/icon transporte.png", alt: "Icono Transporte" },
     },
     {
       title: "Mejor época",

@@ -67,6 +67,7 @@ export default function InfoHorizontalCard({ title, description, images, badgeSv
               src={src}
               alt={`Imagen de ${title} ${idx + 1}`}
               fill
+              sizes="280px"
               className={`object-cover transition-opacity duration-300 ${idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
             />
           ))

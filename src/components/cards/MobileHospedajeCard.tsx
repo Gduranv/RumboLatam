@@ -69,7 +69,7 @@ const SmallHotelCard = ({ hotel, image }: { hotel: Hotel; image?: string }) => {
       </div>
       {image ? (
         <div className="relative w-full h-[70px] rounded-[8px] overflow-hidden shadow-sm bg-gray-200">
-          <Image src={image} alt={`${hotel.type} ${hotel.name}`} fill className="object-cover" />
+          <Image src={image} alt={`${hotel.type} ${hotel.name}`} fill sizes="160px" className="object-cover" />
         </div>
       ) : (
         <div className="relative w-full h-[70px] rounded-[8px] overflow-hidden shadow-inner bg-[#D45917] flex items-center justify-center">
@@ -147,7 +147,7 @@ const MobileHospedajeCard = ({ hotels, images }: MobileHospedajeCardProps) => {
             {/* Foto rectangular */}
             {images[2] ? (
               <div className="relative w-[120px] h-[70px] rounded-[8px] overflow-hidden shadow-sm bg-gray-200 shrink-0">
-                <Image src={images[2]} alt={`${bottomHotel.type} ${bottomHotel.name}`} fill className="object-cover" />
+                <Image src={images[2]} alt={`${bottomHotel.type} ${bottomHotel.name}`} fill sizes="120px" className="object-cover" />
               </div>
             ) : (
               <div className="relative w-[120px] h-[70px] rounded-[8px] overflow-hidden shadow-inner bg-[#D45917] flex items-center justify-center shrink-0">

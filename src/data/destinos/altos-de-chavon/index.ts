@@ -23,7 +23,7 @@ export const destino: DestinoData = {
             title: "Transporte",
             description:
                 "Acceso terrestre desde La Romana o Punta Cana en auto o autobús. Internamente el recorrido es peatonal debido a sus calles empedradas.",
-            icon: { src: "/Paises/icono transporte.png", alt: "Icono Transporte" },
+            icon: { src: "/Paises/icon transporte.png", alt: "Icono Transporte" },
         },
         {
             title: "Mejor época",

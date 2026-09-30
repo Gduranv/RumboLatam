@@ -11,6 +11,10 @@ export const pais: PaisData = {
   // Playlist de Spotify del país (botón de música). Cámbiala a tu antojo.
   playlistUrl:
     "https://open.spotify.com/playlist/5bywhsxxSqQbOoneg9vdPI?si=UEAJ74YLRTihwv_shlzdEw&utm_source=whatsapp&pi=BKfbh5UxS_yP8",
+  giaPais: {
+    src: "/Paises/Venezuela/giacortada.gif",
+    alt: "Gia Venezuela",
+  },
   // Mensaje de Gia propio del país: lo completa el equipo de contenido manualmente.
   giaMessage: "¡Epa, chamo! Prepárate para el viaje.",
   antesDeViajar: [

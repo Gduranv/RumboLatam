@@ -3,46 +3,25 @@ import Link from "next/link";
 import AnimatedCard from "@/components/cards/AnimatedCard";
 import DestinationsCarousel from "@/components/carousels/DestinationsCarousel";
 import CountryHeaderButtons from "@/components/ui/CountryHeaderButtons";
+import RichText from "@/components/ui/RichText";
 import { getPais, getPlaylistUrl } from "@/data";
-import type { AntesDeViajarCard } from "@/types";
+import { DEFAULT_ANTES_DE_VIAJAR, GIA_PAIS_FALLBACK, SUBTITLE_FALLBACK } from "@/data/paisDefaults";
 
 const GIA_CLOUD = "/Paises/NubeParaMensaje.png";
-
-const LOREM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-
-const DEFAULT_ANTES_DE_VIAJAR: AntesDeViajarCard[] = [
-  { title: "Moneda", description: LOREM, icon: { src: "/Paises/icon moneda.png", alt: "Icono Moneda" } },
-  { title: "Gastronomía", description: LOREM, icon: { src: "/Paises/icono gastronomia.png", alt: "Icono Gastronomía" } },
-  { title: "Idioma", description: LOREM, icon: { src: "/Paises/idioma.png", alt: "Icono Idioma" } },
-  { title: "Estaciones", description: LOREM, icon: { src: "/Paises/icon estaciones.png", alt: "Icono Estaciones" } },
-];
-
-function RichText({ text }: { text: string }) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
-  return (
-    <>
-      {parts.map((part, index) =>
-        part.startsWith("**") && part.endsWith("**") ? (
-          <strong key={index}>{part.slice(2, -2)}</strong>
-        ) : (
-          <span key={index}>{part}</span>
-        )
-      )}
-    </>
-  );
-}
 
 interface DesktopCountryProps {
   countryId: string;
   dynamicDestinationsResources: Record<string, string | null>;
   dynamicHeroImage: string | null;
+  dynamicGiaImage: string | null;
 }
 
-export default function DesktopCountry({ countryId, dynamicDestinationsResources, dynamicHeroImage }: DesktopCountryProps) {
+export default function DesktopCountry({ countryId, dynamicDestinationsResources, dynamicHeroImage, dynamicGiaImage }: DesktopCountryProps) {
   const pais = getPais(countryId);
   const name = pais?.name ?? countryId.charAt(0).toUpperCase() + countryId.slice(1);
-  const subtitle = pais?.subtitle || "Explora la magia de este destino.";
+  const subtitle = pais?.subtitle || SUBTITLE_FALLBACK;
   const heroSrc = dynamicHeroImage;
+  const giaSrc = dynamicGiaImage ?? pais?.giaPais?.src ?? GIA_PAIS_FALLBACK.src;
   const antesDeViajar = pais?.antesDeViajar?.length ? pais.antesDeViajar : DEFAULT_ANTES_DE_VIAJAR;
   const destinations = (pais?.destinos ?? []).map((destino) => ({
     id: destino.id,
@@ -109,14 +88,14 @@ export default function DesktopCountry({ countryId, dynamicDestinationsResources
         </div>
 
         {/* Gia (Posicionada al fondo para que el clip-path en V la recorte automáticamente) */}
-        <div className="absolute right-[-70px] bottom-0 w-[525px] h-[545px] z-10 group cursor-pointer scale-[1.2] origin-bottom">
+        <div className="absolute right-[-10px] bottom-[-10px] w-[525px] h-[545px] z-10 group cursor-pointer scale-[1.2] origin-bottom">
           {/* Gia Animada (Siempre visible) */}
           {/* 6.3 MB sin optimizar: la petición más pesada de todo el proyecto.
               Con fetchPriority baja al final de la cola y deja de retrasar al hero,
               que es el LCP de la página. Medido: tardaba 5.9 s en descargarse. */}
           <Image
-            src="/Paises/Venezuela/giacortada.gif"
-            alt="Gia"
+            src={giaSrc}
+            alt={pais?.giaPais?.alt ?? GIA_PAIS_FALLBACK.alt}
             fill
             unoptimized
             fetchPriority="low"
@@ -124,7 +103,7 @@ export default function DesktopCountry({ countryId, dynamicDestinationsResources
             className="object-contain"
           />
           {/* Nube de Saludo (Aparece al hacer hover) */}
-          <div className="absolute top-[-10%] left-[0%] w-[220px] transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 pointer-events-none">
+          <div className="absolute top-[-15%] left-[0%] w-[220px] transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 pointer-events-none">
             <div className="relative">
               <Image
                 src={GIA_CLOUD}
@@ -153,6 +132,7 @@ export default function DesktopCountry({ countryId, dynamicDestinationsResources
               src="/Paises/logoBlanco.png"
               alt="Logo Rumbo Latam"
               fill
+              sizes="143px"
               className="object-contain"
             />
           </div>
@@ -209,7 +189,7 @@ export default function DesktopCountry({ countryId, dynamicDestinationsResources
         </div>
         <div className="relative w-[100px] h-[50px]">
           {/* Aquí irá el logo de URBE cuando se proporcione */}
-          {<Image src="/Paises/LogoURBE.png" alt="Logo URBE" fill className="object-contain" />}
+          {<Image src="/Paises/LogoURBE.png" alt="Logo URBE" fill sizes="100px" className="object-contain" />}
         </div>
       </div>
     </main>

@@ -11,6 +11,10 @@ export const pais: PaisData = {
   // Playlist de Spotify del país (botón de música). Cámbiala a tu antojo.
   playlistUrl:
     "https://open.spotify.com/playlist/6K9YI81jTQ96k9tMLXMhtK?si=khPFAr7JQVCCOFUA52BesA&utm_source=copy-link&pi=0yFA3JzXQ9O1d",
+  giaPais: {
+    src: "/Paises/Brasil/GiaBrasil.gif",
+    alt: "Gia Brasil",
+  },
   // Mensaje de Gia propio del país: lo completa el equipo de contenido manualmente.
   giaMessage: "¡Tudo bem! Siente la energía.",
   antesDeViajar: [
@@ -47,7 +51,7 @@ export const pais: PaisData = {
       description:
         "Un palacio de cristal de estilo art nouveau francés rodeado de perfectos jardines geométricos. Una joya arquitectónica que resguarda la flora tropical y deleita la simetría visual.",
       image: {
-        src: "/Paises/Brasil/LUGAR BRASIL1.png",
+        src: "/Paises/Brasil/Jardín Botánico de Curitiba BRASIL/PortadaJardinB.webp",
         alt: "Jardín Botánico de Curitiba",
       },
     },
@@ -58,7 +62,7 @@ export const pais: PaisData = {
       description:
         "Un infinito manto de dunas de arena blanca intercalado por miles de lagunas de agua dulce turquesa. Un milagro geológico único que fusiona el paisaje árido con lluvias tropicales.",
       image: {
-        src: "/Paises/Brasil/LUGAR BRASIL2.png",
+        src: "/Paises/Brasil/Lençóis MaranhensesBRASIL/PortadaLencoisM.webp",
         alt: "Lençóis Maranhenses",
       },
     },
@@ -69,7 +73,7 @@ export const pais: PaisData = {
       description:
         "Una famosa roca en Río de Janeiro que crea una impresionante ilusión óptica de colgar al vacío sobre el océano. El mirador perfecto para capturar la adrenalina y la costa carioca.",
       image: {
-        src: "/Paises/Brasil/LUGAR BRASIL3.png",
+        src: "/Paises/Brasil/Pedra do Telégrafo BRASIL/PortadaPedradotelegrafo.webp",
         alt: "Pedra do Telégrafo",
       },
     },
@@ -77,15 +81,24 @@ export const pais: PaisData = {
   curiosidades: [
     {
       text: "¿Sabías que aunque Brasil es el lugar de origen del açaí, rara vez se consume como un postre dulce? A diferencia de su presentación con frutas o granola que se popularizó mundialmente, la forma tradicional de comerlo es como un acompañamiento salado, sirviéndose como guarnición en platos de pescado frito o camarones, mezclado con harina de yuca.",
-      image: { src: "/Paises/Brasil/curiosidades/curiosidadesbrasil1.webp", alt: "açaí brasileño" },
+      image: {
+        src: "/Paises/Brasil/Curiosidades/datosBrasil1.webp",
+        alt: "açaí brasileño",
+      },
     },
     {
       text: "¿Sabías que en los bosques de Brasil habita un pequeño mono que parece un león en miniatura? Se trata del tití león dorado (mico-leão-dourado), una especie endémica que llama la atención por su brillante pelaje anaranjado y una abundante melena que rodea su rostro.",
-      image: { src: "/Paises/Brasil/curiosidades/curiosidadesbrasil2.webp", alt: "Tití león dorado" },
+      image: {
+        src: "/Paises/Brasil/Curiosidades/datosBrasil2.webp",
+        alt: "Tití león dorado",
+      },
     },
     {
       text: "¿Sabías que en Brasil el Año Nuevo se celebra saltando olas en el mar? Durante la festividad del Réveillon, millones de brasileños se visten completamente de blanco y acuden a las playas a la medianoche para saltar siete olas consecutivas, pidiendo un deseo en cada salto como tradición para atraer la buena suerte.",
-      image: { src: "/Paises/Brasil/curiosidades/curiosidadesbrasil3.webp", alt: "Año Nuevo en Brasil" },
+      image: {
+        src: "/Paises/Brasil/Curiosidades/datosBrasil3.webp",
+        alt: "Año Nuevo en Brasil",
+      },
     },
   ],
 };

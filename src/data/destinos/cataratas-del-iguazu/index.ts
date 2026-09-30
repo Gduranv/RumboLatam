@@ -20,7 +20,7 @@ export const destino: DestinoData = {
       title: "Transporte",
       description:
         "Acceso por carretera desde Puerto Iguazú en autobús local o autos. Internamente se camina por las pasarelas o se usa el Tren Ecológico de la Selva.",
-      icon: { src: "/Paises/icono transporte.png", alt: "Icono Transporte" },
+      icon: { src: "/Paises/icon transporte.png", alt: "Icono Transporte" },
     },
     {
       title: "Mejor época",

@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect, useCallback, type ReactNode } from "react";
 
 interface ManualCard {
   title: string;
-  description: string;
+  /** Nodo ya renderizado: cada destino pasa su texto a través de <RichText />. */
+  description: ReactNode;
   iconSrc: string;
   iconAlt: string;
 }

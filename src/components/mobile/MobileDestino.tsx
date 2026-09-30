@@ -4,7 +4,9 @@ import MobileManualCarousel from "@/components/carousels/MobileManualCarousel";
 import MobileHospedajeCard from "@/components/cards/MobileHospedajeCard";
 import MobileInfoCard from "@/components/cards/MobileInfoCard";
 import MobileStampCarousel from "@/components/carousels/MobileStampCarousel";
+import RichText from "@/components/ui/RichText";
 import { getDestino, getPlaylistUrl } from "@/data";
+import type { ManualCard } from "@/types";
 
 interface MobileDestinoProps {
   destinoId: string;
@@ -17,60 +19,43 @@ interface MobileDestinoProps {
   };
 }
 
-/** Versión móvil de la página de destino turístico */
+/**
+ * Página de destino en móvil. Es la versión móvil de la misma plantilla que
+ * ya usa Canaima: todos los destinos entran por aquí y lo único que cambia
+ * entre uno y otro es `DestinoData` y las imágenes resueltas por la ruta.
+ */
 const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
   const destino = getDestino(destinoId) || getDestino("canaima")!;
-  const backToCountry = `/paises/${destino.paisId || (destino as any).countryId || "venezuela"}`;
+  const backToCountry = `/paises/${destino.paisId}`;
 
-  const hospedajeImages = dynamicResources.hospedajeImages;
-  const animalesImages = dynamicResources.animalesImages;
-  const actividadesImages = dynamicResources.actividadesImages;
-
-  const manualClima = destino.manualDelViajero?.[0]?.description || (destino as any).manual?.clima || "";
-  const manualTransporte = destino.manualDelViajero?.[1]?.description || (destino as any).manual?.transporte || "";
-  const manualMejorEpoca = destino.manualDelViajero?.[2]?.description || (destino as any).manual?.mejorEpoca || "";
-
-  const rawHotels = destino.hospedaje?.hoteles || (destino.hospedaje as any)?.hotels || [];
-  const normalizedHotels = rawHotels.map((h: any) => ({
-    name: h.name,
-    type: h.tipo || h.type || "Hospedaje",
-    rating: h.estrellas || h.rating || 5,
-    link: h.link,
+  // El manual del viajero se arma desde el dato, con el título y el icono que
+  // declara cada tarjeta: no hay posiciones fijas ni iconos hardcodeados.
+  const manualCards = destino.manualDelViajero.map((card: ManualCard) => ({
+    title: card.title,
+    description: <RichText text={card.description} />,
+    iconSrc: card.icon.src,
+    iconAlt: card.icon.alt,
   }));
 
-  /** Cards del manual del viajero para el carrusel */
-  const manualCards = [
-    {
-      title: "Clima",
-      description: manualClima,
-      iconSrc: "/Paises/icono clima.png",
-      iconAlt: "Icono Clima",
-    },
-    {
-      title: "Transporte",
-      description: manualTransporte,
-      iconSrc: "/Paises/icon transporte.png",
-      iconAlt: "Icono Transporte",
-    },
-    {
-      title: "Mejor época",
-      description: manualMejorEpoca,
-      iconSrc: "/Paises/icon mejor epoca.png",
-      iconAlt: "Icono Mejor Época",
-    },
-  ];
+  const hotels = destino.hospedaje.hoteles.map((hotel) => ({
+    name: hotel.name,
+    type: hotel.tipo,
+    rating: hotel.estrellas,
+    link: hotel.link,
+  }));
 
   return (
     <main className="w-full min-h-screen bg-[#FFF7E2] flex flex-col overflow-x-hidden relative block md:hidden">
-
       {/* ============================================= */}
       {/* HERO SECTION (Imagen + Header + Textos)       */}
       {/* ============================================= */}
       <section
         className="relative w-full min-h-[520px] flex flex-col overflow-hidden z-20"
-        style={{ clipPath: "polygon(0 0, 100% 0, 100% calc(100% - 40px), 50% 100%, 0 calc(100% - 40px))" }}
+        style={{
+          clipPath:
+            "polygon(0 0, 100% 0, 100% calc(100% - 40px), 50% 100%, 0 calc(100% - 40px))",
+        }}
       >
-
         {/* Fondo de Destino */}
         <div className="absolute inset-0 z-0 h-full">
           {dynamicResources.portadaImage ? (
@@ -95,20 +80,33 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
         <div className="relative z-20 w-full">
           <div
             className="absolute top-0 left-0 w-full h-full bg-[#FF7223] drop-shadow-md z-0"
-            style={{ clipPath: "polygon(0 0, 100% 0, 100% 65%, 50% 100%, 0 65%)" }}
+            style={{
+              clipPath: "polygon(0 0, 100% 0, 100% 65%, 50% 100%, 0 65%)",
+            }}
           ></div>
 
           <div className="relative z-10 w-full flex justify-center px-4 pt-6 pb-14">
             {/* Botón Atrás */}
-            <Link href={backToCountry} className="absolute left-4 top-[96px] z-20">
+            <Link
+              href={backToCountry}
+              className="absolute left-4 top-[96px] z-20"
+            >
               <button className="flex items-center justify-center hover:scale-105 transition-transform drop-shadow-md">
-                <img src="/Paises/FlechaAtras.png" alt="Atrás" className="w-10 h-10 object-contain" />
+                <img
+                  src="/Paises/FlechaAtras.png"
+                  alt="Atrás"
+                  className="w-10 h-10 object-contain"
+                />
               </button>
             </Link>
 
             {/* Logo Rumbo Latam Blanco */}
             <Link href="/" className="relative z-10 top-[20px] mt-1">
-              <img src="/Paises/logoBlanco.png" alt="Rumbo Latam" className="w-[120px] h-auto object-contain cursor-pointer hover:scale-105 transition-transform" />
+              <img
+                src="/Paises/logoBlanco.png"
+                alt="Rumbo Latam"
+                className="w-[120px] h-auto object-contain cursor-pointer hover:scale-105 transition-transform"
+              />
             </Link>
 
             {/* Botón Música */}
@@ -118,7 +116,11 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
               rel="noopener noreferrer"
               className="absolute right-4 top-[96px] z-20 flex items-center justify-center hover:scale-105 transition-transform drop-shadow-md"
             >
-              <img src="/ICONO-MUSIC.png" alt="Música" className="w-10 h-10 object-contain" />
+              <img
+                src="/ICONO-MUSIC.png"
+                alt="Música"
+                className="w-10 h-10 object-contain"
+              />
             </a>
           </div>
         </div>
@@ -126,7 +128,7 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
         {/* Textos del Hero (centrados) */}
         <div className="relative z-10 px-6 pt-2 flex flex-col items-center text-center font-nohemi mt-8 flex-1 justify-center">
           <h1 className="text-[#FFF7E2] text-[24px] font-bold leading-tight tracking-tight drop-shadow-lg capitalize">
-            {destino.name}:
+            {destino.name}
           </h1>
           <p className="text-white font-sans font-semibold text-[16px] mt-1 drop-shadow-md">
             {destino.tag}
@@ -139,7 +141,10 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
       {/* ============================================= */}
       <section
         className="w-full bg-[#13522B] pt-[70px] pb-24 relative z-10 -mt-[45px]"
-        style={{ clipPath: "polygon(0 0, 100% 0, 100% calc(100% - 40px), 50% 100%, 0 calc(100% - 40px))" }}
+        style={{
+          clipPath:
+            "polygon(0 0, 100% 0, 100% calc(100% - 40px), 50% 100%, 0 calc(100% - 40px))",
+        }}
       >
         <h2 className="text-[#F1E4C4] text-[20px] font-bold font-nohemi tracking-tight text-center mb-2">
           Manual del viajero
@@ -157,8 +162,8 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
       {/* ============================================= */}
       <section className="w-full px-4 pt-8 pb-6 bg-[#FFF7E2] -mt-[10px]">
         <MobileHospedajeCard
-          hotels={normalizedHotels}
-          images={hospedajeImages}
+          hotels={hotels}
+          images={dynamicResources.hospedajeImages}
         />
       </section>
 
@@ -169,7 +174,7 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
         <MobileInfoCard
           title="Animales autóctonos"
           description={destino.animales.description}
-          images={animalesImages}
+          images={dynamicResources.animalesImages}
           iconSrc="/Paises/icon animales.png"
           iconAlt="Icono Animales"
           iconPosition="right"
@@ -184,7 +189,7 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
         <MobileInfoCard
           title="Actividades para hacer"
           description={destino.actividades.description}
-          images={actividadesImages}
+          images={dynamicResources.actividadesImages}
           iconSrc="/Paises/icon act por hacer.png"
           iconAlt="Icono Actividades"
           iconPosition="left"
@@ -211,8 +216,15 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
       <footer className="w-full flex-grow relative z-10 bg-[#B5E3F8] pt-8 pb-6 px-6 mt-auto">
         {/* Ola SVG Arriba */}
         <div className="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180 -translate-y-[99%]">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[30px]">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#B5E3F8"></path>
+          <svg
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+            className="relative block w-full h-[30px]"
+          >
+            <path
+              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+              fill="#B5E3F8"
+            ></path>
           </svg>
         </div>
 
@@ -223,7 +235,11 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
             <p>Todos los derechos reservados.</p>
           </div>
           <div className="w-[80px]">
-            <img src="/Paises/LogoURBE.png" alt="Logo URBE" className="w-full h-auto object-contain" />
+            <img
+              src="/Paises/LogoURBE.png"
+              alt="Logo URBE"
+              className="w-full h-auto object-contain"
+            />
           </div>
         </div>
       </footer>

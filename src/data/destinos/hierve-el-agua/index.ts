@@ -6,7 +6,7 @@ export const destino: DestinoData = {
   name: "Hierve el Agua",
   tag: "Maravilla geológica",
   hero: {
-    src: "/Paises/Mexico/portadas/hierve_el_agua_portada.webp",
+    src: "/Paises/Mexico/HIERVE EL AGUA MX/HierveElaguaPORTADA.webp",
     alt: "Hierve el Agua",
   },
   manualDelViajero: [

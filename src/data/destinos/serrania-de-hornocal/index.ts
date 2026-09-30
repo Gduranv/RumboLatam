@@ -20,7 +20,7 @@ export const destino: DestinoData = {
       title: "Transporte",
       description:
         "Acceso por carretera de ripio desde Humahuaca en vehículos rústicos 4x4, autos particulares con cuidado o excursiones guiadas por caminos de caracol.",
-      icon: { src: "/Paises/icono transporte.png", alt: "Icono Transporte" },
+      icon: { src: "/Paises/icon transporte.png", alt: "Icono Transporte" },
     },
     {
       title: "Mejor época",

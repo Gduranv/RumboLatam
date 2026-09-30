@@ -5,6 +5,7 @@ import { DEFAULT_PLAYLIST_URL } from "@/config";
 import { destino as altosDeChavon } from "./destinos/altos-de-chavon";
 import { destino as canaima } from "./destinos/canaima";
 import { destino as capillasDeMarmol } from "./destinos/capillas-de-marmol";
+import { destino as castilloDeChapultepec } from "./destinos/castillo-de-chapultepec";
 import { destino as cataratasDelIguazu } from "./destinos/cataratas-del-iguazu";
 import { destino as ciudadPerdida } from "./destinos/ciudad-perdida";
 import { destino as coloniaTovar } from "./destinos/colonia-tovar";
@@ -22,6 +23,7 @@ import { destino as pedraDoTelegrafo } from "./destinos/pedra-do-telegrafo";
 import { destino as puntaCana } from "./destinos/punta-cana";
 import { destino as santuarioLasLajas } from "./destinos/santuario-las-lajas";
 import { destino as serraniaDeHornocal } from "./destinos/serrania-de-hornocal";
+import { destino as tulum } from "./destinos/tulum";
 import { destino as valleNevado } from "./destinos/valle-nevado";
 import { destino as volcanVillarrica } from "./destinos/volcan-villarrica";
 import { pais as argentina } from "./paises/argentina";
@@ -53,6 +55,7 @@ const destinos: Record<string, DestinoData> = {
   "altos-de-chavon": altosDeChavon,
   canaima,
   "capillas-de-marmol": capillasDeMarmol,
+  "castillo-de-chapultepec": castilloDeChapultepec,
   "cataratas-del-iguazu": cataratasDelIguazu,
   "ciudad-perdida": ciudadPerdida,
   "colonia-tovar": coloniaTovar,
@@ -70,6 +73,7 @@ const destinos: Record<string, DestinoData> = {
   "punta-cana": puntaCana,
   "santuario-las-lajas": santuarioLasLajas,
   "serrania-de-hornocal": serraniaDeHornocal,
+  tulum,
   "valle-nevado": valleNevado,
   "volcan-villarrica": volcanVillarrica,
 };

@@ -9,6 +9,8 @@ import type { Curiosidad } from "@/types";
 
 interface DesktopCuriosidadesProps {
   countryId: string;
+  /** Una entrada por curiosidad, ya resuelta por la ruta. `null` = sin foto. */
+  curiosidadImages: (string | null)[];
 }
 
 const WAVE_CLARA =
@@ -46,12 +48,12 @@ function RichText({ text }: { text: string }) {
 
 interface CuriosityCardProps {
   countryId: string;
-  index: number;
+  imageSrc: string;
   cardX: number;
   curiosidad: Curiosidad;
 }
 
-function CuriosityCard({ countryId, index, cardX, curiosidad }: CuriosityCardProps) {
+function CuriosityCard({ countryId, imageSrc, cardX, curiosidad }: CuriosityCardProps) {
   const [expanded, setExpanded] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -60,9 +62,6 @@ function CuriosityCard({ countryId, index, cardX, curiosidad }: CuriosityCardPro
     return () => clearTimeout(t);
   }, [expanded]);
 
-  const imageSrc =
-    curiosidad.image.src ||
-    `/Paises/${countryId}/Curiosidades/curiosidad${index + 1}.png`;
   const accent = getPais(countryId)?.curiosidadesAccent ?? "#D4AF37";
 
   return (
@@ -178,7 +177,7 @@ function CuriosityCard({ countryId, index, cardX, curiosidad }: CuriosityCardPro
   );
 }
 
-export default function DesktopCuriosidades({ countryId }: DesktopCuriosidadesProps) {
+export default function DesktopCuriosidades({ countryId, curiosidadImages }: DesktopCuriosidadesProps) {
   return (
     <main className="w-full bg-[#A3DBEF] mx-auto relative overflow-hidden hidden md:block">
       <ScaleToFitCanvas height={1920} fullWidth>
@@ -302,7 +301,8 @@ export default function DesktopCuriosidades({ countryId }: DesktopCuriosidadesPr
           <CuriosityCard
             key={curiosidad.text}
             countryId={countryId}
-            index={index}
+            // Sin foto declarada se muestra la marca en vez de un <img> roto.
+            imageSrc={curiosidadImages[index] ?? "/OtrosRecursos/ICONOCURIOSIDADES.png"}
             cardX={cardX}
             curiosidad={curiosidad}
           />

@@ -164,6 +164,7 @@ export default function HospedajeCard({ hotels, images }: HospedajeCardProps) {
               src={src}
               alt={`Imagen de hospedaje ${idx + 1}`}
               fill
+              sizes="332px"
               className={`object-cover transition-opacity duration-300 ${idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
             />
           ))

@@ -11,6 +11,10 @@ export const pais: PaisData = {
   // Playlist de Spotify del país (botón de música). Cámbiala a tu antojo.
   playlistUrl:
     "https://open.spotify.com/playlist/4Gon4sgdXWOWE5gFZT40lk?si=sQKUixzyQySVfG6LfU5S_g&utm_source=copy-link&pi=gfeiwZsEQ6y-z",
+  giaPais: {
+    src: "/Paises/RepublicaDominicana/GiaRepDom.gif",
+    alt: "Gia República Dominicana",
+  },
   // Mensaje de Gia propio del país: lo completa el equipo de contenido manualmente.
   giaMessage: "¡Dime a ver! Llegaste al paraíso.",
   // TODO(design): copy de las 4 ser de "Antes de viajar" para República Dominicana.
@@ -51,7 +55,6 @@ export const pais: PaisData = {
         src: "/Paises/RepublicaDominicana/PuntaCana/PortadaPuntaCana.webp",
         alt: "Punta Cana",
       },
-
     },
 
     {
@@ -76,20 +79,29 @@ export const pais: PaisData = {
         src: "/Paises/RepublicaDominicana/AltosDeChavon/PortadaAltosDeChavon.webp",
         alt: "Altos de Chavón",
       },
-    }
+    },
   ],
   curiosidades: [
     {
       text: "¿Sabías que el merengue, el ritmo que mueve a República Dominicana, fue declarado en 2016 Patrimonio Cultural Inmaterial de la Humanidad por la UNESCO? Es el género musical africano, europeo e indígena contado a través de una fiesta.",
-      image: { src: "", alt: "Merengue dominicano" },
+      image: {
+        src: "/Paises/RepublicaDominicana/Curiosidades/datosRepdom1.webp",
+        alt: "Merengue dominicano",
+      },
     },
     {
       text: "¿Sabías que el ámbar dominicano es único en el mundo por su transparencia? El ámbar azul, que brilla con un tono fluorescente bajo la luz del sol, solo existe en la cordillera del norte de este país caribeño.",
-      image: { src: "", alt: "Ámbar azul dominicano" },
+      image: {
+        src: "/Paises/RepublicaDominicana/Curiosidades/datosRepdom2.webp",
+        alt: "Ámbar azul dominicano",
+      },
     },
     {
       text: "¿Sabías que el Lago Enriquillo es el lago más grande del Caribe y un milagro natural? Sus aguas saladas se encuentran por debajo del nivel del mar y en sus orillas viven cocodrilos americanos, iguanas y flamencos rosados.",
-      image: { src: "", alt: "Lago Enriquillo" },
+      image: {
+        src: "/Paises/RepublicaDominicana/Curiosidades/datosRepdom3.webp",
+        alt: "Lago Enriquillo",
+      },
     },
   ],
 };

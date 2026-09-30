@@ -20,7 +20,7 @@ export const destino: DestinoData = {
       title: "Transporte",
       description:
         "Acceso por vía aérea al Aeropuerto de Punta Cana. Internamente se usan taxis, vehículos de alquiler o los servicios de transporte privado.",
-      icon: { src: "/Paises/icono transporte.png", alt: "Icono Transporte" },
+      icon: { src: "/Paises/icon transporte.png", alt: "Icono Transporte" },
     },
     {
       title: "Mejor época",

@@ -64,6 +64,7 @@ export default function DestinationsCarousel({ destinations }: DestinationsCarou
               src={current.imageSrc}
               alt={current.title}
               fill
+              sizes="760px"
               className="object-cover"
             />
           ) : (

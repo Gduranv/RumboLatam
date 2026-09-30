@@ -1,6 +1,7 @@
 import MobileCuriosidades from "@/components/mobile/MobileCuriosidades";
 import DesktopCuriosidades from "@/components/desktop/DesktopCuriosidades";
 import { getPais, isValidPais } from "@/data";
+import { getCountryResources } from "@/utils/getResources";
 import { notFound } from "next/navigation";
 
 interface PageProps {
@@ -15,14 +16,20 @@ export default async function CuriosidadesPage({ params }: PageProps) {
     return notFound();
   }
 
-  if ((getPais(countryId)?.curiosidades ?? []).length === 0) {
+  const pais = getPais(countryId);
+  if (!pais || pais.curiosidades.length === 0) {
     return notFound();
   }
 
+  // Las imágenes llegan ya resueltas: si el país no tiene foto de esa curiosidad
+  // se pasa `null` y el componente muestra el placeholder de marca, en vez de
+  // dejar un <img> apuntando a un archivo inexistente.
+  const { curiosidadImages } = getCountryResources(pais);
+
   return (
     <>
-      <MobileCuriosidades countryId={countryId} />
-      <DesktopCuriosidades countryId={countryId} />
+      <MobileCuriosidades countryId={countryId} curiosidadImages={curiosidadImages} />
+      <DesktopCuriosidades countryId={countryId} curiosidadImages={curiosidadImages} />
     </>
   );
 }

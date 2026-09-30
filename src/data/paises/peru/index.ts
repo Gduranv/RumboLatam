@@ -11,6 +11,10 @@ export const pais: PaisData = {
   // Playlist de Spotify del país (botón de música). Cámbiala a tu antojo.
   playlistUrl:
     "https://open.spotify.com/playlist/4CjrZqk8p3SmKHOrtHxKQG?si=dcxH4l1IT1aZjCTSPMOD7g&utm_source=copy-link&pi=k7QfWGboQqSNx",
+  giaPais: {
+    src: "/Paises/Peru/GiaPeru.gif",
+    alt: "Gia Perú",
+  },
   // Mensaje de Gia propio del país: lo completa el equipo de contenido manualmente.
   giaMessage: "¡Hola, causita! Adelante.",
   antesDeViajar: [
@@ -47,7 +51,7 @@ export const pais: PaisData = {
       description:
         "Un archipiélago rocoso bullicioso de lobos marinos y aves guaneras frente a la costa de Paracas. Un paseo en lancha entre acantilados que te invita a descubrir la vida salvaje del Pacífico peruano.",
       image: {
-        src: "/Paises/Peru/LUGAR PERU1.png",
+        src: "/Paises/Peru/Isla Ballestas/IslasBallestasPortada.webp",
         alt: "Islas Ballestas",
       },
     },
@@ -58,7 +62,7 @@ export const pais: PaisData = {
       description:
         "Una imponente cumbre andina teñida por franjas de diversos minerales a más de 5.000 metros de altura. Un espectáculo visual que desafía el horizonte con sus pliegues de color vivo.",
       image: {
-        src: "/Paises/Peru/LUGAR PERU2.png",
+        src: "/Paises/Peru/Montaña 7 colores Peru/PortadaMontana7Colores.webp",
         alt: "Montaña de 7 Colores",
       },
     },
@@ -69,7 +73,7 @@ export const pais: PaisData = {
       description:
         "Una laguna esmeralda abrazada por dunas doradas en medio del desierto de Ica. Un escenario de postal donde la aventura en sandboard y buggy te invita a sentir la energía del desierto peruano.",
       image: {
-        src: "/Paises/Peru/LUGAR PERU3.png",
+        src: "/Paises/Peru/Oasis de Huacachina peru/OasisDHuacachinaPortada.webp",
         alt: "Oasis de Huacachina",
       },
     },
@@ -77,15 +81,24 @@ export const pais: PaisData = {
   curiosidades: [
     {
       text: "¿Sabías que el Perú cultiva más de 3.000 variedades de papa? El país es el centro de origen de este tubérculo, que hoy alimenta a medio mundo y que los incas veneraban tanto que llegaron a deshidratar para conservarla por años.",
-      image: { src: "", alt: "Variedades de papa peruana" },
+      image: {
+        src: "/Paises/Peru/Curiosidades/datosPeru1.webp",
+        alt: "Variedades de papa peruana",
+      },
     },
     {
       text: "¿Sabías que el Cusco era el ombligo del mundo inca y se construyó con la forma de un puma sagrado? Sus muros de piedra, talladas sin mortero, encajan tan perfectamente que no entra ni una hoja de papel entre bloque y bloque.",
-      image: { src: "", alt: "Muros incas del Cusco" },
+      image: {
+        src: "/Paises/Peru/Curiosidades/datosPeru2.webp",
+        alt: "Muros incas del Cusco",
+      },
     },
     {
       text: "¿Sabías que Machu Picchu fue una ciudad que nunca fue conocida por los conquistadores españoles? La ciudadela se mantuvo oculta entre la selva durante siglos hasta que Hiram Bingham la dio a conocer al mundo en 1911.",
-      image: { src: "", alt: "Machu Picchu" },
+      image: {
+        src: "/Paises/Peru/Curiosidades/datosPeru3.webp",
+        alt: "Machu Picchu",
+      },
     },
   ],
 };

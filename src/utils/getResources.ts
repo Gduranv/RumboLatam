@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
-import type { DestinoData } from "@/types";
+import { GIA_PAIS_FALLBACK } from "@/data/paisDefaults";
+import type { DestinoData, PaisData } from "@/types";
 
 const IMAGE_RE = /\.(png|jpe?g|webp|gif|svg)$/i;
 
@@ -220,4 +221,40 @@ export function getCountryHeroImage(countryId: string) {
   }
 
   return heroImage;
+}
+
+/**
+ * Usa la imagen declarada en el dato si el archivo existe en /public; si no,
+ * cae al `fallback`. Es la regla que evita que un dato con una ruta muerta
+ * termine pintando un <img> roto en pantalla.
+ */
+export function resolveImage(src: string | null | undefined, fallback: string | null = null) {
+  if (src && existe(src)) return src;
+  return fallback && existe(fallback) ? fallback : null;
+}
+
+/**
+ * Recursos de un país, resueltos con la misma regla que los destinos:
+ * el dato manda y el descubrimiento por carpeta es el respaldo.
+ *
+ * - `heroImage`: `pais.hero.src`; si no existe, la portada que haya en su carpeta.
+ * - `giaImage`: la Gia propia del país (`.gif` o `.png`, indistinto), o la de
+ *   Venezuela si el país no declara una.
+ * - `curiosidadImages`: una imagen por curiosidad, con la convención
+ *   `/Paises/{carpeta}/curiosidades/` como respaldo.
+ */
+export function getCountryResources(pais: PaisData) {
+  // Venezuela nombra la carpeta en minúsculas y el resto la capitaliza; se
+  // prueban las dos para no depender de cómo se archivó cada país.
+  const base = `/Paises/${carpetaPais(pais.id)}`;
+  const enCarpeta = readFolder(`${base}/Curiosidades`);
+  const fallbackCuriosidades = enCarpeta.length ? enCarpeta : readFolder(`${base}/curiosidades`);
+
+  return {
+    heroImage: resolveImage(pais.hero?.src, getCountryHeroImage(pais.id)),
+    giaImage: resolveImage(pais.giaPais?.src, GIA_PAIS_FALLBACK.src) ?? GIA_PAIS_FALLBACK.src,
+    curiosidadImages: (pais.curiosidades ?? []).map((curiosidad, index) =>
+      resolveImage(curiosidad.image?.src, fallbackCuriosidades[index] ?? null)
+    ),
+  };
 }

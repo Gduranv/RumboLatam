@@ -15,7 +15,7 @@ export default function MobileAnimatedCard({ title, description, iconSrc, iconAl
       <div className="relative w-[288px] min-h-[101px] flex items-center justify-end">
         {/* Icono siempre visible y superpuesto a la izquierda */}
         <div className="absolute left-[-30px] top-1/2 -translate-y-1/2 z-20 w-[64px] h-[64px]">
-          <Image src={iconSrc} alt={iconAlt} fill className="object-contain drop-shadow-lg" />
+          <Image src={iconSrc} alt={iconAlt} fill sizes="64px" className="object-contain drop-shadow-lg" />
         </div>
 
         {/* Tarjeta Principal */}

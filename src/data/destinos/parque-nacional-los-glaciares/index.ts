@@ -20,7 +20,7 @@ export const destino: DestinoData = {
       title: "Transporte",
       description:
         "Acceso por carretera desde El Calafate en autobús o vehículo particular. Internamente se recorren a pie o se toman embarcaciones autorizadas.",
-      icon: { src: "/Paises/icono transporte.png", alt: "Icono Transporte" },
+      icon: { src: "/Paises/icon transporte.png", alt: "Icono Transporte" },
     },
     {
       title: "Mejor época",

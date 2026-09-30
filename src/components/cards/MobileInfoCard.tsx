@@ -73,7 +73,7 @@ const MobileInfoCard = ({ title, description, images, iconSrc, iconAlt, iconPosi
               >
                 {images.map((src, idx) => (
                   <div key={idx} className="relative w-full h-[100px] rounded-[10px] overflow-hidden shadow-md bg-gray-200 shrink-0 snap-start">
-                    <Image src={src} alt={`Imagen ${idx + 1}`} fill className="object-cover" />
+                    <Image src={src} alt={`Imagen ${idx + 1}`} fill sizes="195px" className="object-cover" />
                   </div>
                 ))}
               </div>
@@ -128,7 +128,7 @@ const MobileInfoCard = ({ title, description, images, iconSrc, iconAlt, iconPosi
           >
             {images.map((src, idx) => (
               <div key={idx} className="relative w-[55%] h-[140px] rounded-[12px] overflow-hidden shadow-md bg-gray-200 shrink-0 snap-start">
-                <Image src={src} alt={`Imagen ${idx + 1}`} fill className="object-cover" />
+                <Image src={src} alt={`Imagen ${idx + 1}`} fill sizes="210px" className="object-cover" />
               </div>
             ))}
           </div>

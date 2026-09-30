@@ -35,6 +35,12 @@ export interface PaisData {
    * Si se omite o queda vacío se usa `DEFAULT_PLAYLIST_URL` de `@/config`.
    */
   playlistUrl?: string;
+  /**
+   * Gia animado propio de cada país (`GiaPais`), guardado en la carpeta del
+   * país dentro de `public/Paises/`. Se renderiza siempre en el mismo slot
+   * (misma forma, ángulo y lugar); solo cambia la imagen.
+   */
+  giaPais: ImageSource;
   /** Mensaje de Gia propio de cada país. Lo completa el equipo de contenido manualmente. */
   giaMessage: string;
   antesDeViajar: AntesDeViajarCard[];

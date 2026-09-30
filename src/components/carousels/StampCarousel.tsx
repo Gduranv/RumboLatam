@@ -27,7 +27,7 @@ const Stamp = ({ color, image, width, rotation, isSecondary = false }: { color: 
       <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ padding: '6% 3% 6% 3%' }}>
         <div className="w-[95%] h-[95%] bg-[#FFF7E2] flex items-center justify-center p-2 rounded-[2px]">
           <div className="relative w-full h-full overflow-hidden">
-            <Image src={image?.src || "/placeholder"} alt={image?.alt || "Stamp photo"} fill className="object-cover" />
+            <Image src={image?.src || "/placeholder"} alt={image?.alt || "Stamp photo"} fill sizes="420px" className="object-cover" />
           </div>
         </div>
       </div>

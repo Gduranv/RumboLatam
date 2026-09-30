@@ -11,6 +11,10 @@ export const pais: PaisData = {
   // Playlist de Spotify del país (botón de música). Cámbiala a tu antojo.
   playlistUrl:
     "https://open.spotify.com/playlist/06nIcDNJcse2iaNPm7vamH?si=NkI25sMkTYejsaiBrB8NqQ&utm_source=copy-link&pi=RPXf5oNnSfiMa",
+  giaPais: {
+    src: "/Paises/Colombia/GiaColombia.gif",
+    alt: "Gia Colombia",
+  },
   // Mensaje de Gia propio del país: lo completa el equipo de contenido manualmente.
   giaMessage: "¡Qué más, parce! Lléguese.",
   antesDeViajar: [
@@ -47,7 +51,7 @@ export const pais: PaisData = {
       description:
         "La antigua ciudad sagrada de los tayronas, escondida entre la selva de la Sierra Nevada de Santa Marta. Un trekking legendario entre ríos y montañas que te invita a descubrir los misterios milenarios de Colombia.",
       image: {
-        src: "/Paises/Colombia/LUGAR COLOMBIA1.png",
+        src: "/Paises/Colombia/Ciudad Perdida/PortadaCiudadPerdida.webp",
         alt: "Ciudad Perdida",
       },
     },
@@ -58,7 +62,7 @@ export const pais: PaisData = {
       description:
         "Valles verdes sembrados de cafetales entre montañas y pueblos de tradición paisa. Tierra de aromas, aves y paisajes que te invita a vivir el alma rural de Colombia.",
       image: {
-        src: "/Paises/Colombia/LUGAR COLOMBIA2.png",
+        src: "/Paises/Colombia/Eje cafetero Colombia/PortadaEjecafetero.webp",
         alt: "Eje Cafetero",
       },
     },
@@ -69,7 +73,7 @@ export const pais: PaisData = {
       description:
         "Una imponente iglesia neogótica edificada sobre un cañón profundo en Ipiales. Un milagro de la arquitectura que desafía la gravedad y te invita a descubrir la fe y el misterio andino.",
       image: {
-        src: "/Paises/Colombia/LUGAR COLOMBIA3.png",
+        src: "/Paises/Colombia/Santuario las lajas/PortadaLasLajasColom.webp",
         alt: "Santuario de las Lajas",
       },
     },
@@ -77,15 +81,24 @@ export const pais: PaisData = {
   curiosidades: [
     {
       text: "¿Sabías que Colombia es el único país de Sudamérica con costas sobre dos océanos a la vez? El Caribe baña el norte y el Pacífico el oeste, y la selva del Darién une —o separa— al continente con Centroamérica.",
-      image: { src: "", alt: "Mapa de Colombia" },
+      image: {
+        src: "/Paises/Colombia/Curiosidades/datosColom1.webp",
+        alt: "Mapa de Colombia",
+      },
     },
     {
       text: "¿Sabías que la orquídea Cattleya trianae es la flor nacional de Colombia y recibió su nombre en honor al botánico colombiano José Jerónimo Triana? El país alberga más de 4.000 especies de orquídeas, la mayor diversidad del mundo.",
-      image: { src: "", alt: "Orquídea Cattleya trianae" },
+      image: {
+        src: "/Paises/Colombia/Curiosidades/datosColom2.webp",
+        alt: "Orquídea Cattleya trianae",
+      },
     },
     {
       text: "¿Sabías que el café colombiano se cultiva en tierras volcánicas a más de 1.200 metros de altura? Ese suelo y el clima de la cordillera le dan su suavidad única, y el Paisaje Cultural Cafetero fue reconocido por la UNESCO.",
-      image: { src: "", alt: "Cafetales colombianos" },
+      image: {
+        src: "/Paises/Colombia/Curiosidades/datoColom3.webp",
+        alt: "Cafetales colombianos",
+      },
     },
   ],
 };
