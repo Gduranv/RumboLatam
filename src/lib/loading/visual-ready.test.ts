@@ -18,6 +18,8 @@ function addImage(
     fetchPriority?: string;
     top?: number;
     height?: number;
+    left?: number;
+    right?: number;
     insideOverlay?: boolean;
   } = {}
 ): HTMLImageElement {
@@ -27,6 +29,8 @@ function addImage(
     fetchPriority,
     top = 0,
     height = 240,
+    left = 0,
+    right = 320,
     insideOverlay = false,
   } = opts;
 
@@ -52,7 +56,7 @@ function addImage(
     Object.defineProperty(img, "fetchPriority", { value: fetchPriority, configurable: true });
   }
   img.getBoundingClientRect = () =>
-    ({ top, bottom: top + height, left: 0, right: 320, width: 320, height }) as DOMRect;
+    ({ top, bottom: top + height, left, right, width: right - left, height }) as DOMRect;
 
   host.appendChild(img);
   return img;
@@ -98,6 +102,21 @@ describe("isVisuallyReady", () => {
 
   it("cuenta lo que está justo por debajo del borde", () => {
     addImage({ top: 700, height: 200 });
+    expect(isVisuallyReady()).toBe(false);
+  });
+
+  it("ignora las slides aparcadas a un lado por un carrusel horizontal", () => {
+    // El bug real: en el carrusel del "Manual del viajero" las cards siguientes
+    // quedan a la derecha del viewport y el navegador no las descarga hasta que
+    // el usuario desliza, así que nunca terminan. Con margen horizontal se
+    // contaban como pendientes y el loader sólo se retiraba por el tope de
+    // seguridad: 11 s en móvil en lugar de 1,3 s en escritorio.
+    addImage({ top: 100, left: 1500, right: 1820 });
+    expect(isVisuallyReady()).toBe(true);
+  });
+
+  it("sigue esperando por la slide que sí está en pantalla", () => {
+    addImage({ top: 100, left: 20, right: 340 });
     expect(isVisuallyReady()).toBe(false);
   });
 

@@ -25,7 +25,11 @@ export const DEFAULT_VISUAL_TIMEOUT_MS = 10_000;
 const DEFAULT_STABLE_CHECKS = 2;
 const DEFAULT_POLL_MS = 80;
 
-/** Se cuenta como "en pantalla" lo que está a este borde, para que el appear sea continuo. */
+/**
+ * Se cuenta como "en pantalla" lo que está a este borde **por debajo**, para que
+ * el appear sea continuo. En horizontal no se aplica margen: ver
+ * `isNearViewport`.
+ */
 const DEFAULT_MARGIN_PX = 400;
 
 const OVERLAY_SELECTOR = "[data-intro-overlay]";
@@ -56,8 +60,16 @@ function isNearViewport(img: HTMLImageElement, margin: number): boolean {
   return (
     rect.bottom > -margin &&
     rect.top < viewportHeight() + margin &&
-    rect.right > -margin &&
-    rect.left < viewportWidth() + margin
+    // El margen es sólo vertical, y a propósito. Los carruseles horizontales
+    // aparcan el resto de slides fuera de pantalla, a un lado; el navegador no
+    // descarga una imagen `loading="lazy"` hasta que entra en el viewport, así
+    // que una slide aparcada se queda con `currentSrc` vacío y `complete` en
+    // false para siempre. Si el margen horizontal la contara como "a la vista",
+    // el loader la esperaría hasta el tope de seguridad: entrar a un destino
+    // tardaba 11 s en móvil en lugar de 1,3 s en escritorio, con la página
+    // realmente lista en 0,6 s.
+    rect.right > 0 &&
+    rect.left < viewportWidth()
   );
 }
 
