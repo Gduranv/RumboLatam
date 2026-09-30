@@ -361,8 +361,8 @@ export default function MobileCuriosidades({
           className="absolute bg-[#FFF7E2] rounded-[50px] z-[46] pointer-events-none"
           style={{
             left: -121,
-            top: 542,
-            bottom: FOOTER_HEIGHT + 85,
+            top: 512,
+            bottom: FOOTER_HEIGHT + 55,
             width: 736,
           }}
         />
@@ -371,8 +371,8 @@ export default function MobileCuriosidades({
         <div
           className="absolute inset-x-0 z-[47] flex flex-col justify-center"
           style={{
-            top: 542,
-            bottom: FOOTER_HEIGHT + 85,
+            top: 512,
+            bottom: FOOTER_HEIGHT + 55,
           }}
         >
           {/* Encabezado: bandera + nombre del país */}
