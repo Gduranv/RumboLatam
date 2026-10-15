@@ -68,5 +68,11 @@ export const destino: DestinoData = {
       "/Paises/Colombia/Eje cafetero Colombia/actividades/ActividadesEjeCafetero5.webp",
     ],
   },
-  galeria: [],
+  galeria: [
+    { src: "/Paises/Colombia/Eje cafetero Colombia/galeria/Galeria1.webp", alt: "Galería Eje Cafetero" },
+    { src: "/Paises/Colombia/Eje cafetero Colombia/galeria/Galeria2.webp", alt: "Galería Eje Cafetero" },
+    { src: "/Paises/Colombia/Eje cafetero Colombia/galeria/Galeria3.webp", alt: "Galería Eje Cafetero" },
+    { src: "/Paises/Colombia/Eje cafetero Colombia/galeria/Galeria4.webp", alt: "Galería Eje Cafetero" },
+    { src: "/Paises/Colombia/Eje cafetero Colombia/galeria/Galeria5.webp", alt: "Galería Eje Cafetero" },
+  ],
 };

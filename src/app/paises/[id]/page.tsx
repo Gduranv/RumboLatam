@@ -24,11 +24,12 @@ export default async function CountryPage({ params }: PageProps) {
   const pais = getPais(countryId);
 
   // Una sola resolución de recursos para desktop y móvil: la portada del país,
-  // su Gia y las portadas de los destinos del carrusel. Así ninguna versión
-  // puede mostrar "falta el recurso" si la otra ya lo encontró.
-  const { heroImage, giaImage } = pais
+  // su Gia (la de escritorio y la vertical del hero móvil) y las portadas de
+  // los destinos del carrusel. Así ninguna versión puede mostrar "falta el
+  // recurso" si la otra ya lo encontró.
+  const { heroImage, giaImage, giaMovilImage } = pais
     ? getCountryResources(pais)
-    : { heroImage: null, giaImage: null };
+    : { heroImage: null, giaImage: null, giaMovilImage: null };
 
   const dynamicDestinationsResources = pais
     ? Object.fromEntries(
@@ -46,6 +47,7 @@ export default async function CountryPage({ params }: PageProps) {
         dynamicDestinationsResources={dynamicDestinationsResources}
         dynamicHeroImage={heroImage}
         dynamicGiaImage={giaImage}
+        dynamicGiaImageMovil={giaMovilImage}
       />
       <DesktopCountry
         countryId={countryId}

@@ -234,12 +234,30 @@ export function resolveImage(src: string | null | undefined, fallback: string | 
 }
 
 /**
+ * Reservas de la carpeta del país, en el mismo orden de preferencia que el
+ * resto del módulo: primero lo que declara el dato, después lo que se deduce
+ * de la carpeta. Los nombres de las Gias móviles cambian de país a país
+ * (`chilegiamovil.gif`, `perugia-movil.gif`, `mexicogiaMOVIL.gif`,
+ * `repdommovil.gif`, ...), así que no se puede apuntar por convención: se
+ * buscan por la pista común, que el nombre traiga "movil".
+ */
+function giaMovilDescubierta(pais: PaisData): string | null {
+  const candidatas = readFolder(`/Paises/${carpetaPais(pais.id)}`).filter((url) =>
+    /movil/i.test(url)
+  );
+  // Desempate estable: la que además dice "gia" va primero.
+  return candidatas.find((url) => /gia/i.test(url)) ?? candidatas[0] ?? null;
+}
+
+/**
  * Recursos de un país, resueltos con la misma regla que los destinos:
  * el dato manda y el descubrimiento por carpeta es el respaldo.
  *
  * - `heroImage`: `pais.hero.src`; si no existe, la portada que haya en su carpeta.
  * - `giaImage`: la Gia propia del país (`.gif` o `.png`, indistinto), o la de
  *   Venezuela si el país no declara una.
+ * - `giaMovilImage`: la Gia en su versión vertical para el hero móvil; si el
+ *   país no tiene una propia, usa la misma que escritorio.
  * - `curiosidadImages`: una imagen por curiosidad, con la convención
  *   `/Paises/{carpeta}/curiosidades/` como respaldo.
  */
@@ -250,9 +268,12 @@ export function getCountryResources(pais: PaisData) {
   const enCarpeta = readFolder(`${base}/Curiosidades`);
   const fallbackCuriosidades = enCarpeta.length ? enCarpeta : readFolder(`${base}/curiosidades`);
 
+  const giaImage = resolveImage(pais.giaPais?.src, GIA_PAIS_FALLBACK.src) ?? GIA_PAIS_FALLBACK.src;
+
   return {
     heroImage: resolveImage(pais.hero?.src, getCountryHeroImage(pais.id)),
-    giaImage: resolveImage(pais.giaPais?.src, GIA_PAIS_FALLBACK.src) ?? GIA_PAIS_FALLBACK.src,
+    giaImage,
+    giaMovilImage: resolveImage(pais.giaPaisMovil?.src, giaMovilDescubierta(pais)) ?? giaImage,
     curiosidadImages: (pais.curiosidades ?? []).map((curiosidad, index) =>
       resolveImage(curiosidad.image?.src, fallbackCuriosidades[index] ?? null)
     ),

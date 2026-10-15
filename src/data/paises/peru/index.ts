@@ -15,6 +15,11 @@ export const pais: PaisData = {
     src: "/Paises/Peru/GiaPeru.gif",
     alt: "Gia Perú",
   },
+  // Gia en formato vertical: es la que se muestra en el hero móvil.
+  giaPaisMovil: {
+    src: "/Paises/Peru/perugia-movil.gif",
+    alt: "Gia Perú",
+  },
   // Mensaje de Gia propio del país: lo completa el equipo de contenido manualmente.
   giaMessage: "¡Hola, causita! Adelante.",
   antesDeViajar: [

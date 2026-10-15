@@ -117,8 +117,8 @@ export default function HospedajeCard({ hotels, images }: HospedajeCardProps) {
           <path d="M42.1029 100.029C41.2519 101.901 39.6331 103.415 37.5138 104.068C33.581 105.279 29.4072 103.075 28.1944 99.1373C26.9817 95.1991 29.1925 91.0291 33.1253 89.8179C33.6618 89.6527 34.2058 89.5498 34.7448 89.5071C33.7266 91.16 33.4002 93.2284 34.0181 95.235C35.0888 98.7117 38.6183 100.75 42.11 100.033L42.1029 100.029Z" fill="#F1E4C4"/>
           <defs>
             <linearGradient id="paint0_linear_935_10857" x1="84.1869" y1="78.3282" x2="106.07" y2="149.386" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#FF7223"/>
-              <stop offset="1" stop-color="#FBB03B"/>
+              <stop stopColor="#FF7223"/>
+              <stop offset="1" stopColor="#FBB03B"/>
             </linearGradient>
           </defs>
         </svg>

@@ -41,6 +41,12 @@ export interface PaisData {
    * (misma forma, ángulo y lugar); solo cambia la imagen.
    */
   giaPais: ImageSource;
+  /**
+   * Versión móvil de la Gia del país: el mismo personaje con el encuadre
+   * vertical pensado para la pantalla chica. Se usa sólo en `MobileCountry`;
+   * si se omite (o el archivo no existe) la móvil cae a `giaPais`.
+   */
+  giaPaisMovil?: ImageSource;
   /** Mensaje de Gia propio de cada país. Lo completa el equipo de contenido manualmente. */
   giaMessage: string;
   antesDeViajar: AntesDeViajarCard[];

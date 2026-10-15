@@ -2,7 +2,7 @@
 import { describe, expect, it } from "vitest";
 import { existsSync } from "node:fs";
 import path from "node:path";
-import { getCountryHeroImage, getDestinationResources } from "./getResources";
+import { getCountryHeroImage, getCountryResources, getDestinationResources } from "./getResources";
 import { listPaises, listDestinos } from "@/data";
 
 const enDisco = (url: string) =>
@@ -64,5 +64,36 @@ describe("getDestinationResources", () => {
       (destino) => !getDestinationResources(destino).portadaImage
     ).map((destino) => destino.id);
     expect(sinPortada).toEqual([]);
+  });
+});
+
+describe("getCountryResources", () => {
+  it("resuelve la Gia de escritorio y la vertical del hero móvil, ambas reales", () => {
+    const problemas: string[] = [];
+    for (const pais of listPaises()) {
+      const { giaImage, giaMovilImage } = getCountryResources(pais);
+
+      if (!giaImage || !enDisco(giaImage)) {
+        problemas.push(`${pais.id} -> Gia de escritorio ${giaImage}`);
+      }
+      if (!giaMovilImage || !enDisco(giaMovilImage)) {
+        problemas.push(`${pais.id} -> Gia móvil ${giaMovilImage}`);
+      }
+      // La vertical declarada en el dato es la que debe llegar al celular.
+      if (pais.giaPaisMovil && giaMovilImage !== pais.giaPaisMovil.src) {
+        problemas.push(`${pais.id} -> se ignoró ${pais.giaPaisMovil.src}`);
+      }
+    }
+    expect(problemas).toEqual([]);
+  });
+
+  it("cae a la Gia de escritorio cuando el país no tiene una vertical", () => {
+    // "atlantis" no existe en /public, así que tampoco hay carpeta que descubrir.
+    const sinVertical = { ...listPaises()[0], id: "atlantis" };
+    delete sinVertical.giaPaisMovil;
+
+    const { giaImage, giaMovilImage } = getCountryResources(sinVertical);
+
+    expect(giaMovilImage).toBe(giaImage);
   });
 });

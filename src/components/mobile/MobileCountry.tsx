@@ -11,6 +11,8 @@ interface MobileCountryProps {
   dynamicDestinationsResources: Record<string, string | null>;
   dynamicHeroImage: string | null;
   dynamicGiaImage: string | null;
+  /** Gia en su versión vertical (la de la carpeta del país); si no hay, se usa la de escritorio. */
+  dynamicGiaImageMovil?: string | null;
 }
 
 /**
@@ -24,14 +26,18 @@ export default function MobileCountry({
   dynamicDestinationsResources,
   dynamicHeroImage,
   dynamicGiaImage,
+  dynamicGiaImageMovil,
 }: MobileCountryProps) {
   const pais = getPais(countryId);
 
   const name = pais?.name ?? countryId.charAt(0).toUpperCase() + countryId.slice(1);
   const subtitle = pais?.subtitle || SUBTITLE_FALLBACK;
   const heroImage = dynamicHeroImage;
-  const giaSrc = dynamicGiaImage ?? pais?.giaPais?.src ?? GIA_PAIS_FALLBACK.src;
-  const giaAlt = pais?.giaPais?.alt ?? GIA_PAIS_FALLBACK.alt;
+  // La móvil usa la Gia vertical si el país la tiene; en su defecto, la misma
+  // que escritorio (el resolver ya devuelve esa caída en `dynamicGiaImageMovil`).
+  const giaSrc =
+    dynamicGiaImageMovil ?? dynamicGiaImage ?? pais?.giaPais?.src ?? GIA_PAIS_FALLBACK.src;
+  const giaAlt = pais?.giaPaisMovil?.alt ?? pais?.giaPais?.alt ?? GIA_PAIS_FALLBACK.alt;
   const giaMessage = pais?.giaMessage;
   const antesDeViajar = pais?.antesDeViajar?.length ? pais.antesDeViajar : DEFAULT_ANTES_DE_VIAJAR;
   const destinations = (pais?.destinos ?? []).map((destino) => ({
@@ -133,24 +139,28 @@ export default function MobileCountry({
         </div>
 
         {/* Gia y su Mensaje */}
-        <div className="absolute top-140 left-60 -rotate-30 w-[300px] h-[340px] z-20 pointer-events-none">
-          {/* Mensaje Nube (Usando el asset de la nube con el texto encima) */}
-          <div className="absolute bottom-110 rotate-20 right-28 w-[120px] origin-bottom-right drop-shadow-lg">
-            <div className="relative">
-              <img src="/Paises/NubeParaMensaje.png" alt="Nube" className="w-full h-auto" />
-              {giaMessage ? (
-                <p className="absolute inset-0 flex items-center justify-center text-center text-[#13522B] font-bold text-[12px] leading-tight px-4 pt-2 pb-6 rotate-[-10deg] font-nohemi">
-                  {giaMessage}
-                </p>
-              ) : null}
-            </div>
+        {/* La nube va a la izquierda de Gia, por debajo del subtítulo: el hero
+            sólo tiene 550px de alto y el texto del país ocupa la mitad. */}
+        <div className="absolute right-[184px] bottom-[80px] w-[120px] rotate-[-10deg] origin-bottom-right z-20 pointer-events-none drop-shadow-lg">
+          <div className="relative">
+            <img src="/Paises/NubeParaMensaje.png" alt="Nube" className="w-full h-auto" />
+            {giaMessage ? (
+              <p className="absolute inset-0 flex items-center justify-center text-center text-[#13522B] font-bold text-[12px] leading-tight px-4 pt-2 pb-6 rotate-[-10deg] font-nohemi">
+                {giaMessage}
+              </p>
+            ) : null}
           </div>
+        </div>
 
-          {/* Gia Imagen (imagen propia de cada país, .gif o .png) */}
+        {/* Gia Imagen (imagen propia de cada país, .gif o .png) */}
+        {/* Parada en la esquina inferior derecha del hero: la caja es de altura
+            fija para que todas las Gias se vean del mismo tamaño, aunque su
+            recorte vertical cambie de un país a otro. */}
+        <div className="absolute right-[-8px] bottom-[-6px] w-[200px] h-[186px] z-20 pointer-events-none">
           <img
             src={giaSrc}
             alt={giaAlt}
-            className="absolute bottom-[-10px] right-[-2px] w-[180px] h-auto object-contain drop-shadow-xl"
+            className="w-full h-full object-contain object-bottom drop-shadow-xl"
           />
         </div>
 

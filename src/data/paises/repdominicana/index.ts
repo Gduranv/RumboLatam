@@ -15,6 +15,11 @@ export const pais: PaisData = {
     src: "/Paises/RepublicaDominicana/GiaRepDom.gif",
     alt: "Gia República Dominicana",
   },
+  // Gia en formato vertical: es la que se muestra en el hero móvil.
+  giaPaisMovil: {
+    src: "/Paises/RepublicaDominicana/repdommovil.gif",
+    alt: "Gia República Dominicana",
+  },
   // Mensaje de Gia propio del país: lo completa el equipo de contenido manualmente.
   giaMessage: "¡Dime a ver! Llegaste al paraíso.",
   // TODO(design): copy de las 4 ser de "Antes de viajar" para República Dominicana.
