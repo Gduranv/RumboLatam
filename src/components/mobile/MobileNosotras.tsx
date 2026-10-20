@@ -267,29 +267,43 @@ export default function MobileNosotras() {
           <div className="absolute bg-[#fff7e2] rounded-[20px] left-[287px] top-[558px] w-[123px] h-[248px]" />
 
           {/* Card 1 – foto (anillo #BDE0EC + sombra, igual que desktop) */}
-          <div className="absolute flex items-center justify-center left-[29.2px] top-[742.8px] w-[96.63px] h-[80.19px] pointer-events-none">
-            <div className="flex-none rotate-[6.34deg]">
+          <div className="absolute z-10 flex items-center justify-center left-[29.2px] top-[742.8px] w-[96.63px] h-[80.19px] pointer-events-none">
+            <div
+              className="flex-none"
+              style={{
+                transform: "rotate(6.34deg) translateZ(0)",
+                WebkitBackfaceVisibility: "hidden",
+                backfaceVisibility: "hidden",
+              }}
+            >
               <div className="relative w-[89.36px] h-[70.75px] overflow-hidden box-content border-t-[12px] border-b-[8px] border-x-[4px] border-[#BDE0EC] shadow-[0_6.6px_13.2px_rgba(0,0,0,0.28)]">
                 <img
                   src="/Nosotras/card1-foto.png"
                   alt="Foto de la tarjeta Enfoque en la experiencia"
                   className="absolute left-0 top-[-25.63%] w-full h-[189.44%] max-w-none"
+                  loading="eager"
+                  decoding="sync"
                 />
               </div>
             </div>
           </div>
 
           {/* Card 1 – strip */}
-          <div className="absolute flex items-center justify-center left-[54.6px] top-[721px] w-[55.52px] h-[32.46px] pointer-events-none">
+          <div className="absolute z-20 flex items-center justify-center left-[54.6px] top-[721px] w-[55.52px] h-[32.46px] pointer-events-none">
             <div
               className="flex-none"
-              style={{ transform: "scaleY(-1) rotate(-180deg)" }}
+              style={{
+                transform: "scaleY(-1) rotate(-180deg) translateZ(0)",
+                WebkitBackfaceVisibility: "hidden",
+                backfaceVisibility: "hidden",
+              }}
             >
               <div className="relative w-[52.65px] h-[25.99px]">
                 <img
                   src="/Nosotras/card1-strip.png"
                   alt=""
                   className="absolute inset-0 max-w-none object-cover pointer-events-none w-full h-full"
+                  loading="eager"
                 />
               </div>
             </div>
@@ -437,32 +451,44 @@ export default function MobileNosotras() {
           </div>
 
           {/* Card 3 – foto (anillo #BDE0EC + sombra, igual que desktop) */}
-          <div className="absolute flex items-center justify-center left-[299.2px] top-[743px] w-[102.44px] h-[74.39px] pointer-events-none">
+          <div className="absolute z-10 flex items-center justify-center left-[299.2px] top-[743px] w-[102.44px] h-[74.39px] pointer-events-none">
             <div
               className="flex-none"
-              style={{ transform: "rotate(-6.03deg)" }}
+              style={{
+                transform: "rotate(-6.03deg) translateZ(0)",
+                WebkitBackfaceVisibility: "hidden",
+                backfaceVisibility: "hidden",
+                willChange: "transform",
+              }}
             >
-              <div className="relative w-[96.19px] h-[64.65px] overflow-hidden shadow-[0_0_0_3.94px_#BDE0EC,0_7.9px_3.9px_rgba(0,0,0,0.12)]">
+              <div className="relative w-[96.19px] h-[64.65px] box-border border-[3.94px] border-[#BDE0EC] overflow-hidden shadow-[0_7.9px_3.9px_rgba(0,0,0,0.12)]">
                 <img
                   src="/Nosotras/card3-foto.png"
                   alt="Foto de la tarjeta Identidad cultural"
-                  className="absolute left-0 top-0 w-[100.84%] h-full max-w-none"
+                  className="block w-full h-full object-cover"
+                  loading="eager"
+                  decoding="sync"
                 />
               </div>
             </div>
           </div>
 
           {/* Card 3 – foto-top */}
-          <div className="absolute flex items-center justify-center left-[317.4px] top-[712.1px] w-[66.05px] h-[66.05px] pointer-events-none">
+          <div className="absolute z-20 flex items-center justify-center left-[317.4px] top-[712.1px] w-[66.05px] h-[66.05px] pointer-events-none">
             <div
               className="flex-none"
-              style={{ transform: "rotate(171.78deg)" }}
+              style={{
+                transform: "rotate(171.78deg) translateZ(0)",
+                WebkitBackfaceVisibility: "hidden",
+                backfaceVisibility: "hidden",
+              }}
             >
               <div className="relative w-[58.31px] h-[58.31px]">
                 <img
                   src="/Nosotras/card3-foto-top.png"
                   alt=""
                   className="absolute inset-0 max-w-none object-cover pointer-events-none w-full h-full"
+                  loading="eager"
                 />
               </div>
             </div>

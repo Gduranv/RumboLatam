@@ -30,9 +30,17 @@ export default function DesktopNosotras() {
 
   return (
     <main className="hidden md:block w-full bg-azul-claro mx-auto relative overflow-hidden font-sans">
-      {/* Botón atrás — navega al historial anterior */}
+      {/* Cabecera: botón atrás y título en la misma línea. Viven fuera del
+          lienzo escalado a propósito —como el botón— para que la alineación
+          se mantenga en cualquier ancho de ventana; dentro del lienzo el
+          título escalaba y se alejaba del botón. */}
       <div className="absolute top-[50px] left-[101px] z-50">
         <BackButton />
+      </div>
+      <div className="absolute top-[50px] right-[101px] z-50 flex h-[64px] items-center pointer-events-none">
+        <p className="font-nohemi font-normal text-[#fff7e2] text-[30px] leading-[0.83] tracking-[0.3px]">
+          Nosotras
+        </p>
       </div>
       <ScaleToFitCanvas height={1664} fullWidth>
         <div className="relative w-[1280px] h-[1664px] shrink-0 bg-azul-claro overflow-hidden">
@@ -438,10 +446,9 @@ export default function DesktopNosotras() {
             <p className="leading-[1.5] mb-0">Nuestro objetivo es mantener viva la esencia y la riqueza de los destinos latinoamericanos a través de un sistema de diseño que refleje la calidez y diversidad de cada cultura.</p>
           </div>
 
-          {/* Título */}
-          <div className="absolute left-[1075px] top-[85px] w-[138px] h-[31px] flex flex-col justify-center text-center pointer-events-none">
-            <p className="font-nohemi font-normal text-[#fff7e2] text-[30px] leading-[0.83] tracking-[0.3px] mb-0">Nosotras</p>
-          </div>
+          {/* El título "Nosotras" vive fuera del lienzo, en la cabecera junto
+              al botón atrás: escalaba con el lienzo y dejaba de estar alineado
+              con él en pantallas anchas. */}
 
           {/* Footer pills + names */}
           <div className="absolute border border-verde rounded-[100px] left-[105px] top-[1568px] w-[201px] h-[42px]" />

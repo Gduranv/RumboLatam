@@ -35,7 +35,11 @@ export const destino: DestinoData = {
       { name: "Santa Margarita", tipo: "Posada", estrellas: 4.5 },
       { name: "Isla Larga Suite", tipo: "Hotel", estrellas: 4 },
     ],
-    imagenes: ["/Paises/Venezuela/Hospedaje/hospedajeIslaLarga1.webp"],
+    imagenes: [
+      "/Paises/Venezuela/islaLarga/hospedaje/hoteles_isla_larga1.webp",
+      "/Paises/Venezuela/islaLarga/hospedaje/hoteles_isla_larga2.webp",
+      "/Paises/Venezuela/islaLarga/hospedaje/hoteles_isla_larga3.webp",
+    ],
   },
   animales: {
     description:

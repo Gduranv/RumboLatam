@@ -35,7 +35,11 @@ export const destino: DestinoData = {
       { name: "Selva Negra", tipo: "Hotel", estrellas: 4.5 },
       { name: "Frankfurt", tipo: "Hotel Restaurant", estrellas: 4 },
     ],
-    imagenes: ["/Paises/Venezuela/Hospedaje/hospedajeColoniaTovar1.webp"],
+    imagenes: [
+      "/Paises/Venezuela/coloniaTovar/hospedaje/hoteles_colonia1.webp",
+      "/Paises/Venezuela/coloniaTovar/hospedaje/hoteles_colonia2.webp",
+      "/Paises/Venezuela/coloniaTovar/hospedaje/hoteles_colonia3.webp",
+    ],
   },
   animales: {
     description:

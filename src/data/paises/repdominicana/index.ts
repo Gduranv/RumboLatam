@@ -3,7 +3,7 @@ import type { PaisData } from "@/types";
 export const pais: PaisData = {
   id: "repdominicana",
   name: "República Dominicana",
-  subtitle: "El reflejo del paraíso caribeño",
+  subtitle: "El paraíso caribeño",
   hero: {
     src: "/Paises/RepublicaDominicana/PortadaInicioRepDom.webp",
     alt: "República Dominicana",

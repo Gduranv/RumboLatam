@@ -19,7 +19,7 @@ export const destino: DestinoData = {
     {
       title: "Transporte",
       description:
-        "Acceso terrestre desde Pucón en vehículo particular o transporte de agencias guiadas hasta la base. Internamente se sube a pie con equipo técnico o usando andariveles.",
+        "Acceso terrestre desde Pucón en vehículo particular o transporte de agencias guiadas hasta la base. Internamente se sube a pie.",
       icon: { src: "/Paises/icon transporte.png", alt: "Icono Transporte" },
     },
     {
