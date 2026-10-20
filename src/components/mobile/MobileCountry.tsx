@@ -141,7 +141,7 @@ export default function MobileCountry({
         {/* Gia y su Mensaje */}
         {/* La nube va a la izquierda de Gia, por debajo del subtítulo: el hero
             sólo tiene 550px de alto y el texto del país ocupa la mitad. */}
-        <div className="absolute right-[184px] bottom-[80px] w-[120px] rotate-[-10deg] origin-bottom-right z-20 pointer-events-none drop-shadow-lg">
+        <div className="absolute right-[90px] bottom-[120px] w-[120px] rotate-[-10deg] origin-bottom-right z-20 pointer-events-none drop-shadow-lg">
           <div className="relative">
             <img src="/Paises/NubeParaMensaje.png" alt="Nube" className="w-full h-auto" />
             {giaMessage ? (
@@ -155,11 +155,15 @@ export default function MobileCountry({
         {/* Gia Imagen (imagen propia de cada país, .gif o .png) */}
         {/* Parada en la esquina inferior derecha del hero: la caja es de altura
             fija para que todas las Gias se vean del mismo tamaño, aunque su
-            recorte vertical cambie de un país a otro. */}
-        <div className="absolute right-[-8px] bottom-[-6px] w-[200px] h-[186px] z-20 pointer-events-none">
+            recorte vertical cambie de un país a otro. fetchPriority baja igual
+            que en escritorio: son GIFs de hasta 5 MB que no son el LCP y no
+            deben retrasar ni al loader ni al hero; cuando lleguen aparecen
+            sin mover nada, porque la caja no cambia de tamaño. */}
+        <div className="absolute right-[-48px] bottom-[-6px] w-[200px] h-[186px] z-20 pointer-events-none">
           <img
             src={giaSrc}
             alt={giaAlt}
+            fetchPriority="low"
             className="w-full h-full object-contain object-bottom drop-shadow-xl"
           />
         </div>

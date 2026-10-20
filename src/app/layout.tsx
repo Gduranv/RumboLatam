@@ -42,6 +42,19 @@ export const metadata: Metadata = {
   },
   description:
     "Rumbo Latam: guía de viaje por los rincones imperdibles de América Latina. Países, destinos y planes para tu próxima ruta.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "32x32" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+  },
+  manifest: "/manifest.webmanifest",
   openGraph: {
     siteName: "Rumbo Latam",
     locale: "es_VE",

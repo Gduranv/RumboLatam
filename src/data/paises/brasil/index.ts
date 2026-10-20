@@ -85,25 +85,27 @@ export const pais: PaisData = {
   ],
   curiosidades: [
     {
-      text: "¿Sabías que aunque Brasil es el lugar de origen del açaí, rara vez se consume como un postre dulce? A diferencia de su presentación con frutas o granola que se popularizó mundialmente, la forma tradicional de comerlo es como un acompañamiento salado, sirviéndose como guarnición en platos de pescado frito o camarones, mezclado con harina de yuca.",
+      text: "**¿Sabías que aunque Brasil es el lugar de origen del açaí, rara vez se consume como un postre dulce?**\n\nA diferencia de su presentación con frutas o granola que se popularizó mundialmente, la forma tradicional de comerlo es como un acompañamiento salado, sirviéndose como guarnición en platos de pescado frito o camarones, mezclado con harina de yuca.",
       image: {
         src: "/Paises/Brasil/Curiosidades/datosBrasil1.webp",
         alt: "açaí brasileño",
       },
     },
     {
-      text: "¿Sabías que en los bosques de Brasil habita un pequeño mono que parece un león en miniatura? Se trata del tití león dorado (mico-leão-dourado), una especie endémica que llama la atención por su brillante pelaje anaranjado y una abundante melena que rodea su rostro.",
+      text: "**¿Sabías que en los bosques de Brasil habita un pequeño mono que parece un león en miniatura?**\n\nSe trata del tití león dorado (mico-leão-dourado), una especie endémica que llama la atención por su brillante pelaje anaranjado y una abundante melena que rodea su rostro.",
       image: {
         src: "/Paises/Brasil/Curiosidades/datosBrasil2.webp",
         alt: "Tití león dorado",
       },
     },
     {
-      text: "¿Sabías que en Brasil el Año Nuevo se celebra saltando olas en el mar? Durante la festividad del Réveillon, millones de brasileños se visten completamente de blanco y acuden a las playas a la medianoche para saltar siete olas consecutivas, pidiendo un deseo en cada salto como tradición para atraer la buena suerte.",
+      text: "**¿Sabías que en Brasil el Año Nuevo se celebra saltando olas en el mar?**\n\nDurante la festividad del Réveillon, millones de brasileños se visten completamente de blanco y acuden a las playas a la medianoche para saltar siete olas consecutivas, pidiendo un deseo en cada salto como tradición para atraer la buena suerte.",
       image: {
         src: "/Paises/Brasil/Curiosidades/datosBrasil3.webp",
         alt: "Año Nuevo en Brasil",
       },
     },
   ],
+  curiosidadesAccent: "#11A855",
+  curiosidadesNameColor: "#11A855",
 };

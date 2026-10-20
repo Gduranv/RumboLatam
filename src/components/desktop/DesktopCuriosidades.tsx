@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import RichText from "@/components/ui/RichText";
 import ScaleToFitCanvas from "@/components/ui/ScaleToFitCanvas";
 import { countriesData } from "@/data/countries";
 import { getPais } from "@/data";
@@ -31,20 +32,7 @@ const SIGNO_INTERROGACION =
 const ESTRELLA_COLAPSADA =
   "M29.999 24.271L16.5 17L30.001 44L43.5 17L29.999 24.271Z";
 
-function RichText({ text }: { text: string }) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
-  return (
-    <>
-      {parts.map((part, index) =>
-        part.startsWith("**") && part.endsWith("**") ? (
-          <strong key={index}>{part.slice(2, -2)}</strong>
-        ) : (
-          <span key={index}>{part}</span>
-        )
-      )}
-    </>
-  );
-}
+
 
 interface CuriosityCardProps {
   countryId: string;

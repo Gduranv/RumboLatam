@@ -88,25 +88,27 @@ export const pais: PaisData = {
   ],
   curiosidades: [
     {
-      text: "¿Sabías que el merengue, el ritmo que mueve a República Dominicana, fue declarado en 2016 Patrimonio Cultural Inmaterial de la Humanidad por la UNESCO? Es el género musical africano, europeo e indígena contado a través de una fiesta.",
+      text: "**¿Sabías que la República Dominicana es el único lugar en el mundo donde se extrae el Larimar?**\n\nEs una hermosa piedra semipreciosa de tonos celestes y turquesas que imita el color del Mar Caribe, convirtiéndose en el suvenir de joyería más buscado por los turistas.",
       image: {
         src: "/Paises/RepublicaDominicana/Curiosidades/datosRepdom1.webp",
-        alt: "Merengue dominicano",
+        alt: "Larimar dominicano",
       },
     },
     {
-      text: "¿Sabías que el ámbar dominicano es único en el mundo por su transparencia? El ámbar azul, que brilla con un tono fluorescente bajo la luz del sol, solo existe en la cordillera del norte de este país caribeño.",
+      text: "**¿Sabías que en la isla habita un reptil endémico llamado 'iguana rinoceronte'?**\n\nA pesar de su aspecto intimidante y los pequeños cuernos en su hocico que le dan aires de dinosaurio miniatura, es un animal herbívoro y completamente inofensivo.",
       image: {
         src: "/Paises/RepublicaDominicana/Curiosidades/datosRepdom2.webp",
-        alt: "Ámbar azul dominicano",
+        alt: "Iguana rinoceronte",
       },
     },
     {
-      text: "¿Sabías que el Lago Enriquillo es el lago más grande del Caribe y un milagro natural? Sus aguas saladas se encuentran por debajo del nivel del mar y en sus orillas viven cocodrilos americanos, iguanas y flamencos rosados.",
+      text: "**¿Sabías que los personajes más famosos del carnaval dominicano son los coloridos 'Diablos Cojuelos'?**\n\nLlevan trajes llenos de espejos, cascabeles y cintas brillantes para burlarse de los malos espíritus, y su tradición incluye recorrer las calles dando azotes en broma para 'espantar las malas energías' de los espectadores.",
       image: {
         src: "/Paises/RepublicaDominicana/Curiosidades/datosRepdom3.webp",
-        alt: "Lago Enriquillo",
+        alt: "Diablos Cojuelos",
       },
     },
   ],
+  curiosidadesAccent: "#B37FBD",
+  curiosidadesNameColor: "#B37FBD",
 };

@@ -23,6 +23,21 @@ export interface GateOptions {
 export const DEFAULT_GATE_TIMEOUT_MS = 2500;
 
 /**
+ * URLs por las que el gate ya pasó en esta sesión: descargadas y decodificadas,
+ * o fallidas (un 404 tampoco tiene nada más que esperar). Lo usa RouteGate para
+ * que el "atrás" a una ruta ya gateada no vuelva a montar el loader.
+ */
+const gated = new Set<string>();
+
+/**
+ * true si el gate ya resolvió estas urls esta sesión: no hay nada que volver
+ * a esperar por ellas.
+ */
+export function areAssetsLoaded(urls: readonly string[]): boolean {
+  return urls.every((url) => gated.has(url));
+}
+
+/**
  * Descarga y decodifica una imagen. Nunca rechaza: un 404 o un fallo de red
  * resuelven igual, porque bloquear la navegación por un asset roto es peor que
  * mostrarlo roto.
@@ -34,6 +49,9 @@ function loadImage(url: string): Promise<void> {
     const done = () => {
       if (settled) return;
       settled = true;
+      // También un 404 queda registrado: el gate ya hizo todo lo que podía
+      // hacer por esta url, y no tiene sentido esperarla de nuevo.
+      gated.add(url);
       resolve();
     };
 

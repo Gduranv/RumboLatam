@@ -1,0 +1,23 @@
+{
+  "name": "Rumbo Latam",
+  "short_name": "Rumbo Latam",
+  "description": "Guía de viaje interactiva por América Latina",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FDF9EC",
+  "theme_color": "#FF7223",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

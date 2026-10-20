@@ -85,25 +85,27 @@ export const pais: PaisData = {
   ],
   curiosidades: [
     {
-      text: "¿Sabías que Colombia es el único país de Sudamérica con costas sobre dos océanos a la vez? El Caribe baña el norte y el Pacífico el oeste, y la selva del Darién une —o separa— al continente con Centroamérica.",
+      text: "**¿Sabías que en Colombia es una tradición gastronómica muy popular ponerle queso al chocolate caliente?**\n\nEspecialmente en regiones frías como Bogotá y el Eje Cafetero, las personas sumergen trozos de queso blanco en la taza para que se derrita, creando una mezcla dulce y salada muy apreciada.",
       image: {
         src: "/Paises/Colombia/Curiosidades/datosColom1.webp",
-        alt: "Mapa de Colombia",
+        alt: "Chocolate con queso colombiano",
       },
     },
     {
-      text: "¿Sabías que la orquídea Cattleya trianae es la flor nacional de Colombia y recibió su nombre en honor al botánico colombiano José Jerónimo Triana? El país alberga más de 4.000 especies de orquídeas, la mayor diversidad del mundo.",
+      text: "**¿Sabías que en las selvas del Pacífico colombiano habita la rana dardo dorada?**\n\nA pesar de medir apenas cinco centímetros y tener un color amarillo hermoso y brillante, es considerada el vertebrado más venenoso de toda la Tierra.",
       image: {
         src: "/Paises/Colombia/Curiosidades/datosColom2.webp",
-        alt: "Orquídea Cattleya trianae",
+        alt: "Rana dardo dorada",
       },
     },
     {
-      text: "¿Sabías que el café colombiano se cultiva en tierras volcánicas a más de 1.200 metros de altura? Ese suelo y el clima de la cordillera le dan su suavidad única, y el Paisaje Cultural Cafetero fue reconocido por la UNESCO.",
+      text: "**¿Sabías que el icónico ‘’sombrero vueltiao’’ contiene mensajes en su diseño?**\n\nLas figuras geométricas tejidas en blanco y negro con fibras de caña flecha por la comunidad indígena Zenú, representan elementos de la naturaleza. clanes familiares e incluso conceptos matemáticos de sus ancestros.",
       image: {
         src: "/Paises/Colombia/Curiosidades/datoColom3.webp",
-        alt: "Cafetales colombianos",
+        alt: "Sombrero vueltiao",
       },
     },
   ],
+  curiosidadesAccent: "#003988",
+  curiosidadesNameColor: "#003988",
 };

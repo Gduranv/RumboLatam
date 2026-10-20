@@ -85,25 +85,27 @@ export const pais: PaisData = {
   ],
   curiosidades: [
     {
-      text: "¿Sabías que el desierto de Atacama es el más árido del mundo? Hay sectores donde jamás se ha registrado una gota de lluvia, y es tan parecido a Marte que la NASA lo usa para probar sus rovers espaciales.",
+      text: "**¿Sabías que la versión local del hot dog se denomina 'completo italiano' por una razón estrictamente visual?**\n\nEl nombre no deriva de una receta europea, sino de sus ingredientes obligatorios (palta molida, mayonesa y tomate picado), los cuales replican con exactitud los colores de la bandera de Italia.",
       image: {
         src: "/Paises/Chile/Curiosidades/Datoschile1.webp",
-        alt: "Desierto de Atacama",
+        alt: "completo italiano",
       },
     },
     {
-      text: "¿Sabías que la Isla de Pascua, con sus gigantescos moáis, es el territorio habitado más aislado del planeta? Está a más de 3.500 kilómetros del Chile continental, en plena inmensidad del Pacífico.",
+      text: "**¿Sabías que en los fríos bosques del sur de Chile habita el pudú?**\n\nEs la especie de ciervo más pequeña del mundo, alcanzando apenas unos 40 centímetros de altura (del tamaño de un perro pequeño), siendo un animal muy tímido y adorable.",
       image: {
         src: "/Paises/Chile/Curiosidades/Datoschile2.webp",
-        alt: "Moáis de Isla de Pascua",
+        alt: "pudú chileno",
       },
     },
     {
-      text: "¿Sabías que Chile es el hogar del cóndor andino? Con sus casi tres metros de envergadura es una de las aves voladoras más grandes del mundo y un símbolo de libertad en los cielos de la cordillera.",
+      text: "**¿Sabías que la frecuente expresión chilena 'po' tiene un origen histórico documentado?**\n\nEs una contracción fonética de la palabra 'pues', heredada del español antiguo, y se ha consolidado como una muletilla identitaria para dar énfasis al final de las oraciones.",
       image: {
         src: "/Paises/Chile/Curiosidades/Datoschile3.webp",
-        alt: "Cóndor andino",
+        alt: "po",
       },
     },
   ],
+  curiosidadesAccent: "#FFBB3C",
+  curiosidadesNameColor: "#FFBB3C",
 };

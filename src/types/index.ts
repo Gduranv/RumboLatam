@@ -71,6 +71,7 @@ export interface Hotel {
   tipo: string;
   /** Entre 1 y 5, admite decimales (ej.: 4.5) */
   estrellas: number;
+  /** Enlace opcional (ej.: ficha exacta de Google Maps). Si falta, se genera una búsqueda en Maps (ver getHotelMapsUrl). */
   link?: string;
 }
 

@@ -8,6 +8,7 @@ import StampCarousel from "@/components/carousels/StampCarousel";
 import MobileDestino from "@/components/mobile/MobileDestino";
 import { getDestino, getPais, listDestinos } from "@/data";
 import { getDestinationResources, existe } from "@/utils/getResources";
+import { getHotelMapsUrl } from "@/utils/googleMaps";
 
 /**
  * Los destinos se prerenderizan en el build, no se sirven por SSR.
@@ -47,7 +48,7 @@ export default async function DestinoPage({
     name: h.name,
     type: h.tipo || h.type || "Hospedaje",
     rating: h.estrellas || h.rating || 5,
-    link: h.link,
+    link: getHotelMapsUrl({ name: h.name, tipo: h.tipo || h.type || "", link: h.link }, destino.name, pais?.name),
   }));
 
   return (
@@ -182,9 +183,13 @@ export default async function DestinoPage({
           </div>
 
           {/* Textos del Hero del Destino (Centrados y abajo) */}
-          <div className="absolute bottom-[200px] left-0 w-full flex flex-col items-center justify-center z-10">
-            <h1 className="text-[50pt] font-bold leading-tight tracking-tight capitalize drop-shadow-lg font-nohemi text-[#F1E4C4]">{destino.name}</h1>
-            <p className="text-[28pt] font-semibold mt-1 drop-shadow-md font-sans text-[#FFF7E2]">{destino.tag}</p>
+          <div className="absolute bottom-[130px] left-0 w-full flex flex-col items-center justify-center z-10 px-4">
+            <h1 className="text-[50pt] font-bold leading-[1.05] tracking-tight capitalize drop-shadow-lg font-nohemi text-[#F1E4C4] text-center max-w-[1100px]">
+              {destino.name}
+            </h1>
+            <p className="text-[28pt] font-semibold leading-tight mt-1 drop-shadow-md font-sans text-[#FFF7E2] text-center">
+              {destino.tag}
+            </p>
           </div>
         </div>
 

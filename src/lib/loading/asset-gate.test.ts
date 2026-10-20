@@ -1,5 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { DEFAULT_GATE_TIMEOUT_MS, gateAssets, warmAssets } from "./asset-gate";
+import {
+  DEFAULT_GATE_TIMEOUT_MS,
+  areAssetsLoaded,
+  gateAssets,
+  warmAssets,
+} from "./asset-gate";
 
 /**
  * jsdom no descarga imágenes ni dispara load/error, y tampoco implementa
@@ -158,5 +163,40 @@ describe("warmAssets", () => {
     vi.useFakeTimers();
     warmAssets([]);
     expect(FakeImage.instances).toHaveLength(0);
+  });
+});
+
+describe("areAssetsLoaded", () => {
+  it("es true con una lista vacía: no hay nada que esperar", () => {
+    expect(areAssetsLoaded([])).toBe(true);
+  });
+
+  it("registra las urls que terminaron de decodificar", async () => {
+    const pending = gateAssets(["/gateado/a.svg", "/gateado/b.png"]);
+    settleImages("load");
+    await pending;
+
+    expect(areAssetsLoaded(["/gateado/a.svg", "/gateado/b.png"])).toBe(true);
+    // Las urls de otro gate no cuentan.
+    expect(areAssetsLoaded(["/gateado/nunca.png"])).toBe(false);
+  });
+
+  it("registra también las que fallaron: un 404 no se vuelve a esperar", async () => {
+    const pending = gateAssets(["/gateado/roto.png"]);
+    settleImages("error");
+    await pending;
+
+    expect(areAssetsLoaded(["/gateado/roto.png"])).toBe(true);
+  });
+
+  it("no registra una url que se quedó en el timeout", async () => {
+    vi.useFakeTimers();
+    const pending = gateAssets(["/gateado/lento.png"], { timeoutMs: 100 });
+    await vi.advanceTimersByTimeAsync(150);
+    await pending;
+
+    // El gate se rindió, pero eso no significa que la url haya llegado: la
+    // próxima visita todavía puede tener algo que esperar por ella.
+    expect(areAssetsLoaded(["/gateado/lento.png"])).toBe(false);
   });
 });

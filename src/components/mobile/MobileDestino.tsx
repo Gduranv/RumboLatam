@@ -5,7 +5,8 @@ import MobileHospedajeCard from "@/components/cards/MobileHospedajeCard";
 import MobileInfoCard from "@/components/cards/MobileInfoCard";
 import MobileStampCarousel from "@/components/carousels/MobileStampCarousel";
 import RichText from "@/components/ui/RichText";
-import { getDestino, getPlaylistUrl } from "@/data";
+import { getDestino, getPais, getPlaylistUrl } from "@/data";
+import { getHotelMapsUrl } from "@/utils/googleMaps";
 import type { ManualCard } from "@/types";
 
 interface MobileDestinoProps {
@@ -37,11 +38,12 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
     iconAlt: card.icon.alt,
   }));
 
+  const paisName = getPais(destino.paisId)?.name;
   const hotels = destino.hospedaje.hoteles.map((hotel) => ({
     name: hotel.name,
     type: hotel.tipo,
     rating: hotel.estrellas,
-    link: hotel.link,
+    link: getHotelMapsUrl(hotel, destino.name, paisName),
   }));
 
   return (

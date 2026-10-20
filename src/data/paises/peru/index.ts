@@ -85,25 +85,27 @@ export const pais: PaisData = {
   ],
   curiosidades: [
     {
-      text: "¿Sabías que el Perú cultiva más de 3.000 variedades de papa? El país es el centro de origen de este tubérculo, que hoy alimenta a medio mundo y que los incas veneraban tanto que llegaron a deshidratar para conservarla por años.",
+      text: "**¿Sabías que la gastronomía peruana tiene una fusión única en el mundo llamada 'Chifa'?**\n\nEs el resultado espectacular de mezclar los ingredientes tradicionales andinos con las técnicas de cocina de los miles de inmigrantes chinos que llegaron al país en el siglo XIX.",
       image: {
         src: "/Paises/Peru/Curiosidades/datosPeru1.webp",
         alt: "Variedades de papa peruana",
       },
     },
     {
-      text: "¿Sabías que el Cusco era el ombligo del mundo inca y se construyó con la forma de un puma sagrado? Sus muros de piedra, talladas sin mortero, encajan tan perfectamente que no entra ni una hoja de papel entre bloque y bloque.",
+      text: "**¿Sabías que el 'perro sin pelo del Perú' es una raza canina milenaria que los incas utilizaban como 'bolsa de agua caliente'?**\n\nSu temperatura corporal es naturalmente más alta que la de otros perros para compensar la falta de pelaje, lo que los hace excelentes para abrazar en climas fríos.",
       image: {
         src: "/Paises/Peru/Curiosidades/datosPeru2.webp",
         alt: "Muros incas del Cusco",
       },
     },
     {
-      text: "¿Sabías que Machu Picchu fue una ciudad que nunca fue conocida por los conquistadores españoles? La ciudadela se mantuvo oculta entre la selva durante siglos hasta que Hiram Bingham la dio a conocer al mundo en 1911.",
+      text: "**¿Sabías que Perú es el paraíso de la diversidad agrícola?**\n\nCultivan más de 3.000 variedades de papas de todos los colores, formas y texturas imaginables, y su tradicional maíz andino tiene granos que pueden ser del tamaño de una moneda.",
       image: {
         src: "/Paises/Peru/Curiosidades/datosPeru3.webp",
         alt: "Machu Picchu",
       },
     },
   ],
+  curiosidadesAccent: "#BF8E6A",
+  curiosidadesNameColor: "#BF8E6A",
 };

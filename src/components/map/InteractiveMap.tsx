@@ -48,7 +48,7 @@ export const InteractiveMap = ({ className = "" }: InteractiveMapProps) => {
       </div>
 
       {/* Personaje (Gia) - Esquina inferior derecha (Cortada a propósito) */}
-      <div className="hidden md:block fixed -bottom-100 -right-10 z-30 drop-shadow-2xl">
+      <div className="hidden md:block fixed -bottom-130 -right-15 z-30 drop-shadow-2xl">
         {/* fetchPriority="low" es lo importante aquí: este GIF pesa 4.7 MB y sin
             esta marca el navegador lo descarga con la misma prioridad que el mapa,
             que es el LCP. Medido: la home movía 8.2 MB, más de la mitad este archivo. */}
@@ -57,7 +57,7 @@ export const InteractiveMap = ({ className = "" }: InteractiveMapProps) => {
           alt="Personaje Gia"
           fetchPriority="low"
           decoding="async"
-          className="w-80 md:w-[350px] h-auto transform origin-bottom hover:scale-110 hover:-translate-y-4 hover:-rotate-2 transition-all duration-300 ease-out"
+          className="w-80 md:w-[450px] h-auto transform origin-bottom hover:scale-110 hover:-translate-y-4 hover:-rotate-2 transition-all duration-300 ease-out"
         />
       </div>
 

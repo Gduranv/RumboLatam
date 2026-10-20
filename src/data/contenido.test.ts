@@ -157,4 +157,23 @@ describe("contrato de destinos", () => {
     }
     expect(sinFoto).toEqual([]);
   });
+
+  it("cada país tiene su color de acento asignado para curiosidades", () => {
+    const expectedColors: Record<string, string> = {
+      venezuela: "#A31F34",
+      mexico: "#D4AF37",
+      colombia: "#003988",
+      brasil: "#11A855",
+      repdominicana: "#B37FBD",
+      chile: "#FFBB3C",
+      argentina: "#42BDFF",
+      peru: "#BF8E6A",
+    };
+
+    for (const [id, color] of Object.entries(expectedColors)) {
+      const pais = getPais(id);
+      expect(pais?.curiosidadesAccent, `curiosidadesAccent de ${id}`).toBe(color);
+      expect(pais?.curiosidadesNameColor, `curiosidadesNameColor de ${id}`).toBe(color);
+    }
+  });
 });

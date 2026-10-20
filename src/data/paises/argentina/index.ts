@@ -86,25 +86,27 @@ export const pais: PaisData = {
   ],
   curiosidades: [
     {
-      text: "¿Sabías que compartir el mate en Argentina es casi un ritual sagrado de amistad? Sin embargo, hay una regla de oro para los turistas: nunca debes usar la bombilla (el sorbete de metal) para revolver la hierba, ya que se considera una grave falta de respeto hacia quien lo prepara.",
+      text: "**¿Sabías que compartir el 'mate' en Argentina es casi un ritual sagrado de amistad?**\n\nSin embargo, hay una regla de oro para los turistas: nunca debes usar la bombilla (el sorbete de metal) para revolver la hierba, ya que se considera una grave falta de respeto hacia quien lo prepara.",
       image: {
         src: "/Paises/Argentina/Curiosidades/datosArgen1.webp",
         alt: "Mate argentino",
       },
     },
     {
-      text: "¿Sabías que Argentina alberga algunas de las colonias continentales de pingüinos de Magallanes más grandes del mundo? En lugares como Punta Tombo, los turistas pueden caminar literalmente junto a cientos de miles de pingüinos en su hábitat natural.",
+      text: "**¿Sabías que Argentina alberga algunas de las colonias continentales de pingüinos de Magallanes más grandes del mundo?**\n\nEn lugares como Punta Tombo, los turistas pueden caminar literalmente junto a cientos de miles de pingüinos en su hábitat natural.",
       image: {
         src: "/Paises/Argentina/Curiosidades/datosArgen2.webp",
         alt: "Pingüinos de Magallanes",
       },
     },
     {
-      text: "¿Sabías que Argentina es un verdadero parque jurásico de la vida real? En la región de la Patagonia se descubrieron los restos del Argentinosaurus, que con casi 40 metros de longitud es considerado uno de los animales terrestres más grandes que jamás haya existido.",
+      text: "**¿Sabías que Argentina es un verdadero parque jurásico de la vida real?**\n\nEn la región de la Patagonia se descubrieron los restos del Argentinosaurus, que con casi 40 metros de longitud es considerado uno de los animales terrestres más grandes que jamás haya existido.",
       image: {
         src: "/Paises/Argentina/Curiosidades/datosArgen3.webp",
         alt: "Argentina Parque Jurásico",
       },
     },
   ],
+  curiosidadesAccent: "#42BDFF",
+  curiosidadesNameColor: "#42BDFF",
 };

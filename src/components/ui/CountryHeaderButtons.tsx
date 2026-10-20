@@ -5,24 +5,34 @@ interface CountryHeaderButtonsProps {
   countryId?: string;
   /** Si true, oculta el botón de curiosidades (para páginas de destino) */
   hideCuriosidades?: boolean;
+  /** Clase opcional para la posición horizontal del botón Nosotras (por defecto right-[100px] si hideCuriosidades es true, o right-[187px]) */
+  nosotrasRightClassName?: string;
 }
 
 /**
- * Botones del header de país/destino:
+ * Renderiza los botones de navegación del header de país y destino:
  * - Flecha atrás (navega a backUrl)
- * - Curiosidades (sólo en páginas de país, navega a /paises/:countryId/curiosidades)
- * - Nosotras (navega a /nosotras en todas las páginas)
+ * - Curiosidades (solo visible en páginas de país cuando hideCuriosidades es false)
+ * - Nosotras (navega a /nosotras, alineado dinámicamente según si curiosidades está presente)
  */
-export default function CountryHeaderButtons({
+const CountryHeaderButtons = ({
   backUrl = "/",
   countryId,
   hideCuriosidades = false,
-}: CountryHeaderButtonsProps) {
+  nosotrasRightClassName,
+}: CountryHeaderButtonsProps) => {
+  const nosotrasPosition =
+    nosotrasRightClassName ?? (hideCuriosidades ? "right-[100px]" : "right-[187px]");
+
   return (
     <>
       {/* Botón Flecha Atrás */}
       <Link href={backUrl}>
-        <button className="absolute top-[50px] left-[101px] z-30 hover:scale-105 transition-transform cursor-pointer">
+        <button
+          type="button"
+          aria-label="Volver"
+          className="absolute top-[50px] left-[101px] z-30 hover:scale-105 transition-transform cursor-pointer"
+        >
           <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="32" cy="32" r="32" fill="#FFF7E2" />
             <path d="M39.383 32.287L48 48.5721L16 32.2851L48 16L39.383 32.287Z" fill="#FF7223" />
@@ -52,7 +62,7 @@ export default function CountryHeaderButtons({
         <button
           type="button"
           aria-label="Nosotras"
-          className="absolute top-[50px] right-[187px] z-30 hover:scale-105 transition-transform cursor-pointer"
+          className={`absolute top-[50px] ${nosotrasPosition} z-30 hover:scale-105 transition-transform cursor-pointer`}
         >
           <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="32" cy="32" r="32" fill="#FFF7E2" />
@@ -63,4 +73,6 @@ export default function CountryHeaderButtons({
       </Link>
     </>
   );
-}
+};
+
+export default CountryHeaderButtons;

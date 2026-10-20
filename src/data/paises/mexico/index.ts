@@ -85,25 +85,27 @@ export const pais: PaisData = {
   ],
   curiosidades: [
     {
-      text: '¿Sabías que en México comer insectos no es un reto extremo, sino un manjar prehispánico muy valorado? Los "chapulines" (saltamontes tostados) se preparan con sal, limón y chile, y son un crujiente snack que la gente compra habitualmente en los mercados.',
+      text: '**¿Sabías que en México comer insectos no es un reto extremo, sino un manjar prehispánico muy valorado?**\n\nLos "chapulines" (saltamontes tostados) se preparan con sal, limón y chile, y son un crujiente snack que la gente compra habitualmente en los mercados.',
       image: {
         src: "/Paises/Mexico/Curiosidades/datosMexico1.webp",
         alt: "Chapulines, saltamontes tostados",
       },
     },
     {
-      text: "¿Sabías que México es el hogar exclusivo del ajolote? Este extraño anfibio, famoso por parecer que siempre está sonriendo, es estudiado por científicos de todo el mundo debido a su asombrosa capacidad para regenerar extremidades amputadas e incluso partes de su corazón y cerebro.",
+      text: "**¿Sabías que México es el hogar exclusivo del ajolote?**\n\nEste extraño anfibio, famoso por parecer que siempre está sonriendo, es estudiado por científicos de todo el mundo debido a su asombrosa capacidad para regenerar extremidades amputadas e incluso partes de su corazón y cerebro.",
       image: {
         src: "/Paises/Mexico/Curiosidades/datosMexico2.webp",
         alt: "Ajolote mexicano",
       },
     },
     {
-      text: "¿Sabías que los mexicanos tienen una relación tan festiva con la muerte que literalmente arman fiestas en los cementerios? En lugar de guardar un luto silencioso, las familias pasan la noche junto a las tumbas de sus seres queridos. Llevan música, comida, tequila y decoran todo transformando los cementerios en una alegre y vibrante celebración.",
+      text: "**¿Sabías que los mexicanos tienen una relación tan festiva con la muerte que literalmente arman fiestas en los cementerios?**\n\nEn lugar de guardar un luto silencioso, las familias pasan la noche junto a las tumbas de sus seres queridos. Llevan música, comida, tequila y decoran todo transformando los cementerios en una alegre y vibrante celebración.",
       image: {
         src: "/Paises/Mexico/Curiosidades/datosMexico3.webp",
         alt: "Día de Muertos en un cementerio mexicano",
       },
     },
   ],
+  curiosidadesAccent: "#D4AF37",
+  curiosidadesNameColor: "#D4AF37",
 };

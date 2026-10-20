@@ -85,27 +85,27 @@ export const pais: PaisData = {
   ],
   curiosidades: [
     {
-      text: "**¿Sabías que Venezuela es uno de los pocos países del mundo donde puedes experimentar casi todos los climas?** En un mismo viaje puedes pasar de las dunas desérticas de los Médanos de Coro, a selvas tropicales, y terminar tocando nieve en las cumbres de la Cordillera de los Andes.",
+      text: "**¿Sabías que Venezuela es uno de los pocos países del mundo donde puedes experimentar casi todos los climas?**\n\nEn un mismo viaje puedes pasar de las dunas desérticas de los Médanos de Coro, a selvas tropicales, y terminar tocando nieve en las cumbres de la Cordillera de los Andes.",
       image: {
         src: "/Paises/Venezuela/curiosidades/curiosidadesven-medanos.webp",
         alt: "Dunas de los Médanos de Coro",
       },
     },
     {
-      text: '**¿Sabías que el chigüire es el roedor más grande del mundo y habita en los llanos venezolanos?** Históricamente, el Vaticano permitió a los venezolanos consumirlo durante la Semana Santa clasificándolo casi como un "pescado" debido a sus hábitos semiacuáticos.',
+      text: '**¿Sabías que el chigüire es el roedor más grande del mundo y habita en los llanos venezolanos?**\n\nHistóricamente, el Vaticano permitió a los venezolanos consumirlo durante la Semana Santa clasificándolo casi como un "pescado" debido a sus hábitos semiacuáticos.',
       image: {
         src: "/Paises/Venezuela/curiosidades/curiosidadesven-capibara.webp",
         alt: "Chigüire de los llanos venezolanos",
       },
     },
     {
-      text: "**¿Sabías que en Venezuela existe una curiosa tradición de Año Nuevo para atraer viajes?** A la medianoche exacta del 1 de enero, es costumbre salir corriendo por la calle arrastrando una maleta. Según la creencia popular, esto garantiza que el nuevo año estará lleno de viajes y aventuras.",
+      text: "**¿Sabías que en Venezuela existe una curiosa tradición de Año Nuevo para atraer viajes?**\n\nA la medianoche exacta del 1 de enero, es costumbre salir corriendo por la calle arrastrando una maleta. Según la creencia popular, esto garantiza que el nuevo año estará lleno de viajes y aventuras.",
       image: {
         src: "/Paises/Venezuela/curiosidades/curiosidadesven-maletas.webp",
         alt: "Tradición de Año Nuevo con maletas",
       },
     },
   ],
-  curiosidadesAccent: "#A11F34",
-  curiosidadesNameColor: "#A11F34",
+  curiosidadesAccent: "#A31F34",
+  curiosidadesNameColor: "#A31F34",
 };

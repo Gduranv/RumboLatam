@@ -1,7 +1,13 @@
-﻿import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { act, cleanup, render } from "@testing-library/react";
+﻿import { afterEach, beforeEach, describe, expect, it, vi, type Mock } from "vitest";
+import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { RouteGate } from "./RouteGate";
 import { DEFAULT_VISUAL_TIMEOUT_MS } from "@/lib/loading/visual-ready";
+import { INTRO_EXIT_MS } from "@/components/ui/LoadingScreen";
+import { markIntroSeen } from "@/lib/loading/intro-session";
+import {
+  clearRegisteredRouteAssets,
+  registerRouteAssets,
+} from "@/lib/loading/pending-assets";
 
 const mocks = vi.hoisted(() => ({ pathname: "/" }));
 vi.mock("next/navigation", () => ({ usePathname: () => mocks.pathname }));
@@ -11,17 +17,28 @@ const ORANGE = "rgb(255, 114, 35)";
 /**
  * jsdom no descarga imágenes, así que el `Image` del gate se dobla para que cada
  * instancia resuelva en el microtask siguiente: si se resolviera en el
- * constructor, gateAssets aún no habría registrado los handlers.
+ * constructor, gateAssets aún no habría registrado los handlers. Las urls de
+ * `bloqueadas` no terminan hasta que el test las suelta a mano.
  */
 class FakeImage {
+  static instances: FakeImage[] = [];
+  static bloqueadas = new Set<string>();
+
   onload: (() => void) | null = null;
   onerror: (() => void) | null = null;
   decoding = "";
-  decode = () => Promise.resolve();
+  // Una url bloqueada no termina ni por descarga ni por decodificación.
+  decode = () =>
+    FakeImage.bloqueadas.has(this.src)
+      ? new Promise<void>(() => {})
+      : Promise.resolve();
   private value = "";
 
   constructor() {
-    queueMicrotask(() => this.onload?.());
+    FakeImage.instances.push(this);
+    queueMicrotask(() => {
+      if (!FakeImage.bloqueadas.has(this.src)) this.onload?.();
+    });
   }
 
   set src(next: string) {
@@ -55,8 +72,13 @@ function addPendingImage() {
 beforeEach(() => {
   mocks.pathname = "/";
   pending = [];
-  document.documentElement.removeAttribute("data-intro-seen");
   window.sessionStorage.clear();
+  // El intro se decide en el cliente por sesión: los tests que no lo prueban
+  // lo dan por visto para que no aparezca. Los que lo prueban lo limpian.
+  markIntroSeen();
+  FakeImage.instances = [];
+  FakeImage.bloqueadas.clear();
+  clearRegisteredRouteAssets();
   originalImage = globalThis.Image;
   globalThis.Image = FakeImage as unknown as typeof Image;
 });
@@ -66,6 +88,7 @@ afterEach(() => {
   for (const img of pending) img.remove();
   globalThis.Image = originalImage;
   vi.useRealTimers();
+  vi.restoreAllMocks();
 });
 
 const overlay = () => document.querySelector("[data-intro-overlay]");
@@ -199,6 +222,166 @@ describe("RouteGate", () => {
 
     expect(empezoElFundido).toBe(true);
 
+    await advance(FULL_CYCLE_MS);
+    expect(overlay()).toBeNull();
+  });
+});
+
+const intro = () => document.querySelector("[data-intro-video]");
+
+describe("intro de video", () => {
+  let playSpy: Mock;
+  let playOriginal: unknown;
+
+  beforeEach(() => {
+    // Esta sesión no lo ha visto todavía.
+    window.sessionStorage.clear();
+    // jsdom no reproduce vídeo: play() se dobla para que resuelva siempre.
+    playSpy = vi.fn().mockResolvedValue(undefined);
+    playOriginal = HTMLMediaElement.prototype.play;
+    HTMLMediaElement.prototype.play = playSpy as unknown as typeof HTMLMediaElement.prototype.play;
+  });
+
+  afterEach(() => {
+    if (playOriginal === undefined) {
+      Reflect.deleteProperty(HTMLMediaElement.prototype, "play");
+    } else {
+      HTMLMediaElement.prototype.play = playOriginal as typeof HTMLMediaElement.prototype.play;
+    }
+  });
+
+  it("se monta detrás del loader y arranca cuando el loader se retira", async () => {
+    vi.useFakeTimers();
+    render(<RouteGate />);
+
+    // Montado desde la primera carga, detrás del loader, para que el navegador
+    // lo descargue mientras la página se prepara; pero todavía no reproduce.
+    expect(overlay()).not.toBeNull();
+    expect(intro()).not.toBeNull();
+    expect(playSpy).not.toHaveBeenCalled();
+
+    await advance(FULL_CYCLE_MS);
+
+    expect(overlay()).toBeNull();
+    expect(intro()).not.toBeNull();
+    expect(playSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it("se va cuando el video termina", async () => {
+    vi.useFakeTimers();
+    render(<RouteGate />);
+    await advance(FULL_CYCLE_MS);
+
+    fireEvent(intro()!.querySelector("video")!, new Event("ended"));
+    // Sigue montado mientras dura el fundido de salida...
+    expect(intro()).not.toBeNull();
+
+    await advance(INTRO_EXIT_MS + 100);
+    expect(intro()).toBeNull();
+  });
+
+  it("lo salta el botón", async () => {
+    vi.useFakeTimers();
+    render(<RouteGate />);
+    await advance(FULL_CYCLE_MS);
+
+    fireEvent.click(screen.getByRole("button", { name: "Saltar" }));
+
+    await advance(INTRO_EXIT_MS + 100);
+    expect(intro()).toBeNull();
+  });
+
+  it("se omite si el usuario pide menos movimiento", async () => {
+    vi.useFakeTimers();
+    // Este jsdom no define matchMedia, así que se instala a mano y se restaura.
+    const original = window.matchMedia;
+    window.matchMedia = ((query: string) =>
+      ({ matches: query.includes("reduce"), media: query }) as MediaQueryList) as typeof window.matchMedia;
+
+    try {
+      render(<RouteGate />);
+      await advance(FULL_CYCLE_MS);
+
+      // Sin intro no hay nada que esperar tras el loader: se va directo a la
+      // página.
+      expect(intro()).toBeNull();
+      expect(overlay()).toBeNull();
+    } finally {
+      window.matchMedia = original;
+    }
+  });
+
+  it("no se repite en la misma sesión", async () => {
+    vi.useFakeTimers();
+    const { unmount } = render(<RouteGate />);
+    await advance(FULL_CYCLE_MS);
+
+    fireEvent(intro()!.querySelector("video")!, new Event("ended"));
+    await advance(INTRO_EXIT_MS + 100);
+    expect(intro()).toBeNull();
+
+    // Un reload de la misma pestaña: sessionStorage sigue marcado y el intro
+    // no vuelve a aparecer.
+    unmount();
+    render(<RouteGate />);
+    await advance(FULL_CYCLE_MS);
+    expect(intro()).toBeNull();
+  });
+
+  it("se corta si el usuario navega antes de que termine", async () => {
+    vi.useFakeTimers();
+    const { rerender } = render(<RouteGate />);
+    await advance(FULL_CYCLE_MS);
+    expect(intro()).not.toBeNull();
+
+    mocks.pathname = "/paises/mexico";
+    rerender(<RouteGate />);
+    await advance(FULL_CYCLE_MS);
+
+    expect(intro()).toBeNull();
+  });
+});
+
+describe("los assets que registra la página", () => {
+  it("espera los registrados aunque el DOM parezca listo", async () => {
+    vi.useFakeTimers();
+    const url = "/Paises/mexico/portada-bloqueada.webp";
+    registerRouteAssets("/paises/mexico", [url]);
+    FakeImage.bloqueadas.add(url);
+    mocks.pathname = "/paises/mexico";
+    render(<RouteGate />);
+
+    await advance(FULL_CYCLE_MS);
+    // El DOM no tiene ninguna imagen pendiente (las portadas están fuera de
+    // pantalla), pero la que la página registró no ha llegado: el loader no
+    // puede retirarse todavía.
+    expect(overlay()).not.toBeNull();
+
+    // Llega por fin → se retira.
+    FakeImage.bloqueadas.delete(url);
+    for (const img of FakeImage.instances) img.onload?.();
+
+    await advance(FULL_CYCLE_MS);
+    expect(overlay()).toBeNull();
+  });
+
+  it("no vuelve a esperarlos al volver a un país ya cargado", async () => {
+    vi.useFakeTimers();
+    const url = "/Paises/mexico/portada-lista.webp";
+    registerRouteAssets("/paises/mexico", [url]);
+    mocks.pathname = "/paises/mexico";
+    const { rerender } = render(<RouteGate />);
+    await advance(FULL_CYCLE_MS);
+    expect(overlay()).toBeNull();
+
+    // Se va a casa y vuelve: los assets ya pasaron por el gate y el DOM está
+    // limpio, así que no debe aparecer ni un frame de loader.
+    mocks.pathname = "/";
+    rerender(<RouteGate />);
+    await advance(FULL_CYCLE_MS);
+
+    mocks.pathname = "/paises/mexico";
+    rerender(<RouteGate />);
     await advance(FULL_CYCLE_MS);
     expect(overlay()).toBeNull();
   });
