@@ -155,6 +155,11 @@ function CuriosityCard({
         aria-label={`Ver curiosidad: ${curiosidad.image.alt}`}
         className="absolute inset-0 z-10 cursor-pointer active:scale-[0.98] transition-transform"
       />
+
+      {/* Texto presente en el HTML inicial para indexación móvil en buscadores */}
+      <p className="sr-only">
+        <RichText text={curiosidad.text} />
+      </p>
     </article>
   );
 }

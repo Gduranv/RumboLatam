@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { CountryItem } from "./CountryItem";
+import { MapCountryTooltip } from "./MapCountryTooltip";
+import { useMapTooltip } from "./useMapTooltip";
 import { TouristModal } from "@/components/modals/TouristModal";
 import { Compass } from "@/components/ui/Compass";
 import { countriesData, CountryData } from "@/data/countries";
@@ -11,14 +12,25 @@ interface InteractiveMapProps {
   className?: string;
 }
 
+/**
+ * Mapa interactivo principal de Latinoamérica con enlaces directos hacia
+ * cada país disponible y etiqueta flotante personalizada al pasar el cursor.
+ */
 export const InteractiveMap = ({ className = "" }: InteractiveMapProps) => {
-  const router = useRouter();
   const [selectedCountry, setSelectedCountry] = useState<CountryData | null>(null);
+  const {
+    countryName,
+    isVisible,
+    tooltipRef,
+    handleCountryPointerEnter,
+    handleCountryPointerMove,
+    handleCountryPointerLeave,
+  } = useMapTooltip();
 
   return (
-    <div className={`relative w-full max-w-3xl mx-auto ${className || 'aspect-[1764/1843]'}`}>
-
+    <div className={`relative w-full max-w-3xl mx-auto ${className || "aspect-[1764/1843]"}`}>
       {/* Mapa Base Completo */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/OtrosRecursos/MAPA SVG.svg"
         alt="Mapa de Latinoamérica"
@@ -31,15 +43,24 @@ export const InteractiveMap = ({ className = "" }: InteractiveMapProps) => {
           <CountryItem
             key={country.id}
             {...country}
-            onClick={() => {
-              router.push(`/paises/${country.id}`);
-            }}
+            href={`/paises/${country.id}`}
+            onPointerEnter={(event) => handleCountryPointerEnter(country.name, event)}
+            onPointerMove={handleCountryPointerMove}
+            onPointerLeave={handleCountryPointerLeave}
           />
         ))}
       </div>
 
+      {/* Etiqueta personalizada de territorio (reemplaza al title nativo del navegador) */}
+      <MapCountryTooltip
+        countryName={countryName}
+        isVisible={isVisible}
+        tooltipRef={tooltipRef}
+      />
+
       {/* Título flotante / Logo */}
       <div className="hidden md:block fixed bottom-12 left-12 z-30 pointer-events-auto drop-shadow-xl">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/OtrosRecursos/LOGO RUMBO.png"
           alt="Rumbo Latam Logo"
@@ -52,6 +73,7 @@ export const InteractiveMap = ({ className = "" }: InteractiveMapProps) => {
         {/* fetchPriority="low" es lo importante aquí: este GIF pesa 4.7 MB y sin
             esta marca el navegador lo descarga con la misma prioridad que el mapa,
             que es el LCP. Medido: la home movía 8.2 MB, más de la mitad este archivo. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/GiaLight.gif"
           alt="Personaje Gia"

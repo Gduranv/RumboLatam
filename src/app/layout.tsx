@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Albert_Sans } from "next/font/google";
 import localFont from "next/font/local";
-import { SITE_URL } from "@/config";
 import { RouteGate } from "@/components/providers/RouteGate";
+import { buildRootMetadata } from "@/lib/seo/metadata";
 import "./globals.css";
 
 const albertSans = Albert_Sans({
@@ -34,37 +34,7 @@ const nohemi = localFont({
   variable: "--nohemi",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: "Rumbo Latam",
-    template: "%s | Rumbo Latam",
-  },
-  description:
-    "Rumbo Latam: guía de viaje por los rincones imperdibles de América Latina. Países, destinos y planes para tu próxima ruta.",
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.png", type: "image/png", sizes: "32x32" },
-      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
-      { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
-    ],
-    apple: [
-      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
-    ],
-    shortcut: "/favicon.ico",
-  },
-  manifest: "/manifest.webmanifest",
-  openGraph: {
-    siteName: "Rumbo Latam",
-    locale: "es_VE",
-    type: "website",
-    title: "Rumbo Latam",
-    description:
-      "Rumbo Latam: guía de viaje por los rincones imperdibles de América Latina.",
-  },
-  robots: { index: true, follow: true },
-};
+export const metadata: Metadata = buildRootMetadata();
 
 export default function RootLayout({
   children,

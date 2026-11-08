@@ -159,6 +159,11 @@ function CuriosityCard({ countryId, imageSrc, cardX, curiosidad }: CuriosityCard
               <path d={ESTRELLA_COLAPSADA} fill="#FFF7E2" />
             </svg>
           </button>
+
+          {/* Texto presente en el HTML inicial para indexación en buscadores cuando la card está colapsada */}
+          <p className="sr-only">
+            <RichText text={curiosidad.text} />
+          </p>
         </>
       )}
     </div>

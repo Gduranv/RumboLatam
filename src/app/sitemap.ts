@@ -2,6 +2,10 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/config";
 import { listDestinos, listPaises } from "@/data";
 
+/**
+ * Genera el mapa del sitio XML completo con la portada, la sección Nosotras,
+ * todos los países, sus rutas de curiosidades activas y todos los destinos.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const entries: MetadataRoute.Sitemap = [
@@ -10,6 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 1,
+    },
+    {
+      url: `${SITE_URL}/nosotras`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.5,
     },
   ];
 

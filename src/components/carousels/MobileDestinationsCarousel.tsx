@@ -139,6 +139,19 @@ export default function MobileDestinationsCarousel({ destinations }: MobileDesti
           />
         ))}
       </div>
+
+      {/* Índice accesible y rastreable de todos los destinos en versión móvil */}
+      <nav aria-label="Todos los destinos turísticos del país" className="sr-only">
+        <ul>
+          {destinations.map((dest) => (
+            <li key={dest.id}>
+              <Link href={`/destinos/${dest.id}`}>
+                {dest.title} — {dest.tag}: {dest.description}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 }

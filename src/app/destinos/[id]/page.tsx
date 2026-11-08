@@ -1,14 +1,23 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import CountryHeaderButtons from "@/components/ui/CountryHeaderButtons";
 import TravelerManualCard from "@/components/ui/TravelerManualCard";
 import HospedajeCard from "@/components/cards/HospedajeCard";
 import InfoHorizontalCard from "@/components/ui/InfoHorizontalCard";
 import StampCarousel from "@/components/carousels/StampCarousel";
 import MobileDestino from "@/components/mobile/MobileDestino";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { getDestino, getPais, listDestinos } from "@/data";
+import { buildDestinoJsonLd } from "@/lib/seo/jsonLd";
+import { buildDestinoMetadata } from "@/lib/seo/metadata";
 import { getDestinationResources, existe } from "@/utils/getResources";
 import { getHotelMapsUrl } from "@/utils/googleMaps";
+
+interface DestinoPageProps {
+  params: Promise<{ id: string }>;
+}
 
 /**
  * Los destinos se prerenderizan en el build, no se sirven por SSR.
@@ -22,37 +31,66 @@ import { getHotelMapsUrl } from "@/utils/googleMaps";
  */
 export const dynamicParams = false;
 
+/**
+ * Genera los parámetros estáticos de todos los destinos turísticos registrados.
+ */
 export function generateStaticParams() {
   return listDestinos().map((destino) => ({ id: destino.id }));
 }
 
-export default async function DestinoPage({
+/**
+ * Genera los metadatos SEO específicos del destino o ejecuta notFound() si no existe.
+ */
+export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+}: DestinoPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const destino = getDestino(id);
+
+  if (!destino) {
+    notFound();
+  }
+
+  const pais = getPais(destino.paisId);
+  const { portadaImage } = getDestinationResources(destino);
+  return buildDestinoMetadata(destino, pais, portadaImage);
+}
+
+/**
+ * Página de detalle de un destino turístico con manual del viajero, hospedaje,
+ * fauna autóctona, actividades, galería y datos estructurados TouristDestination.
+ */
+const DestinoPage = async ({
+  params,
+}: DestinoPageProps) => {
   const resolvedParams = await params;
   const destinoId = resolvedParams.id;
-  const destino = getDestino(destinoId) || getDestino("canaima")!;
+  const destino = getDestino(destinoId);
+
+  if (!destino) {
+    notFound();
+  }
+
   const pais = getPais(destino.paisId);
   const dynamicResources = getDestinationResources(destino);
 
-  const backToCountry = `/paises/${destino.paisId || (destino as any).countryId || "venezuela"}`;
+  const backToCountry = `/paises/${destino.paisId}`;
 
-  const manualClima = destino.manualDelViajero?.[0]?.description || (destino as any).manual?.clima || "";
-  const manualTransporte = destino.manualDelViajero?.[1]?.description || (destino as any).manual?.transporte || "";
-  const manualMejorEpoca = destino.manualDelViajero?.[2]?.description || (destino as any).manual?.mejorEpoca || "";
+  const manualClima = destino.manualDelViajero?.[0]?.description || "";
+  const manualTransporte = destino.manualDelViajero?.[1]?.description || "";
+  const manualMejorEpoca = destino.manualDelViajero?.[2]?.description || "";
 
-  const rawHotels = destino.hospedaje?.hoteles || (destino.hospedaje as any)?.hotels || [];
-  const normalizedHotels = rawHotels.map((h: any) => ({
+  const rawHotels = destino.hospedaje?.hoteles || [];
+  const normalizedHotels = rawHotels.map((h) => ({
     name: h.name,
-    type: h.tipo || h.type || "Hospedaje",
-    rating: h.estrellas || h.rating || 5,
-    link: getHotelMapsUrl({ name: h.name, tipo: h.tipo || h.type || "", link: h.link }, destino.name, pais?.name),
+    type: h.tipo || "Hospedaje",
+    rating: h.estrellas || 5,
+    link: getHotelMapsUrl({ name: h.name, tipo: h.tipo || "", link: h.link }, destino.name, pais?.name),
   }));
 
   return (
     <>
+      <JsonLd data={buildDestinoJsonLd(destino, pais, dynamicResources.portadaImage)} />
       {/* Versión Móvil */}
       <MobileDestino destinoId={destinoId} dynamicResources={dynamicResources} />
 
@@ -159,7 +197,7 @@ export default async function DestinoPage({
         </section>
 
         {/* Botones de navegación (Atrás y About) */}
-        <CountryHeaderButtons backUrl={backToCountry} countryId={destino.paisId || (destino as any).countryId || "venezuela"} hideCuriosidades={true} />
+        <CountryHeaderButtons backUrl={backToCountry} countryId={destino.paisId} hideCuriosidades={true} />
 
         {/* Capa 2: Imagen (Hero del Destino) */}
         <div
@@ -421,4 +459,6 @@ export default async function DestinoPage({
       </main>
     </>
   );
-}
+};
+
+export default DestinoPage;

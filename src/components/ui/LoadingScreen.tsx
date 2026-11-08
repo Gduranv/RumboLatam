@@ -18,6 +18,7 @@ export const LoadingScreen: React.FC = () => {
       aria-live="polite"
       aria-busy="true"
       aria-label="Cargando Rumbo Latam"
+      data-nosnippet=""
       className="fixed inset-0 z-[9999] flex items-center justify-center transition-opacity duration-500"
       style={{ backgroundColor: "#FF7223" }}
     >

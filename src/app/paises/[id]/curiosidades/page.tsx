@@ -1,8 +1,12 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import MobileCuriosidades from "@/components/mobile/MobileCuriosidades";
 import DesktopCuriosidades from "@/components/desktop/DesktopCuriosidades";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { getPais, isValidPais, listPaises } from "@/data";
+import { buildCuriosidadesJsonLd } from "@/lib/seo/jsonLd";
+import { buildCuriosidadesMetadata } from "@/lib/seo/metadata";
 import { getCountryResources } from "@/utils/getResources";
-import { notFound } from "next/navigation";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -11,6 +15,9 @@ interface PageProps {
 /** Prerenderizado en el build; ver el comentario en `/destinos/[id]`. */
 export const dynamicParams = false;
 
+/**
+ * Genera los parámetros estáticos únicamente para los países que tienen curiosidades.
+ */
 export function generateStaticParams() {
   // Sólo los países que declaran curiosidades: el resto ya daba notFound() y
   // no tiene nada que prerenderizar.
@@ -19,7 +26,28 @@ export function generateStaticParams() {
     .map((pais) => ({ id: pais.id }));
 }
 
-export default async function CuriosidadesPage({ params }: PageProps) {
+/**
+ * Genera los metadatos SEO para la página de curiosidades de un país.
+ */
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  if (!isValidPais(id)) {
+    notFound();
+  }
+
+  const pais = getPais(id);
+  if (!pais || pais.curiosidades.length === 0) {
+    notFound();
+  }
+
+  const { curiosidadImages } = getCountryResources(pais);
+  return buildCuriosidadesMetadata(pais, curiosidadImages[0] ?? null);
+}
+
+/**
+ * Página de curiosidades culturales y naturales del país con esquema FAQPage.
+ */
+const CuriosidadesPage = async ({ params }: PageProps) => {
   const resolvedParams = await params;
   const countryId = resolvedParams.id;
 
@@ -39,8 +67,17 @@ export default async function CuriosidadesPage({ params }: PageProps) {
 
   return (
     <>
-      <MobileCuriosidades countryId={countryId} curiosidadImages={curiosidadImages} />
-      <DesktopCuriosidades countryId={countryId} curiosidadImages={curiosidadImages} />
+      <JsonLd data={buildCuriosidadesJsonLd(pais)} />
+      <MobileCuriosidades
+        countryId={countryId}
+        curiosidadImages={curiosidadImages}
+      />
+      <DesktopCuriosidades
+        countryId={countryId}
+        curiosidadImages={curiosidadImages}
+      />
     </>
   );
-}
+};
+
+export default CuriosidadesPage;
