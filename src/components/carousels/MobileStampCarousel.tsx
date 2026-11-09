@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { getUiStrings, useLocale } from "@/i18n";
 
 export interface MobileStampImage {
   src: string;
@@ -38,6 +39,8 @@ const MobileStamp = ({ color, image, width, rotation }: { color: string; image: 
 /** Carrusel de sellos postales adaptado para la versión móvil con scroll horizontal táctil */
 const MobileStampCarousel = ({ images }: MobileStampCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { locale } = useLocale();
+  const ui = getUiStrings(locale);
 
   if (!images || images.length === 0) return null;
 
@@ -97,13 +100,13 @@ const MobileStampCarousel = ({ images }: MobileStampCarouselProps) => {
           onClick={prevImage}
           className="hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer shrink-0"
         >
-          <Image src="/Paises/icon flecha carrusel izq.png" alt="Anterior" width={40} height={40} className="object-contain" />
+          <Image src="/Paises/icon flecha carrusel izq.png" alt={ui.previousSlideAria} width={40} height={40} className="object-contain" />
         </button>
         <button
           onClick={nextImage}
           className="hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer shrink-0"
         >
-          <Image src="/Paises/icon flecha carrusel derc.png" alt="Siguiente" width={40} height={40} className="object-contain" />
+          <Image src="/Paises/icon flecha carrusel derc.png" alt={ui.nextSlideAria} width={40} height={40} className="object-contain" />
         </button>
       </div>
     </div>

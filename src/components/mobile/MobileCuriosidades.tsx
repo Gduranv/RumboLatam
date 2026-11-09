@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import RichText from "@/components/ui/RichText";
 import ScaleToFitCanvas from "@/components/ui/ScaleToFitCanvas";
-import { getPais } from "@/data";
 import { countriesData } from "@/data/countries";
+import { getLocalizedPais, getUiStrings, useLocale } from "@/i18n";
 import type { Curiosidad } from "@/types";
 
 interface MobileCuriosidadesProps {
@@ -67,9 +67,6 @@ const ESTRELLA_COLLAPSADA =
   "M29.999 24.271L16.5 17L30.001 44L43.5 17L29.999 24.271Z";
 const CHEVRON_EXPANDIDA =
   "M30.4992 35.7294L17 43L30.5008 16L44 43L30.4992 35.7294Z";
-
-const DESCRIPCION =
-  "Descubre los **detalles únicos y asombrosos** sobre cultura, naturaleza y sociedad que hacen especial a cada país y enriquecerán el recorrido a tu destino ideal.";
 
 interface CuriosityCardProps {
   accent: string;
@@ -175,7 +172,9 @@ export default function MobileCuriosidades({
   /** Timer que desmonta el panel una vez Terminada la animación de salida. */
   const animTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const pais = getPais(countryId);
+  const { locale } = useLocale();
+  const ui = getUiStrings(locale);
+  const pais = getLocalizedPais(countryId, locale);
   const curiosidades = pais?.curiosidades ?? [];
   const accent = pais?.curiosidadesAccent ?? "#D4AF37";
   const nameColor = pais?.curiosidadesNameColor ?? "#13522B";
@@ -331,9 +330,9 @@ export default function MobileCuriosidades({
           style={{ left: 20, top: 283 }}
         >
           <h1 className="font-nohemi leading-[0.855] text-[50px] text-[#13522B]">
-            <span className="font-bold">Datos</span>
+            <span className="font-bold">{ui.curiousFactsPrefix}</span>
             <br aria-hidden />
-            <span className="font-normal">curiosos</span>
+            <span className="font-normal">{ui.curiousFactsHighlight}</span>
           </h1>
         </div>
 
@@ -355,7 +354,7 @@ export default function MobileCuriosidades({
           style={{ left: 20, top: 371.309, width: 300 }}
         >
           <p className="text-[15px] leading-[1.45] text-[#13522B] font-sans">
-            <RichText text={DESCRIPCION} />
+            <RichText text={ui.curiousFactsIntro} />
           </p>
         </div>
 
@@ -454,8 +453,8 @@ export default function MobileCuriosidades({
           <div className="absolute bottom-[10px] left-0 w-full flex items-center justify-between px-[30px]">
             <div className="text-white text-[9px] leading-[1.3] tracking-wide font-sans text-left">
               <p className="font-extrabold">© 2026 Rumbo Latam.</p>
-              <p className="font-medium">Trabajo Especial de Grado - URBE.</p>
-              <p className="font-medium">Todos los derechos reservados.</p>
+              <p className="font-medium">{ui.footerDegreeLine}</p>
+              <p className="font-medium">{ui.footerRightsLine}</p>
             </div>
             <div className="w-[61px] shrink-0 text-white">
               <svg

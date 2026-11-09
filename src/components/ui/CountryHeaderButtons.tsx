@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { getUiStrings, getNosotrasStrings, useLocale } from "@/i18n";
 
 interface CountryHeaderButtonsProps {
   backUrl?: string;
@@ -21,6 +24,9 @@ const CountryHeaderButtons = ({
   hideCuriosidades = false,
   nosotrasRightClassName,
 }: CountryHeaderButtonsProps) => {
+  const { locale } = useLocale();
+  const ui = getUiStrings(locale);
+  const nosotras = getNosotrasStrings(locale);
   const nosotrasPosition =
     nosotrasRightClassName ?? (hideCuriosidades ? "right-[100px]" : "right-[187px]");
 
@@ -30,7 +36,7 @@ const CountryHeaderButtons = ({
       <Link href={backUrl}>
         <button
           type="button"
-          aria-label="Volver"
+          aria-label={ui.backButtonAria}
           className="absolute top-[50px] left-[101px] z-30 hover:scale-105 transition-transform cursor-pointer"
         >
           <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,7 +51,7 @@ const CountryHeaderButtons = ({
         <Link href={countryId ? `/paises/${countryId}/curiosidades` : "/"}>
           <button
             type="button"
-            aria-label="Curiosidades"
+            aria-label={ui.curiousFactsButtonAria}
             className="absolute top-[50px] right-[100px] z-30 hover:scale-105 transition-transform cursor-pointer"
           >
             <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,7 +67,7 @@ const CountryHeaderButtons = ({
       <Link href="/nosotras">
         <button
           type="button"
-          aria-label="Nosotras"
+          aria-label={nosotras.headerTitle}
           className={`absolute top-[50px] ${nosotrasPosition} z-30 hover:scale-105 transition-transform cursor-pointer`}
         >
           <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">

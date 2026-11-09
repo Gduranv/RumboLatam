@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { getUiStrings, useLocale } from "@/i18n";
 
 export interface Destination {
   id: string;
@@ -18,6 +19,8 @@ interface MobileDestinationsCarouselProps {
 
 export default function MobileDestinationsCarousel({ destinations }: MobileDestinationsCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { locale } = useLocale();
+  const ui = getUiStrings(locale);
 
   const nextDestination = () => {
     if (currentIndex < destinations.length - 1) {
@@ -46,7 +49,7 @@ export default function MobileDestinationsCarousel({ destinations }: MobileDesti
           disabled={currentIndex === 0}
           className={`shrink-0 w-8 h-8 flex items-center justify-center transition-all ${currentIndex === 0 ? 'opacity-50' : 'active:scale-95'}`}
         >
-          <img src="/Paises/icon flecha carrusel izq.png" alt="Anterior" className="w-full h-full object-contain" />
+          <img src="/Paises/icon flecha carrusel izq.png" alt={ui.previousSlideAria} className="w-full h-full object-contain" />
         </button>
 
         {/* Contenedor principal de la tarjeta (SVG de Estampa) */}
@@ -111,7 +114,7 @@ export default function MobileDestinationsCarousel({ destinations }: MobileDesti
               <div className="shrink-0 mb-0.5">
                 <Link href={`/destinos/${current.id}`}>
                   <button className="bg-[#FF7223] text-white font-bold text-[9px] px-4 py-1.5 rounded-full hover:bg-[#e6631c] transition-colors shadow-md">
-                    Ver más
+                    {ui.seeMore}
                   </button>
                 </Link>
               </div>
@@ -125,7 +128,7 @@ export default function MobileDestinationsCarousel({ destinations }: MobileDesti
           disabled={currentIndex === destinations.length - 1}
           className={`shrink-0 w-8 h-8 flex items-center justify-center transition-all ${currentIndex === destinations.length - 1 ? 'opacity-50' : 'active:scale-95'}`}
         >
-          <img src="/Paises/icon flecha carrusel derc.png" alt="Siguiente" className="w-full h-full object-contain" />
+          <img src="/Paises/icon flecha carrusel derc.png" alt={ui.nextSlideAria} className="w-full h-full object-contain" />
         </button>
 
       </div>

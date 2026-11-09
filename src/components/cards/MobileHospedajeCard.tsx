@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { getUiStrings, translateHotelType, useLocale, type Locale } from "@/i18n";
 
 interface Hotel {
   name: string;
@@ -44,11 +44,11 @@ const renderStars = (rating: number) => {
 };
 
 /** Tarjeta semi-cuadrada para los dos primeros hoteles */
-const SmallHotelCard = ({ hotel, image }: { hotel: Hotel; image?: string }) => {
+const SmallHotelCard = ({ hotel, image, locale }: { hotel: Hotel; image?: string; locale: Locale }) => {
   return (
     <div className="bg-[#FF7223] rounded-[14px] p-3 shadow-md flex flex-col">
       <p className="text-white text-[10px] font-sans font-medium leading-tight">
-        {hotel.type}
+        {translateHotelType(hotel.type, locale)}
       </p>
       {hotel.link ? (
         <a
@@ -88,6 +88,8 @@ const SmallHotelCard = ({ hotel, image }: { hotel: Hotel; image?: string }) => {
  * - Ícono hospedaje.png encima de la card inferior, alineado a la izquierda
  */
 const MobileHospedajeCard = ({ hotels, images }: MobileHospedajeCardProps) => {
+  const { locale } = useLocale();
+  const ui = getUiStrings(locale);
   const topHotels = hotels.slice(0, 2);
   const bottomHotel = hotels[2];
 
@@ -95,13 +97,13 @@ const MobileHospedajeCard = ({ hotels, images }: MobileHospedajeCardProps) => {
     <div className="w-full">
       {/* Título fuera de las tarjetas */}
       <h3 className="text-[#13522B] text-[20px] font-bold font-nohemi mb-4 ml-1">
-        Hospedaje
+        {ui.lodgingTitle}
       </h3>
 
       {/* Fila superior: 2 cards semi-cuadradas */}
       <div className="grid grid-cols-2 gap-3 mb-3">
         {topHotels.map((hotel, idx) => (
-          <SmallHotelCard key={idx} hotel={hotel} image={images[idx]} />
+          <SmallHotelCard key={idx} hotel={hotel} image={images[idx]} locale={locale} />
         ))}
       </div>
 
@@ -112,7 +114,7 @@ const MobileHospedajeCard = ({ hotels, images }: MobileHospedajeCardProps) => {
           <div className="absolute top-7 -left-3 z-20 w-[50px] h-[50px] drop-shadow-lg pointer-events-none">
             <Image
               src="/Paises/icon hospedaje.png"
-              alt="Icono Hospedaje"
+              alt={ui.lodgingTitle}
               width={50}
               height={50}
               className="object-contain"
@@ -123,7 +125,7 @@ const MobileHospedajeCard = ({ hotels, images }: MobileHospedajeCardProps) => {
             {/* Info del hotel */}
             <div className="flex-1 ml-10">
               <p className="text-white text-[10px] font-sans font-medium leading-tight">
-                {bottomHotel.type}
+                {translateHotelType(bottomHotel.type, locale)}
               </p>
               {bottomHotel.link ? (
                 <a

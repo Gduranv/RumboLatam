@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { getUiStrings, translateHotelType, useLocale } from "@/i18n";
 
 interface Hotel {
   name: string;
@@ -45,6 +46,8 @@ function renderStars(rating: number) {
 export default function HospedajeCard({ hotels, images }: HospedajeCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { locale } = useLocale();
+  const ui = getUiStrings(locale);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -126,14 +129,14 @@ export default function HospedajeCard({ hotels, images }: HospedajeCardProps) {
 
       <div>
         <h3 className="text-white text-[28px] font-bold font-nohemi mb-6">
-          Hospedaje
+          {ui.lodgingTitle}
         </h3>
         
         <div className="flex flex-col gap-5">
           {hotels.map((hotel, idx) => (
             <div key={idx}>
               <p className="text-white text-[15px] font-sans font-medium mb-1">
-                {hotel.type}{" "}
+                {translateHotelType(hotel.type, locale)}{" "}
                 {hotel.link ? (
                   <a
                     href={hotel.link}

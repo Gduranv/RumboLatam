@@ -1,10 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import MobileAnimatedCard from "@/components/cards/MobileAnimatedCard";
 import MobileDestinationsCarousel from "@/components/carousels/MobileDestinationsCarousel";
 import RichText from "@/components/ui/RichText";
-import { getPais, getPlaylistUrl } from "@/data";
+import { getPlaylistUrl } from "@/data";
 import { DEFAULT_ANTES_DE_VIAJAR, GIA_PAIS_FALLBACK, SUBTITLE_FALLBACK } from "@/data/paisDefaults";
+import { getLocalizedPais, getUiStrings, useLocale } from "@/i18n";
 
 interface MobileCountryProps {
   countryId: string;
@@ -28,7 +31,9 @@ export default function MobileCountry({
   dynamicGiaImage,
   dynamicGiaImageMovil,
 }: MobileCountryProps) {
-  const pais = getPais(countryId);
+  const { locale } = useLocale();
+  const ui = getUiStrings(locale);
+  const pais = getLocalizedPais(countryId, locale);
 
   const name = pais?.name ?? countryId.charAt(0).toUpperCase() + countryId.slice(1);
   const subtitle = pais?.subtitle || SUBTITLE_FALLBACK;
@@ -176,7 +181,7 @@ export default function MobileCountry({
         style={{ clipPath: "polygon(0 0, 100% 0, 100% calc(100% - 40px), 50% 100%, 0 calc(100% - 40px))" }}
       >
         <h2 className="text-white text-3xl font-bold tracking-tight font-nohemi text-center mb-8">
-          Antes de viajar:
+          {ui.beforeTravelingTitle}
         </h2>
 
         <div className="flex flex-col gap-y-4">
@@ -195,7 +200,7 @@ export default function MobileCountry({
       {/* SECCIÓN: 3 DESTINOS */}
       <section className="w-full pt-10 pb-10 flex flex-col items-center overflow-hidden bg-[#FFF7E2] -mt-[10px]">
         <h2 className="text-[#13522B] text-3xl font-bold tracking-tight mb-8 font-nohemi text-center px-4">
-          3 destinos que no te puedes perder
+          {ui.topDestinationsTitle}
         </h2>
         {/* Contenedor del Carrusel */}
         <MobileDestinationsCarousel destinations={destinations} />
@@ -213,8 +218,8 @@ export default function MobileCountry({
         <div className="flex items-center justify-between">
           <div className="text-[#1D799B] text-[9px] leading-snug tracking-wide font-sans text-left font-medium">
             <p className="font-bold">© 2024 Rumbo Latam.</p>
-            <p>Trabajo Especial de Grado - URBE.</p>
-            <p>Todos los derechos reservados.</p>
+            <p>{ui.footerDegreeLine}</p>
+            <p>{ui.footerRightsLine}</p>
           </div>
           <div className="w-[80px]">
             <img src="/Paises/LogoURBE.png" alt="Logo URBE" className="w-full h-auto object-contain" />

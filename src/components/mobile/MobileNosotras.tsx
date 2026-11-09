@@ -4,6 +4,7 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import ScaleToFitCanvas from "@/components/ui/ScaleToFitCanvas";
 import BackButton from "@/components/ui/BackButton";
+import { getNosotrasStrings, useLocale } from "@/i18n";
 
 /**
  * Réplica del frame mobile de Figma "Nosotras" (node 935:11092).
@@ -11,7 +12,9 @@ import BackButton from "@/components/ui/BackButton";
  * que nunca quede una franja del fondo del main a la derecha.
  * Todas las coordenadas son absolutas dentro del lienzo y provienen de la metadata del nodo.
  */
-export default function MobileNosotras() {
+const MobileNosotras = () => {
+  const { locale } = useLocale();
+  const nosotras = getNosotrasStrings(locale);
   const bgScene: CSSProperties = {
     filter: "blur(4.65px)",
     maskImage: "url(/Nosotras/bg-mask.svg)",
@@ -247,14 +250,11 @@ export default function MobileNosotras() {
               <div className="relative flex flex-col justify-center leading-[0] text-[0px] w-[139.28px] h-[28.7px] text-naranja">
                 <p className="not-italic text-[13px] mb-0">
                   <span className="font-nohemi font-black leading-[0.88]">
-                    ¿Qué hay detrás
+                    {nosotras.titleLine1}
                     <br aria-hidden="true" />
                   </span>
                   <span className="font-nohemi font-normal leading-[0.88]">
-                    de{" "}
-                  </span>
-                  <span className="font-nohemi font-normal leading-[0.88]">
-                    este proyecto?
+                    {nosotras.titleLine2}
                   </span>
                 </p>
               </div>
@@ -497,49 +497,43 @@ export default function MobileNosotras() {
           {/* Títulos de tarjeta */}
           <div className="absolute left-[29px] top-[579px] flex flex-col justify-center text-center w-[107px] h-[24px] pointer-events-none">
             <p className="font-nohemi font-normal text-naranja text-[13px] leading-[0.83] tracking-[0.13px] mb-0">
-              Enfoque en
+              {nosotras.cards[0].titleLine1}
             </p>
             <p className="font-nohemi font-black text-naranja text-[13px] leading-[0.83] tracking-[0.13px] mb-0">
-              la experiencia
+              {nosotras.cards[0].titleLine2}
             </p>
           </div>
           <div className="absolute left-[170px] top-[579px] flex flex-col justify-center text-center w-[89px] h-[24px] pointer-events-none">
             <p className="font-nohemi font-normal text-naranja text-[13px] leading-[0.83] tracking-[0.13px] mb-0">
-              Proceso
+              {nosotras.cards[1].titleLine1}
             </p>
             <p className="font-nohemi font-black text-naranja text-[13px] leading-[0.83] tracking-[0.13px] mb-0">
-              creativo
+              {nosotras.cards[1].titleLine2}
             </p>
           </div>
           <div className="absolute left-[304px] top-[579px] flex flex-col justify-center text-center w-[89px] h-[24px] pointer-events-none">
             <p className="font-nohemi font-normal text-naranja text-[13px] leading-[0.83] tracking-[0.13px] mb-0">
-              Identidad
+              {nosotras.cards[2].titleLine1}
             </p>
             <p className="font-nohemi font-black text-naranja text-[13px] leading-[0.83] tracking-[0.13px] mb-0">
-              cultural
+              {nosotras.cards[2].titleLine2}
             </p>
           </div>
 
           {/* Descripciones de tarjeta */}
           <div className="absolute left-[34px] top-[619px] flex flex-col justify-center text-center w-[96px] h-[87px] font-sans font-normal text-verde text-[7px] tracking-[0.07px] pointer-events-none">
             <p className="leading-[1.5] mb-0">
-              Diseñamos siempre pensando en las necesidades del viajero,
-              priorizando la accesibilidad, la intuición y la claridad en cada
-              pantalla para que cualquiera pueda trazar su ruta sin fricciones.
+              {nosotras.cards[0].description}
             </p>
           </div>
           <div className="absolute left-[167px] top-[619px] flex flex-col justify-center text-center w-[96px] h-[78px] font-sans font-normal text-verde text-[7px] tracking-[0.07px] pointer-events-none">
             <p className="leading-[1.5] mb-0">
-              Durante la etapa de diseño se combinó investigación, bocetos y
-              prototipos para transformar la idea inicial en una interfaz
-              visualmente atractiva y fácil de usar.
+              {nosotras.cards[1].description}
             </p>
           </div>
           <div className="absolute left-[300px] top-[619px] flex flex-col justify-center text-center w-[96px] h-[87px] font-sans font-normal text-verde text-[7px] tracking-[0.07px] pointer-events-none">
             <p className="leading-[1.5] mb-0">
-              Nuestro objetivo es mantener viva la esencia y la riqueza de los
-              destinos latinoamericanos a través de un sistema de diseño que
-              refleje la calidez y diversidad de cada cultura.
+              {nosotras.cards[2].description}
             </p>
           </div>
 
@@ -576,11 +570,13 @@ export default function MobileNosotras() {
           </div>
           <div className="absolute left-[322px] top-[89px] flex items-center justify-center text-center w-[88px] h-[10px] pointer-events-none">
             <p className="font-nohemi font-normal text-[#fff7e2] text-[15px] leading-[0.83] tracking-[0.15px] mb-0">
-              Nosotras
+              {nosotras.headerTitle}
             </p>
           </div>
         </div>
       </ScaleToFitCanvas>
     </main>
   );
-}
+};
+
+export default MobileNosotras;

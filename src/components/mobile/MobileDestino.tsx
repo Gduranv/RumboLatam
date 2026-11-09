@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import MobileManualCarousel from "@/components/carousels/MobileManualCarousel";
@@ -5,7 +7,8 @@ import MobileHospedajeCard from "@/components/cards/MobileHospedajeCard";
 import MobileInfoCard from "@/components/cards/MobileInfoCard";
 import MobileStampCarousel from "@/components/carousels/MobileStampCarousel";
 import RichText from "@/components/ui/RichText";
-import { getDestino, getPais, getPlaylistUrl } from "@/data";
+import { getPlaylistUrl } from "@/data";
+import { getLocalizedDestino, getLocalizedPais, getUiStrings, useLocale } from "@/i18n";
 import { getHotelMapsUrl } from "@/utils/googleMaps";
 import type { ManualCard } from "@/types";
 
@@ -26,7 +29,9 @@ interface MobileDestinoProps {
  * entre uno y otro es `DestinoData` y las imágenes resueltas por la ruta.
  */
 const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
-  const destino = getDestino(destinoId) || getDestino("canaima")!;
+  const { locale } = useLocale();
+  const ui = getUiStrings(locale);
+  const destino = getLocalizedDestino(destinoId, locale) || getLocalizedDestino("canaima", locale)!;
   const backToCountry = `/paises/${destino.paisId}`;
 
   // El manual del viajero se arma desde el dato, con el título y el icono que
@@ -38,7 +43,7 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
     iconAlt: card.icon.alt,
   }));
 
-  const paisName = getPais(destino.paisId)?.name;
+  const paisName = getLocalizedPais(destino.paisId, locale)?.name;
   const hotels = destino.hospedaje.hoteles.map((hotel) => ({
     name: hotel.name,
     type: hotel.tipo,
@@ -149,10 +154,10 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
         }}
       >
         <h2 className="text-[#F1E4C4] text-[20px] font-bold font-nohemi tracking-tight text-center mb-2">
-          Manual del viajero
+          {ui.travelerManualTitle}
         </h2>
         <p className="text-[#A3DBEF] text-[12px] font-normal font-nohemi text-center mb-6">
-          Detalles esenciales para planificar tu ruta
+          {ui.travelerManualSubtitle}
         </p>
 
         {/* Carrusel deslizable: muestra 1 card a la vez */}
@@ -174,7 +179,7 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
       {/* ============================================= */}
       <section className="w-full px-4 py-4 bg-[#FFF7E2]">
         <MobileInfoCard
-          title="Animales autóctonos"
+          title={ui.nativeAnimalsTitle}
           description={destino.animales.description}
           images={dynamicResources.animalesImages}
           iconSrc="/Paises/icon animales.png"
@@ -189,7 +194,7 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
       {/* ============================================= */}
       <section className="w-full px-4 py-4 bg-[#FFF7E2]">
         <MobileInfoCard
-          title="Actividades para hacer"
+          title={ui.activitiesTitle}
           description={destino.actividades.description}
           images={dynamicResources.actividadesImages}
           iconSrc="/Paises/icon act por hacer.png"
@@ -233,8 +238,8 @@ const MobileDestino = ({ destinoId, dynamicResources }: MobileDestinoProps) => {
         <div className="flex items-center justify-between">
           <div className="text-[#1D799B] text-[9px] leading-snug tracking-wide font-sans text-left font-medium">
             <p className="font-bold">© 2026 Rumbo Latam.</p>
-            <p>Trabajo Especial de Grado - URBE.</p>
-            <p>Todos los derechos reservados.</p>
+            <p>{ui.footerDegreeLine}</p>
+            <p>{ui.footerRightsLine}</p>
           </div>
           <div className="w-[80px]">
             <img

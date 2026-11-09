@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { getUiStrings, useLocale } from "@/i18n";
 
 export interface StampImage {
   src: string;
@@ -37,6 +38,8 @@ const Stamp = ({ color, image, width, rotation, isSecondary = false }: { color: 
 
 export default function StampCarousel({ images }: StampCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { locale } = useLocale();
+  const ui = getUiStrings(locale);
 
   if (!images || images.length === 0) return null;
 
@@ -97,13 +100,13 @@ export default function StampCarousel({ images }: StampCarouselProps) {
           onClick={prevImage}
           className="hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer shrink-0"
         >
-          <Image src="/Paises/icon flecha carrusel izq.png" alt="Anterior" width={64} height={64} className="object-contain" />
+          <Image src="/Paises/icon flecha carrusel izq.png" alt={ui.previousSlideAria} width={64} height={64} className="object-contain" />
         </button>
         <button 
           onClick={nextImage}
           className="hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer shrink-0"
         >
-          <Image src="/Paises/icon flecha carrusel derc.png" alt="Siguiente" width={64} height={64} className="object-contain" />
+          <Image src="/Paises/icon flecha carrusel derc.png" alt={ui.nextSlideAria} width={64} height={64} className="object-contain" />
         </button>
       </div>
     </div>

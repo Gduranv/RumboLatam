@@ -1,11 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import AnimatedCard from "@/components/cards/AnimatedCard";
 import DestinationsCarousel from "@/components/carousels/DestinationsCarousel";
 import CountryHeaderButtons from "@/components/ui/CountryHeaderButtons";
 import RichText from "@/components/ui/RichText";
-import { getPais, getPlaylistUrl } from "@/data";
+import { getPlaylistUrl } from "@/data";
 import { DEFAULT_ANTES_DE_VIAJAR, GIA_PAIS_FALLBACK, SUBTITLE_FALLBACK } from "@/data/paisDefaults";
+import { getLocalizedPais, getUiStrings, useLocale } from "@/i18n";
 
 const GIA_CLOUD = "/Paises/NubeParaMensaje.png";
 
@@ -17,7 +20,9 @@ interface DesktopCountryProps {
 }
 
 export default function DesktopCountry({ countryId, dynamicDestinationsResources, dynamicHeroImage, dynamicGiaImage }: DesktopCountryProps) {
-  const pais = getPais(countryId);
+  const { locale } = useLocale();
+  const ui = getUiStrings(locale);
+  const pais = getLocalizedPais(countryId, locale);
   const name = pais?.name ?? countryId.charAt(0).toUpperCase() + countryId.slice(1);
   const subtitle = pais?.subtitle || SUBTITLE_FALLBACK;
   const heroSrc = dynamicHeroImage;
@@ -38,7 +43,7 @@ export default function DesktopCountry({ countryId, dynamicDestinationsResources
         className="absolute top-0 left-0 w-full h-[1683px] bg-[#13522B] z-0 pt-[980px]"
         style={{ clipPath: 'polygon(0 0, 100% 0, 100% 1531px, 50% 1683px, 0 1531px)' }}
       >
-        <h2 className="text-white text-center text-[40px] font-bold tracking-tight font-nohemi">Antes de viajar:</h2>
+        <h2 className="text-white text-center text-[40px] font-bold tracking-tight font-nohemi">{ui.beforeTravelingTitle}</h2>
 
         {/* Grid de Tarjetas */}
         <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-5 w-fit mx-auto place-items-center">
@@ -159,7 +164,7 @@ export default function DesktopCountry({ countryId, dynamicDestinationsResources
       {/* Capa 5: Sección 3 Destinos (Entre la capa verde y el footer) */}
       <section className="absolute top-[1683px] left-0 w-full z-20 flex flex-col items-center pt-10 pb-8">
         <h2 className="text-[#13522B] text-[40px] font-bold tracking-tight mb-8 font-nohemi">
-          3 destinos que no te puedes perder
+          {ui.topDestinationsTitle}
         </h2>
 
         {/* Contenedor del Carrusel */}
@@ -184,8 +189,8 @@ export default function DesktopCountry({ countryId, dynamicDestinationsResources
       <div className="absolute left-0 bottom-[100px] w-full px-[140px] z-10 flex items-center justify-between">
         <div className="text-[#1D799B] text-[16px] leading-snug tracking-wide font-sans">
           <p className="font-bold">© 2026 Rumbo Latam.</p>
-          <p className="font-medium">Trabajo Especial de Grado - URBE.</p>
-          <p className="font-medium">Todos los derechos reservados.</p>
+          <p className="font-medium">{ui.footerDegreeLine}</p>
+          <p className="font-medium">{ui.footerRightsLine}</p>
         </div>
         <div className="relative w-[100px] h-[50px]">
           {/* Aquí irá el logo de URBE cuando se proporcione */}

@@ -6,6 +6,7 @@ import RichText from "@/components/ui/RichText";
 import ScaleToFitCanvas from "@/components/ui/ScaleToFitCanvas";
 import { countriesData } from "@/data/countries";
 import { getPais } from "@/data";
+import { getLocalizedPais, getUiStrings, useLocale } from "@/i18n";
 import type { Curiosidad } from "@/types";
 
 interface DesktopCuriosidadesProps {
@@ -171,6 +172,10 @@ function CuriosityCard({ countryId, imageSrc, cardX, curiosidad }: CuriosityCard
 }
 
 export default function DesktopCuriosidades({ countryId, curiosidadImages }: DesktopCuriosidadesProps) {
+  const { locale } = useLocale();
+  const ui = getUiStrings(locale);
+  const pais = getLocalizedPais(countryId, locale);
+
   return (
     <main className="w-full bg-[#A3DBEF] mx-auto relative overflow-hidden hidden md:block">
       <ScaleToFitCanvas height={1920} fullWidth>
@@ -251,14 +256,14 @@ export default function DesktopCuriosidades({ countryId, curiosidadImages }: Des
       {/* Título y descripción de la sección (iguales para todos los países) */}
       <div className="absolute z-[46] pointer-events-none" style={{ left: 67, top: 358, width: 405 }}>
         <h1 className="font-nohemi leading-[0.88] text-[#13522B] text-[100px]">
-          <span className="font-bold">Datos</span>
+          <span className="font-bold">{ui.curiousFactsPrefix}</span>
           <br aria-hidden />
-          <span className="font-normal">curiosos</span>
+          <span className="font-normal">{ui.curiousFactsHighlight}</span>
         </h1>
       </div>
       <div className="absolute z-[46] pointer-events-none" style={{ left: 67, top: 562, width: 460 }}>
         <p className="text-[16px] leading-[1.5] text-[#13522B] font-sans">
-          Descubre los <span className="font-extrabold">detalles únicos y asombrosos</span> sobre cultura, naturaleza y sociedad que hacen especial a cada país y enriquecerán el recorrido a tu destino ideal.
+          <RichText text={ui.curiousFactsIntro} />
         </p>
       </div>
 
@@ -275,24 +280,24 @@ export default function DesktopCuriosidades({ countryId, curiosidadImages }: Des
       >
         <img
           src={countriesData[countryId]?.flagPath ?? "/OtrosRecursos/ICONOCURIOSIDADES.png"}
-          alt={`Bandera de ${getPais(countryId)?.name ?? countryId}`}
+          alt={`Bandera de ${pais?.name ?? countryId}`}
           className="w-[67px] h-[68px] rounded-full object-cover border-4 border-white shadow-sm"
         />
         <h2
           className="font-nohemi font-bold text-[48px] leading-none"
-          style={{ color: getPais(countryId)?.curiosidadesNameColor ?? "#13522B" }}
+          style={{ color: pais?.curiosidadesNameColor ?? "#13522B" }}
         >
-          {getPais(countryId)?.name ?? countryId}
+          {pais?.name ?? countryId}
         </h2>
       </div>
 
       {/* Cards de datos curiosos: colapsadas por defecto (blur + "?"), click en el botón para desplegar */}
-      {(getPais(countryId)?.curiosidades ?? []).map((curiosidad, index) => {
+      {(pais?.curiosidades ?? []).map((curiosidad, index) => {
         const cardXs = [98, 474, 851];
         const cardX = cardXs[index];
         return (
           <CuriosityCard
-            key={curiosidad.text}
+            key={index}
             countryId={countryId}
             // Sin foto declarada se muestra la marca en vez de un <img> roto.
             imageSrc={curiosidadImages[index] ?? "/OtrosRecursos/ICONOCURIOSIDADES.png"}
@@ -318,8 +323,8 @@ export default function DesktopCuriosidades({ countryId, curiosidadImages }: Des
         <div className="relative flex items-center justify-between px-6 pt-[249px] pb-6">
           <div className="text-white text-[18px] leading-snug tracking-wide font-sans text-left">
             <p className="font-extrabold">© 2026 Rumbo Latam.</p>
-            <p className="font-medium">Trabajo Especial de Grado - URBE.</p>
-            <p className="font-medium">Todos los derechos reservados.</p>
+            <p className="font-medium">{ui.footerDegreeLine}</p>
+            <p className="font-medium">{ui.footerRightsLine}</p>
           </div>
           <div className="w-[70px] text-white">
             <svg width="70" height="23" viewBox="0 0 104 33.4734" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">

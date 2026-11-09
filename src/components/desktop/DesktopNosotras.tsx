@@ -3,8 +3,14 @@
 import type { CSSProperties } from "react";
 import ScaleToFitCanvas from "@/components/ui/ScaleToFitCanvas";
 import BackButton from "@/components/ui/BackButton";
+import { getNosotrasStrings, useLocale } from "@/i18n";
 
-export default function DesktopNosotras() {
+/**
+ * Vista desktop de la página Nosotras con soporte multi-idioma.
+ */
+const DesktopNosotras = () => {
+  const { locale } = useLocale();
+  const nosotras = getNosotrasStrings(locale);
   const bgScene: CSSProperties = {
     filter: "blur(4.65px)",
     maskImage: "url(/Nosotras/bg-mask.svg)",
@@ -39,7 +45,7 @@ export default function DesktopNosotras() {
       </div>
       <div className="absolute top-[50px] right-[101px] z-50 flex h-[64px] items-center pointer-events-none">
         <p className="font-nohemi font-normal text-[#fff7e2] text-[30px] leading-[0.83] tracking-[0.3px]">
-          Nosotras
+          {nosotras.headerTitle}
         </p>
       </div>
       <ScaleToFitCanvas height={1664} fullWidth>
@@ -110,11 +116,12 @@ export default function DesktopNosotras() {
               <div className="relative flex flex-col justify-center leading-[0] text-[0px] w-[361.687px] h-[74.515px] text-naranja">
                 <p className="not-italic text-[40px] mb-0">
                   <span className="font-nohemi font-black leading-[0.88]">
-                    ¿Qué hay detrás
+                    {nosotras.titleLine1}
                     <br aria-hidden="true" />
                   </span>
-                  <span className="font-nohemi font-normal leading-[0.88]">de </span>
-                  <span className="font-nohemi font-normal leading-[0.88]">este proyecto?</span>
+                  <span className="font-nohemi font-normal leading-[0.88]">
+                    {nosotras.titleLine2}
+                  </span>
                 </p>
               </div>
             </div>
@@ -423,27 +430,39 @@ export default function DesktopNosotras() {
 
           {/* Card titles */}
           <div className="absolute left-[241.5px] top-[1050px] -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center text-center w-[261px] h-[80px] pointer-events-none">
-            <p className="font-nohemi font-normal text-naranja text-[35px] leading-[0.83] tracking-[0.35px] mb-0">Enfoque en </p>
-            <p className="font-nohemi font-black text-naranja text-[35px] leading-[0.83] tracking-[0.35px] mb-0">la experiencia</p>
+            <p className="font-nohemi font-normal text-naranja text-[35px] leading-[0.83] tracking-[0.35px] mb-0">
+              {nosotras.cards[0].titleLine1}
+            </p>
+            <p className="font-nohemi font-black text-naranja text-[35px] leading-[0.83] tracking-[0.35px] mb-0">
+              {nosotras.cards[0].titleLine2}
+            </p>
           </div>
           <div className="absolute left-[calc(50%-2px)] top-[1050px] -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center text-center w-[154px] h-[52px] pointer-events-none">
-            <p className="font-nohemi font-normal text-naranja text-[35px] leading-[0.83] tracking-[0.35px] mb-0">Proceso</p>
-            <p className="font-nohemi font-black text-naranja text-[35px] leading-[0.83] tracking-[0.35px] mb-0">creativo</p>
+            <p className="font-nohemi font-normal text-naranja text-[35px] leading-[0.83] tracking-[0.35px] mb-0">
+              {nosotras.cards[1].titleLine1}
+            </p>
+            <p className="font-nohemi font-black text-naranja text-[35px] leading-[0.83] tracking-[0.35px] mb-0">
+              {nosotras.cards[1].titleLine2}
+            </p>
           </div>
           <div className="absolute left-[1035.5px] top-[1050px] -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center text-center w-[167px] h-[80px] pointer-events-none">
-            <p className="font-nohemi font-normal text-naranja text-[35px] leading-[0.83] tracking-[0.35px] mb-0">Identidad</p>
-            <p className="font-nohemi font-black text-naranja text-[35px] leading-[0.83] tracking-[0.35px] mb-0">cultural</p>
+            <p className="font-nohemi font-normal text-naranja text-[35px] leading-[0.83] tracking-[0.35px] mb-0">
+              {nosotras.cards[2].titleLine1}
+            </p>
+            <p className="font-nohemi font-black text-naranja text-[35px] leading-[0.83] tracking-[0.35px] mb-0">
+              {nosotras.cards[2].titleLine2}
+            </p>
           </div>
 
           {/* Card descriptions */}
           <div className="absolute left-[99px] top-[1162px] -translate-y-1/2 flex flex-col justify-center w-[302px] h-[106px] font-sans font-normal text-verde text-[16px] tracking-[0.16px] pointer-events-none">
-            <p className="leading-[1.5] mb-0">Diseñamos siempre pensando en las necesidades del viajero, priorizando la accesibilidad, la intuición y la claridad en cada pantalla para que cualquiera pueda trazar su ruta sin fricciones.</p>
+            <p className="leading-[1.5] mb-0">{nosotras.cards[0].description}</p>
           </div>
           <div className="absolute left-[488px] top-[1151px] -translate-y-1/2 flex flex-col justify-center w-[308px] h-[84px] font-sans font-normal text-verde text-[16px] tracking-[0.16px] pointer-events-none">
-            <p className="leading-[1.5] mb-0">Durante la etapa de diseño se combinó investigación, bocetos y prototipos para transformar la idea inicial en una interfaz visualmente atractiva y fácil de usar.</p>
+            <p className="leading-[1.5] mb-0">{nosotras.cards[1].description}</p>
           </div>
           <div className="absolute left-[889px] top-[1165px] -translate-y-1/2 flex flex-col justify-center w-[293px] h-[112px] font-sans font-normal text-verde text-[16px] tracking-[0.16px] pointer-events-none">
-            <p className="leading-[1.5] mb-0">Nuestro objetivo es mantener viva la esencia y la riqueza de los destinos latinoamericanos a través de un sistema de diseño que refleje la calidez y diversidad de cada cultura.</p>
+            <p className="leading-[1.5] mb-0">{nosotras.cards[2].description}</p>
           </div>
 
           {/* El título "Nosotras" vive fuera del lienzo, en la cabecera junto
@@ -472,4 +491,6 @@ export default function DesktopNosotras() {
       </ScaleToFitCanvas>
     </main>
   );
-}
+};
+
+export default DesktopNosotras;

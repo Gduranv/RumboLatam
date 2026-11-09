@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { getUiStrings, useLocale } from "@/i18n";
 
 export interface Destination {
   id: string;
@@ -18,6 +19,8 @@ interface DestinationsCarouselProps {
 
 export default function DestinationsCarousel({ destinations }: DestinationsCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { locale } = useLocale();
+  const ui = getUiStrings(locale);
 
   const nextDestination = () => {
     if (currentIndex < destinations.length - 1) {
@@ -42,7 +45,7 @@ export default function DestinationsCarousel({ destinations }: DestinationsCarou
         onClick={prevDestination}
         className={`hover:scale-110 transition-all duration-300 cursor-pointer shrink-0 ${currentIndex === 0 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
       >
-        <Image src="/Paises/icon flecha carrusel izq.png" alt="Destino anterior" width={64} height={64} className="object-contain" />
+        <Image src="/Paises/icon flecha carrusel izq.png" alt={ui.previousDestinationsAria} width={64} height={64} className="object-contain" />
       </button>
 
       {/* Estampa y contenido */}
@@ -94,7 +97,7 @@ export default function DestinationsCarousel({ destinations }: DestinationsCarou
             </p>
             <Link href={`/destinos/${current.id}`}>
               <button className="bg-[#FF7223] text-white font-bold text-[15px] mb-5 px-8 py-3 rounded-full hover:scale-105 transition-transform shadow-lg cursor-pointer">
-                Ver más
+                {ui.seeMore}
               </button>
             </Link>
           </div>
@@ -106,7 +109,7 @@ export default function DestinationsCarousel({ destinations }: DestinationsCarou
         onClick={nextDestination}
         className={`hover:scale-110 transition-all duration-300 cursor-pointer shrink-0 ${currentIndex === destinations.length - 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
       >
-        <Image src="/Paises/icon flecha carrusel derc.png" alt="Siguiente destino" width={64} height={64} className="object-contain" />
+        <Image src="/Paises/icon flecha carrusel derc.png" alt={ui.nextDestinationsAria} width={64} height={64} className="object-contain" />
       </button>
 
       {/* Índice accesible y rastreable para que motores de búsqueda descubran todos los destinos del carrusel */}

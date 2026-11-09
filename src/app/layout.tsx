@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Albert_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import { RouteGate } from "@/components/providers/RouteGate";
+import { LanguageDropdown } from "@/components/ui/LanguageDropdown";
+import { LocaleProvider } from "@/i18n";
 import { buildRootMetadata } from "@/lib/seo/metadata";
 import "./globals.css";
 
@@ -48,8 +50,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        {children}
-        <RouteGate />
+        <LocaleProvider>
+          {children}
+          <LanguageDropdown />
+          <RouteGate />
+        </LocaleProvider>
       </body>
     </html>
   );
