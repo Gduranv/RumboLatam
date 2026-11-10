@@ -14,7 +14,10 @@ import {
   whenVisuallyReady,
 } from "@/lib/loading/visual-ready";
 import { getRouteAssets } from "@/lib/loading/route-manifest";
-import { getRegisteredRouteAssets } from "@/lib/loading/pending-assets";
+import {
+  getRegisteredDeferredRouteAssets,
+  getRegisteredRouteAssets,
+} from "@/lib/loading/pending-assets";
 import { INTRO_EXIT_MS, LoadingScreen } from "@/components/ui/LoadingScreen";
 import { IntroVideo } from "@/components/ui/IntroVideo";
 import { markIntroSeen, shouldPlayIntro } from "@/lib/loading/intro-session";
@@ -28,8 +31,45 @@ type Phase = "visible" | "exiting" | "hidden";
  */
 const MIN_LOADER_MS = 250;
 
+/**
+ * Espera al siguiente frame de animación del navegador.
+ */
 const nextFrame = () =>
   new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+
+/**
+ * Extrae el pathname destino si el evento proviene de un enlace interno navegable.
+ */
+const resolveInternalNavigationPath = (
+  target: EventTarget | null,
+  currentPathname: string | null
+): string | null => {
+  if (!(target instanceof Element)) return null;
+  const anchor = target.closest("a[href]");
+  if (!(anchor instanceof HTMLAnchorElement)) return null;
+  if (anchor.target && anchor.target !== "_self") return null;
+  if (anchor.hasAttribute("download")) return null;
+
+  const rawHref = anchor.getAttribute("href");
+  if (
+    !rawHref ||
+    rawHref.startsWith("#") ||
+    rawHref.startsWith("mailto:") ||
+    rawHref.startsWith("tel:") ||
+    rawHref.startsWith("javascript:")
+  ) {
+    return null;
+  }
+
+  try {
+    const url = new URL(rawHref, window.location.origin);
+    if (url.origin !== window.location.origin) return null;
+    if (url.pathname === currentPathname) return null;
+    return url.pathname;
+  } catch {
+    return null;
+  }
+};
 
 /**
  * Loader de navegación. Se monta en el layout raíz, por encima del router, para
@@ -52,12 +92,13 @@ const nextFrame = () =>
  * frame en lugar de enseñar la página vacía y taparla después. No hay
  * discrepancia de hidratación porque el cliente arranca en el mismo estado.
  */
-export function RouteGate() {
+export const RouteGate = () => {
   const pathname = usePathname();
   const [phase, setPhase] = useState<Phase>("visible");
   // El efecto lee la fase de la vez anterior para decidir si hace falta un
   // fundido; useState en la dependencia lo reintroduciría en el bucle.
   const phaseRef = useRef<Phase>("visible");
+  const visitedRoutesRef = useRef<Set<string>>(new Set());
 
   // Intro de video: se decide una vez por sesión, en la primera carga. El
   // ref sólo guarda el pathname del montaje, que es el único que le importa
@@ -67,10 +108,13 @@ export function RouteGate() {
   const introRef = useRef({ montado: false, activo: false, pathname: "" });
   const pathnameInicial = useRef(pathname);
 
-  const move = (next: Phase) => {
+  /**
+   * Actualiza de forma sincronizada la referencia mutable y el estado visual del gate.
+   */
+  const move = useCallback((next: Phase) => {
     phaseRef.current = next;
     setPhase(next);
-  };
+  }, []);
 
   // La decisión es de la sesión, no de la ruta: dependencias vacías a
   // propósito. No puede tomarse durante el render porque en el servidor no
@@ -89,12 +133,76 @@ export function RouteGate() {
     setIntroMontado(true);
   }, []);
 
+  /**
+   * Finaliza y desmonta el video de introducción de la sesión.
+   */
   const terminarIntro = useCallback(() => {
     introRef.current.montado = false;
     introRef.current.activo = false;
     setIntroMontado(false);
     setIntroActivo(false);
   }, []);
+
+  // Intercepta clics e interacciones previas en enlaces internos para activar
+  // inmediatamente la pantalla de carga antes de que Next.js confirme la ruta
+  // y precalentar los recursos críticos del destino.
+  useEffect(() => {
+    /**
+     * Precalienta los recursos críticos conocidos al acercar el puntero o tocar un enlace.
+     */
+    const handleWarmLink = (event: Event) => {
+      const targetPath = resolveInternalNavigationPath(event.target, pathname);
+      if (!targetPath) return;
+      const { critical } = getRouteAssets(targetPath);
+      const registered = getRegisteredRouteAssets(targetPath);
+      warmAssets([...new Set([...critical, ...registered])]);
+    };
+
+    /**
+     * Muestra la pantalla de carga de Rumbo en el instante del clic hacia una ruta no cacheada.
+     */
+    const handleDocumentClick = (event: MouseEvent) => {
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+
+      const targetPath = resolveInternalNavigationPath(event.target, pathname);
+      if (!targetPath) return;
+
+      const { critical } = getRouteAssets(targetPath);
+      const registered = getRegisteredRouteAssets(targetPath);
+      const knownCriticos = [...new Set([...critical, ...registered])];
+
+      if (
+        visitedRoutesRef.current.has(targetPath) &&
+        areAssetsLoaded(knownCriticos)
+      ) {
+        return;
+      }
+
+      if (introRef.current.montado) {
+        terminarIntro();
+      }
+      move("visible");
+    };
+
+    document.addEventListener("pointerover", handleWarmLink, { passive: true });
+    document.addEventListener("touchstart", handleWarmLink, { passive: true });
+    document.addEventListener("click", handleDocumentClick, true);
+
+    return () => {
+      document.removeEventListener("pointerover", handleWarmLink);
+      document.removeEventListener("touchstart", handleWarmLink);
+      document.removeEventListener("click", handleDocumentClick, true);
+    };
+  }, [pathname, move, terminarIntro]);
 
   useEffect(() => {
     // Una navegación manda sobre la intro: se corta y no vuelve a aparecer en
@@ -106,17 +214,25 @@ export function RouteGate() {
     }
 
     const { critical, deferred } = getRouteAssets(pathname);
-    // Las portadas del carrusel de un país no están en el manifiesto: las
-    // resuelve el servidor y las registra la propia página. Se leen aquí, en
-    // el useEffect, que corre después del useLayoutEffect del registrador.
+    // Los assets críticos resueltos en el servidor los registra la propia
+    // página mediante RouteAssetsRegistrar (useLayoutEffect), que corre antes
+    // de este useEffect.
     const pendientes = getRegisteredRouteAssets(pathname);
+    const diferidosPagina = getRegisteredDeferredRouteAssets(pathname);
     const criticos = [...new Set([...critical, ...pendientes])];
-    warmAssets(deferred);
+    const diferidos = [...new Set([...deferred, ...diferidosPagina])];
 
     const controller = new AbortController();
     let exitTimer: ReturnType<typeof setTimeout> | undefined;
 
+    /**
+     * Inicia la transición de salida del loader y desbloquea los recursos diferidos.
+     */
     const hideAfterFade = () => {
+      if (pathname) {
+        visitedRoutesRef.current.add(pathname);
+      }
+      warmAssets(diferidos);
       move("exiting");
       exitTimer = setTimeout(() => {
         move("hidden");
@@ -131,14 +247,17 @@ export function RouteGate() {
       }, INTRO_EXIT_MS);
     };
 
+    /**
+     * Ejecuta el gate de recursos críticos y estabilidad visual del DOM antes de revelar la ruta.
+     */
     const run = async () => {
       // `criticos` cubre los assets conocidos aunque estén fuera de pantalla
       // (los del manifiesto y los que aporta la página); el chequeo del DOM
-      // cubre el resto de rutas dinámicas, donde ambas listas van vacías.
+      // cubre el resto de imágenes en el viewport.
       const ready = Promise.all([
         gateAssets(criticos, {
           // Con assets aportados por la página el tope es el del gate visual:
-          // las portadas de un país son ~2 MB y en 4G razonable tardan 2-4 s.
+          // las portadas de un país o destino pueden tardar 2-4 s en 4G.
           timeoutMs:
             pendientes.length > 0 ? DEFAULT_VISUAL_TIMEOUT_MS : DEFAULT_GATE_TIMEOUT_MS,
           signal: controller.signal,
@@ -156,7 +275,13 @@ export function RouteGate() {
       // que tapar. En una navegación interna esto es el "atrás" a una página
       // visitada, y el loader no debe aparecer ni un frame.
       if (isVisuallyReady() && areAssetsLoaded(criticos)) {
-        if (phaseRef.current === "hidden") return;
+        if (pathname) {
+          visitedRoutesRef.current.add(pathname);
+        }
+        if (phaseRef.current === "hidden") {
+          warmAssets(diferidos);
+          return;
+        }
         hideAfterFade();
         return;
       }
@@ -183,7 +308,7 @@ export function RouteGate() {
       controller.abort();
       if (exitTimer) clearTimeout(exitTimer);
     };
-  }, [pathname, terminarIntro]);
+  }, [pathname, move, terminarIntro]);
 
   // El intro sigue montado tras ocultarse el loader: es su turno de verse.
   if (phase === "hidden" && !introMontado) return null;
@@ -204,4 +329,4 @@ export function RouteGate() {
       {introMontado && <IntroVideo activo={introActivo} onTerminado={terminarIntro} />}
     </>
   );
-}
+};

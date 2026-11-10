@@ -12,19 +12,21 @@ export const HomeSeoSummary = () => {
 
   return (
     <section className="sr-only" aria-label="Resumen y directorio de Rumbo Latam">
-      <h1>Rumbo Latam: Guía de Viaje Interactiva por América Latina</h1>
+      <h1>Rumbo Latam: Guía de viaje interactiva por América Latina</h1>
       <p>
         Explora los rincones imperdibles de Latinoamérica con información sobre
         moneda, idioma, gastronomía, estaciones, clima, transporte, hospedaje,
         fauna autóctona, actividades y curiosidades culturales de cada país.
       </p>
       <nav aria-label="Directorio de países y destinos turísticos">
-        <Link href="/nosotras">Sobre Nosotras y el Proyecto Rumbo Latam</Link>
+        <Link href="/nosotras">Sobre nosotras y el proyecto Rumbo Latam</Link>
         <ul>
           {paises.map((pais) => (
             <li key={pais.id}>
               <Link href={`/paises/${pais.id}`}>
-                {pais.name} — {cleanRichText(pais.subtitle)}
+                {pais.name}:{" "}
+                {cleanRichText(pais.subtitle).charAt(0).toLocaleLowerCase("es")}
+                {cleanRichText(pais.subtitle).slice(1)}
               </Link>
               {pais.curiosidades.length > 0 ? (
                 <Link href={`/paises/${pais.id}/curiosidades`}>
@@ -36,7 +38,7 @@ export const HomeSeoSummary = () => {
                   {pais.destinos.map((destino) => (
                     <li key={destino.id}>
                       <Link href={`/destinos/${destino.id}`}>
-                        {destino.title} ({destino.tag}, {pais.name})
+                        {destino.title} ({destino.tag.toLocaleLowerCase("es")}, {pais.name})
                       </Link>
                     </li>
                   ))}

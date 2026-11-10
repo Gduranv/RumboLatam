@@ -3,6 +3,7 @@ import { cleanup, render } from "@testing-library/react";
 import { RouteAssetsRegistrar } from "./RouteAssetsRegistrar";
 import {
   clearRegisteredRouteAssets,
+  getRegisteredDeferredRouteAssets,
   getRegisteredRouteAssets,
 } from "@/lib/loading/pending-assets";
 
@@ -18,14 +19,21 @@ afterEach(() => {
 describe("RouteAssetsRegistrar", () => {
   it("registra los assets de la ruta al montar y los limpia al desmontar", () => {
     const { unmount } = render(
-      <RouteAssetsRegistrar urls={["/Paises/mexico/portada.webp"]} />
+      <RouteAssetsRegistrar
+        urls={["/Paises/mexico/portada.webp"]}
+        deferredUrls={["/Paises/mexico/galeria-1.webp"]}
+      />
     );
     expect(getRegisteredRouteAssets("/paises/mexico")).toEqual([
       "/Paises/mexico/portada.webp",
     ]);
+    expect(getRegisteredDeferredRouteAssets("/paises/mexico")).toEqual([
+      "/Paises/mexico/galeria-1.webp",
+    ]);
 
     unmount();
     expect(getRegisteredRouteAssets("/paises/mexico")).toEqual([]);
+    expect(getRegisteredDeferredRouteAssets("/paises/mexico")).toEqual([]);
   });
 
   it("registra bajo la ruta actual, no bajo una fija", () => {

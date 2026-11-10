@@ -114,7 +114,7 @@ export const buildAboutPageJsonLd = (): Record<string, unknown> => {
         "@type": "AboutPage",
         "@id": `${pageUrl}#about`,
         url: pageUrl,
-        name: "Sobre Nosotras y el Proyecto | Rumbo Latam",
+        name: "Sobre nosotras y el proyecto | Rumbo Latam",
         inLanguage: "es",
         description:
           "Equipo creador y propósito cultural de Rumbo Latam, guía interactiva de turismo latinoamericano.",

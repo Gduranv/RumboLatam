@@ -11,35 +11,49 @@ interface InfoHorizontalCardProps {
   badgePosition?: 'top-right' | 'bottom-right';
 }
 
-export default function InfoHorizontalCard({ title, description, images, badgeSvg, badgePosition = 'top-right' }: InfoHorizontalCardProps) {
+/**
+ * Tarjeta horizontal de información de destino con carrusel hover e ilustración emergente.
+ */
+const InfoHorizontalCard = ({
+  title,
+  description,
+  images,
+  badgeSvg,
+  badgePosition = "top-right",
+}: InfoHorizontalCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
-    if (isHovered && images.length > 1) {
-      interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-      }, 600);
-    } else {
-      setCurrentIndex(0); // Vuelve a la primera al quitar el hover
-    }
+    if (!isHovered || images.length <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 600);
     return () => clearInterval(interval);
   }, [isHovered, images.length]);
 
-  const badgePositionClasses = badgePosition === 'bottom-right' 
-    ? "-bottom-16 -right-24" 
-    : "-top-12 -right-24";
+  const badgePositionClasses =
+    badgePosition === "bottom-right"
+      ? "-bottom-16 -right-24"
+      : "-top-12 -right-24";
 
-  const badgeAnimationClasses = badgePosition === 'bottom-right'
-    ? (isHovered ? "opacity-100 scale-100 translate-y-0 rotate-0" : "opacity-0 scale-50 -translate-y-8 rotate-12")
-    : (isHovered ? "opacity-100 scale-100 translate-y-0 rotate-0" : "opacity-0 scale-50 translate-y-8 -rotate-12");
+  const badgeAnimationClasses =
+    badgePosition === "bottom-right"
+      ? isHovered
+        ? "opacity-100 scale-100 translate-y-0 rotate-0"
+        : "opacity-0 scale-50 -translate-y-8 rotate-12"
+      : isHovered
+        ? "opacity-100 scale-100 translate-y-0 rotate-0"
+        : "opacity-0 scale-50 translate-y-8 -rotate-12";
 
   return (
     <div 
       className="relative bg-[#FF7223] rounded-[24px] p-6 w-full shadow-lg flex items-center justify-between gap-6 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        setCurrentIndex(0);
+      }}
     >
       {/* Ilustración de la esquina (Aparece en hover) */}
       {badgeSvg && (
@@ -68,6 +82,8 @@ export default function InfoHorizontalCard({ title, description, images, badgeSv
               alt={`Imagen de ${title} ${idx + 1}`}
               fill
               sizes="280px"
+              loading={idx === 0 ? "eager" : "lazy"}
+              priority={idx === 0}
               className={`object-cover transition-opacity duration-300 ${idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
             />
           ))
@@ -79,4 +95,6 @@ export default function InfoHorizontalCard({ title, description, images, badgeSv
       </div>
     </div>
   );
-}
+};
+
+export default InfoHorizontalCard;

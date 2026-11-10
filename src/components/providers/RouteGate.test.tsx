@@ -225,6 +225,24 @@ describe("RouteGate", () => {
     await advance(FULL_CYCLE_MS);
     expect(overlay()).toBeNull();
   });
+
+  it("muestra inmediatamente el loader al hacer clic en un enlace hacia una ruta no visitada", async () => {
+    vi.useFakeTimers();
+    render(<RouteGate />);
+    await advance(FULL_CYCLE_MS);
+    expect(overlay()).toBeNull();
+
+    const link = document.createElement("a");
+    link.setAttribute("href", "/nosotras");
+    document.body.appendChild(link);
+
+    try {
+      fireEvent.click(link);
+      expect(overlay()).not.toBeNull();
+    } finally {
+      link.remove();
+    }
+  });
 });
 
 const intro = () => document.querySelector("[data-intro-video]");

@@ -25,7 +25,7 @@ describe("seo/metadata", () => {
     const homeMeta = buildHomeMetadata();
 
     expect(homeMeta.title).toEqual({
-      absolute: "Rumbo Latam | Guía de Viaje Interactiva por América Latina",
+      absolute: "Rumbo Latam | Guía de viaje interactiva por América Latina",
     });
     expect(homeMeta.alternates?.canonical).toBe("https://rumbolatam.netlify.app");
     expect(homeMeta.description).toContain("Venezuela");
@@ -41,7 +41,7 @@ describe("seo/metadata", () => {
   it("genera metadata de Nosotras con canonical propio", () => {
     const nosotrasMeta = buildNosotrasMetadata();
 
-    expect(nosotrasMeta.title).toBe("Sobre Nosotras y el Proyecto");
+    expect(nosotrasMeta.title).toBe("Sobre nosotras y el proyecto");
     expect(nosotrasMeta.alternates?.canonical).toBe(
       "https://rumbolatam.netlify.app/nosotras"
     );
@@ -55,7 +55,7 @@ describe("seo/metadata", () => {
       "/Paises/Venezuela/portada/FotoVenezuela.png"
     );
 
-    expect(meta.title).toContain("Venezuela");
+    expect(meta.title).toBe("Venezuela: Destinos, moneda, clima y guía de viaje");
     expect(meta.description).toContain("Parque Nacional Canaima");
     expect(meta.description).not.toContain("**");
     expect(meta.alternates?.canonical).toBe(
@@ -75,8 +75,7 @@ describe("seo/metadata", () => {
       "/Paises/Venezuela/curiosidades/curiosidadesven-medanos.webp"
     );
 
-    expect(meta.title).toContain("Curiosidades");
-    expect(meta.title).toContain("Venezuela");
+    expect(meta.title).toBe("Curiosidades y datos asombrosos de Venezuela");
     expect(meta.description).not.toContain("**");
     expect(meta.alternates?.canonical).toBe(
       "https://rumbolatam.netlify.app/paises/venezuela/curiosidades"
@@ -93,7 +92,7 @@ describe("seo/metadata", () => {
     );
 
     expect(meta.title).toBe(
-      "Volcán Villarrica, Chile: Qué Hacer, Clima y Hospedaje"
+      "Volcán Villarrica, Chile: Qué hacer, clima y hospedaje"
     );
     expect(meta.description?.length).toBeLessThanOrEqual(165);
     expect(meta.alternates?.canonical).toBe(

@@ -33,10 +33,10 @@ const buildOgImageEntry = (imagePath: string | null | undefined, alt: string) =>
 export const buildRootMetadata = (
   googleVerification: string | undefined = GOOGLE_SITE_VERIFICATION
 ): Metadata => {
-  const defaultTitle = "Rumbo Latam | Guía de Viaje Interactiva por América Latina";
+  const defaultTitle = "Rumbo Latam | Guía de viaje interactiva por América Latina";
   const defaultDescription =
     "Descubre los rincones imperdibles de América Latina con Rumbo Latam: guía interactiva de países, destinos turísticos, clima, transporte, hospedaje y cultura.";
-  const defaultOgImage = buildOgImageEntry(null, "Rumbo Latam — Guía de Viaje por América Latina");
+  const defaultOgImage = buildOgImageEntry(null, "Rumbo Latam — Guía de viaje por América Latina");
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -116,7 +116,7 @@ export const buildHomeMetadata = (): Metadata => {
   const countryNames = listPaises()
     .map((pais) => pais.name)
     .join(", ");
-  const title = "Rumbo Latam | Guía de Viaje Interactiva por América Latina";
+  const title = "Rumbo Latam | Guía de viaje interactiva por América Latina";
   const description = truncateMetaDescription(
     `Explora el mapa interactivo de Rumbo Latam y planifica tu ruta por ${countryNames}: destinos imperdibles, clima, moneda, hospedaje y curiosidades.`,
     160
@@ -150,7 +150,7 @@ export const buildHomeMetadata = (): Metadata => {
  * el equipo creativo y el propósito educativo y cultural de Rumbo Latam.
  */
 export const buildNosotrasMetadata = (): Metadata => {
-  const title = "Sobre Nosotras y el Proyecto";
+  const title = "Sobre nosotras y el proyecto";
   const description = truncateMetaDescription(
     "Conoce al equipo detrás de Rumbo Latam y cómo nació esta guía visual e interactiva para celebrar la biodiversidad, cultura y turismo de América Latina.",
     160
@@ -191,11 +191,15 @@ export const buildPaisMetadata = (
   pais: PaisData,
   heroImage: string | null
 ): Metadata => {
-  const title = `${pais.name}: Destinos, Moneda, Clima y Guía de Viaje`;
+  const title = `${pais.name}: Destinos, moneda, clima y guía de viaje`;
   const destinationNames = pais.destinos.map((d) => d.title).join(", ");
+  const subtitleClean = cleanRichText(pais.subtitle).replace(/\.+$/, "");
+  const subtitleSentence = subtitleClean
+    ? `${subtitleClean.charAt(0).toLocaleLowerCase("es")}${subtitleClean.slice(1)}`
+    : "";
   const rawDescription = destinationNames
-    ? `${pais.name} — ${cleanRichText(pais.subtitle)} Descubre ${destinationNames}, moneda, gastronomía, idioma y consejos antes de viajar.`
-    : `${pais.name} — ${cleanRichText(pais.subtitle)} Guía práctica con moneda, gastronomía, idioma y estaciones para tu viaje.`;
+    ? `${pais.name}: ${subtitleSentence}. Descubre ${destinationNames}, moneda, gastronomía, idioma y consejos antes de viajar.`
+    : `${pais.name}: ${subtitleSentence}. Guía práctica con moneda, gastronomía, idioma y estaciones para tu viaje.`;
   const description = truncateMetaDescription(rawDescription, 160);
   const canonicalUrl = toAbsoluteUrl(`/paises/${pais.id}`);
   const ogImage = buildOgImageEntry(
@@ -240,12 +244,12 @@ export const buildCuriosidadesMetadata = (
   pais: PaisData,
   firstImage: string | null
 ): Metadata => {
-  const title = `Curiosidades y Datos Asombrosos de ${pais.name}`;
+  const title = `Curiosidades y datos asombrosos de ${pais.name}`;
   const firstCuriosity = pais.curiosidades[0]
     ? cleanRichText(pais.curiosidades[0].text)
     : "";
   const rawDescription = firstCuriosity
-    ? `Datos curiosos de ${pais.name}: ${firstCuriosity}`
+    ? `Datos curiosos de ${pais.name}. ${firstCuriosity}`
     : `Descubre las tradiciones, naturaleza y curiosidades culturales más sorprendentes de ${pais.name} en Rumbo Latam.`;
   const description = truncateMetaDescription(rawDescription, 160);
   const canonicalUrl = toAbsoluteUrl(`/paises/${pais.id}/curiosidades`);
@@ -292,9 +296,10 @@ export const buildDestinoMetadata = (
   portadaImage: string | null
 ): Metadata => {
   const countrySuffix = pais ? `, ${pais.name}` : "";
-  const title = `${destino.name}${countrySuffix}: Qué Hacer, Clima y Hospedaje`;
+  const title = `${destino.name}${countrySuffix}: Qué hacer, clima y hospedaje`;
+  const tagClean = cleanRichText(destino.tag).toLocaleLowerCase("es");
   const actividadesClean = cleanRichText(destino.actividades?.description ?? "");
-  const rawDescription = `${destino.name}${countrySuffix} (${cleanRichText(destino.tag)}): ${actividadesClean} Consulta clima, cómo llegar, mejor época y hoteles.`;
+  const rawDescription = `${destino.name}${countrySuffix} (${tagClean}). ${actividadesClean} Consulta clima, cómo llegar, mejor época y hoteles.`;
   const description = truncateMetaDescription(rawDescription, 160);
   const canonicalUrl = toAbsoluteUrl(`/destinos/${destino.id}`);
   const ogImage = buildOgImageEntry(

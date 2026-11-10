@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import DesktopDestino from "@/components/desktop/DesktopDestino";
 import MobileDestino from "@/components/mobile/MobileDestino";
+import { ResponsiveViewportSwitch } from "@/components/ui/ResponsiveViewportSwitch";
+import { RouteAssetsRegistrar } from "@/components/providers/RouteAssetsRegistrar";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getDestino, getPais, listDestinos } from "@/data";
 import { buildDestinoJsonLd } from "@/lib/seo/jsonLd";
@@ -67,14 +69,54 @@ const DestinoPage = async ({
   const pais = getPais(destino.paisId);
   const dynamicResources = getDestinationResources(destino);
 
+  // Seleccionamos como críticos la portada del destino y la primera imagen de
+  // cada sección visible inicial. El resto de fotos de las galerías y carruseles
+  // se difieren en segundo plano para evitar saturar el ancho de banda.
+  const assetsCriticos: string[] = [];
+  if (dynamicResources.portadaImage) {
+    assetsCriticos.push(dynamicResources.portadaImage);
+  }
+  if (dynamicResources.hospedajeImages[0]) {
+    assetsCriticos.push(dynamicResources.hospedajeImages[0]);
+  }
+  if (dynamicResources.animalesImages[0]) {
+    assetsCriticos.push(dynamicResources.animalesImages[0]);
+  }
+  if (dynamicResources.actividadesImages[0]) {
+    assetsCriticos.push(dynamicResources.actividadesImages[0]);
+  }
+  if (dynamicResources.galeriaImages[0]?.src) {
+    assetsCriticos.push(dynamicResources.galeriaImages[0].src);
+  }
+
+  const assetsDiferidos: string[] = [
+    ...dynamicResources.hospedajeImages.slice(1),
+    ...dynamicResources.animalesImages.slice(1),
+    ...dynamicResources.actividadesImages.slice(1),
+    ...dynamicResources.galeriaImages.slice(1).map((img) => img.src),
+  ];
+
   return (
     <>
       <JsonLd data={buildDestinoJsonLd(destino, pais, dynamicResources.portadaImage)} />
-      {/* Versión Móvil */}
-      <MobileDestino destinoId={destinoId} dynamicResources={dynamicResources} />
-
-      {/* Versión Desktop */}
-      <DesktopDestino destinoId={destinoId} dynamicResources={dynamicResources} />
+      <RouteAssetsRegistrar
+        urls={assetsCriticos}
+        deferredUrls={assetsDiferidos}
+      />
+      <ResponsiveViewportSwitch
+        mobile={
+          <MobileDestino
+            destinoId={destinoId}
+            dynamicResources={dynamicResources}
+          />
+        }
+        desktop={
+          <DesktopDestino
+            destinoId={destinoId}
+            dynamicResources={dynamicResources}
+          />
+        }
+      />
     </>
   );
 };

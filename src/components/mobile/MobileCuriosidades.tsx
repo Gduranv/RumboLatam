@@ -110,6 +110,7 @@ function CuriosityCard({
             src={imageSrc}
             alt=""
             aria-hidden
+            decoding="async"
             className="size-full object-cover blur-[2px]"
           />
           <span
@@ -529,6 +530,7 @@ export default function MobileCuriosidades({
                   <img
                     src={imagenAbierta ?? PLACEHOLDER_IMG}
                     alt={curiosidadAbierta.image.alt}
+                    decoding="async"
                     className="block w-full h-auto"
                   />
                 </div>

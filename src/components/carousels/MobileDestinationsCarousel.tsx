@@ -17,17 +17,28 @@ interface MobileDestinationsCarouselProps {
   destinations: Destination[];
 }
 
-export default function MobileDestinationsCarousel({ destinations }: MobileDestinationsCarouselProps) {
+/**
+ * Carrusel interactivo móvil de destinos turísticos con tarjeta estilo estampa.
+ */
+const MobileDestinationsCarousel = ({
+  destinations,
+}: MobileDestinationsCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { locale } = useLocale();
   const ui = getUiStrings(locale);
 
+  /**
+   * Avanza al siguiente destino si no se ha alcanzado el final.
+   */
   const nextDestination = () => {
     if (currentIndex < destinations.length - 1) {
       setCurrentIndex((prevIndex) => prevIndex + 1);
     }
   };
 
+  /**
+   * Retrocede al destino anterior si no está en el primero.
+   */
   const prevDestination = () => {
     if (currentIndex > 0) {
       setCurrentIndex((prevIndex) => prevIndex - 1);
@@ -49,7 +60,13 @@ export default function MobileDestinationsCarousel({ destinations }: MobileDesti
           disabled={currentIndex === 0}
           className={`shrink-0 w-8 h-8 flex items-center justify-center transition-all ${currentIndex === 0 ? 'opacity-50' : 'active:scale-95'}`}
         >
-          <img src="/Paises/icon flecha carrusel izq.png" alt={ui.previousSlideAria} className="w-full h-full object-contain" />
+          <Image
+            src="/Paises/icon flecha carrusel izq.png"
+            alt={ui.previousSlideAria}
+            width={32}
+            height={32}
+            className="w-full h-full object-contain"
+          />
         </button>
 
         {/* Contenedor principal de la tarjeta (SVG de Estampa) */}
@@ -65,10 +82,12 @@ export default function MobileDestinationsCarousel({ destinations }: MobileDesti
             
             {/* Imagen de fondo */}
             {current.imageSrc ? (
-              <img
+              <Image
                 src={current.imageSrc}
                 alt={current.title}
-                className="absolute inset-0 w-full h-full object-cover z-0"
+                fill
+                sizes="272px"
+                className="object-cover z-0"
               />
             ) : (
               <div className="absolute inset-0 w-full h-full bg-gray-800 flex items-center justify-center text-white text-xl font-bold font-nohemi z-0">
@@ -128,7 +147,13 @@ export default function MobileDestinationsCarousel({ destinations }: MobileDesti
           disabled={currentIndex === destinations.length - 1}
           className={`shrink-0 w-8 h-8 flex items-center justify-center transition-all ${currentIndex === destinations.length - 1 ? 'opacity-50' : 'active:scale-95'}`}
         >
-          <img src="/Paises/icon flecha carrusel derc.png" alt={ui.nextSlideAria} className="w-full h-full object-contain" />
+          <Image
+            src="/Paises/icon flecha carrusel derc.png"
+            alt={ui.nextSlideAria}
+            width={32}
+            height={32}
+            className="w-full h-full object-contain"
+          />
         </button>
 
       </div>
@@ -157,4 +182,6 @@ export default function MobileDestinationsCarousel({ destinations }: MobileDesti
       </nav>
     </div>
   );
-}
+};
+
+export default MobileDestinationsCarousel;

@@ -93,7 +93,7 @@ function CuriosityCard({ countryId, imageSrc, cardX, curiosidad }: CuriosityCard
             className="absolute rounded-[15px] overflow-hidden bg-[#D9E9EE]"
             style={{ left: 9, top: 10, width: 312, height: 206, boxShadow: "0 4px 2px rgba(0,0,0,0.25)" }}
           >
-            <img src={imageSrc} alt={curiosidad.image.alt} className="w-full h-full object-cover" />
+            <img src={imageSrc} alt={curiosidad.image.alt} decoding="async" className="w-full h-full object-cover" />
           </div>
 
           {/* Botón dorado */}
@@ -124,6 +124,7 @@ function CuriosityCard({ countryId, imageSrc, cardX, curiosidad }: CuriosityCard
             <img
               src={imageSrc}
               alt={curiosidad.image.alt}
+              decoding="async"
               className="w-full h-full object-cover"
               style={{ filter: "blur(8px)", transform: "scale(1.15)" }}
             />

@@ -16,7 +16,10 @@ interface HospedajeCardProps {
   images: string[];
 }
 
-function renderStars(rating: number) {
+/**
+ * Genera las estrellas SVG para la puntuación del hotel.
+ */
+const renderStars = (rating: number) => {
   const stars = [];
   for (let i = 1; i <= 5; i++) {
     if (rating >= i) {
@@ -41,23 +44,22 @@ function renderStars(rating: number) {
     }
   }
   return stars;
-}
+};
 
-export default function HospedajeCard({ hotels, images }: HospedajeCardProps) {
+/**
+ * Tarjeta de opciones de hospedaje recomendadas con carrusel hover optimizado.
+ */
+const HospedajeCard = ({ hotels, images }: HospedajeCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const { locale } = useLocale();
   const ui = getUiStrings(locale);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
-    if (isHovered && images.length > 1) {
-      interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-      }, 600);
-    } else {
-      setCurrentIndex(0); // Vuelve a la primera al quitar el hover
-    }
+    if (!isHovered || images.length <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 600);
     return () => clearInterval(interval);
   }, [isHovered, images.length]);
 
@@ -65,7 +67,10 @@ export default function HospedajeCard({ hotels, images }: HospedajeCardProps) {
     <div 
       className="relative bg-[#FF7223] rounded-[24px] p-6 w-full h-full shadow-lg flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1"
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        setCurrentIndex(0);
+      }}
     >
       {/* Ilustración del Hotel (Esquina superior derecha, aparece en hover) */}
       <div 
@@ -168,6 +173,8 @@ export default function HospedajeCard({ hotels, images }: HospedajeCardProps) {
               alt={`Imagen de hospedaje ${idx + 1}`}
               fill
               sizes="332px"
+              loading={idx === 0 ? "eager" : "lazy"}
+              priority={idx === 0}
               className={`object-cover transition-opacity duration-300 ${idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
             />
           ))
@@ -179,4 +186,6 @@ export default function HospedajeCard({ hotels, images }: HospedajeCardProps) {
       </div>
     </div>
   );
-}
+};
+
+export default HospedajeCard;

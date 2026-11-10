@@ -168,6 +168,8 @@ export default function MobileCountry({
           <img
             src={giaSrc}
             alt={giaAlt}
+            loading="lazy"
+            decoding="async"
             fetchPriority="low"
             className="w-full h-full object-contain object-bottom drop-shadow-xl"
           />

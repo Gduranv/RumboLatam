@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import MobileCountry from "@/components/mobile/MobileCountry";
 import DesktopCountry from "@/components/desktop/DesktopCountry";
+import { ResponsiveViewportSwitch } from "@/components/ui/ResponsiveViewportSwitch";
 import { RouteAssetsRegistrar } from "@/components/providers/RouteAssetsRegistrar";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getDestino, getPais, listPaises } from "@/data";
@@ -71,33 +72,38 @@ const CountryPage = async ({ params }: PageProps) => {
     })
   );
 
-  // Las portadas del carrusel van al gate de navegación: son los únicos
-  // assets de esta página que ni el manifiesto ni el chequeo del DOM cubren
-  // (están fuera de pantalla, y el DOM sólo mira lo visible). El hero no hace
-  // falta registrarlo: es lo primero que el gate visual espera en ambos
-  // layouts. Las Gia quedan fuera a propósito: son GIFs de varios MB en una
-  // caja de altura fija, y esperarlas alargaría el loader hasta el tope de
-  // 10 s por un adorno (ver DesktopCountry y visual-ready).
-  const assetsCriticos = Object.values(dynamicDestinationsResources).filter(
+  // Registramos tanto la portada del hero como las portadas de destinos en el gate
+  // para garantizar que la pantalla de carga de Rumbo cubra toda la preparación visual.
+  const destinationCovers = Object.values(dynamicDestinationsResources).filter(
     (url): url is string => Boolean(url)
   );
+  const assetsCriticos = [
+    ...(heroImage ? [heroImage] : []),
+    ...destinationCovers,
+  ];
 
   return (
     <>
       <JsonLd data={buildPaisJsonLd(pais, heroImage)} />
       <RouteAssetsRegistrar urls={assetsCriticos} />
-      <MobileCountry
-        countryId={countryId}
-        dynamicDestinationsResources={dynamicDestinationsResources}
-        dynamicHeroImage={heroImage}
-        dynamicGiaImage={giaImage}
-        dynamicGiaImageMovil={giaMovilImage}
-      />
-      <DesktopCountry
-        countryId={countryId}
-        dynamicDestinationsResources={dynamicDestinationsResources}
-        dynamicHeroImage={heroImage}
-        dynamicGiaImage={giaImage}
+      <ResponsiveViewportSwitch
+        mobile={
+          <MobileCountry
+            countryId={countryId}
+            dynamicDestinationsResources={dynamicDestinationsResources}
+            dynamicHeroImage={heroImage}
+            dynamicGiaImage={giaImage}
+            dynamicGiaImageMovil={giaMovilImage}
+          />
+        }
+        desktop={
+          <DesktopCountry
+            countryId={countryId}
+            dynamicDestinationsResources={dynamicDestinationsResources}
+            dynamicHeroImage={heroImage}
+            dynamicGiaImage={giaImage}
+          />
+        }
       />
     </>
   );

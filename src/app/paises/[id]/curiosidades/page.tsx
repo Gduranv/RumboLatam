@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import MobileCuriosidades from "@/components/mobile/MobileCuriosidades";
 import DesktopCuriosidades from "@/components/desktop/DesktopCuriosidades";
+import { ResponsiveViewportSwitch } from "@/components/ui/ResponsiveViewportSwitch";
+import { RouteAssetsRegistrar } from "@/components/providers/RouteAssetsRegistrar";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getPais, isValidPais, listPaises } from "@/data";
 import { buildCuriosidadesJsonLd } from "@/lib/seo/jsonLd";
@@ -65,16 +67,28 @@ const CuriosidadesPage = async ({ params }: PageProps) => {
   // dejar un <img> apuntando a un archivo inexistente.
   const { curiosidadImages } = getCountryResources(pais);
 
+  const assetsCriticos = [
+    "/OtrosRecursos/mapaCuriosidades.png",
+    ...curiosidadImages.filter((img): img is string => Boolean(img)),
+  ];
+
   return (
     <>
       <JsonLd data={buildCuriosidadesJsonLd(pais)} />
-      <MobileCuriosidades
-        countryId={countryId}
-        curiosidadImages={curiosidadImages}
-      />
-      <DesktopCuriosidades
-        countryId={countryId}
-        curiosidadImages={curiosidadImages}
+      <RouteAssetsRegistrar urls={assetsCriticos} />
+      <ResponsiveViewportSwitch
+        mobile={
+          <MobileCuriosidades
+            countryId={countryId}
+            curiosidadImages={curiosidadImages}
+          />
+        }
+        desktop={
+          <DesktopCuriosidades
+            countryId={countryId}
+            curiosidadImages={curiosidadImages}
+          />
+        }
       />
     </>
   );

@@ -48,6 +48,41 @@ const HOME: RouteAssets = {
   deferred: dedupe(homeDeferred()),
 };
 
+/** Ruta institucional Nosotras con hero y tarjetas principales como críticas. */
+const NOSOTRAS: RouteAssets = {
+  critical: [
+    "/Nosotras/fondo.png",
+    "/Nosotras/foto-hero-1.png",
+    "/Nosotras/foto-hero-2.png",
+    "/Nosotras/card1-foto.png",
+    "/Nosotras/card1-strip.png",
+    "/Nosotras/card3-foto.png",
+    "/Nosotras/card3-foto-top.png",
+  ],
+  deferred: [
+    "/Nosotras/coll-photo-152.png",
+    "/Nosotras/coll-photo-153.png",
+    "/Nosotras/coll-photo-151.png",
+    "/Nosotras/coll-photo-150.png",
+    "/Nosotras/coll-photo-148.png",
+    "/Paises/FlechaAtras.png",
+    "/Paises/logoBlanco.png",
+  ],
+};
+
+/** Assets compartidos de interfaz en rutas de países, curiosidades y destinos. */
+const SHARED_ROUTE_UI_DEFERRED: RouteAssets = {
+  critical: [],
+  deferred: [
+    "/Paises/FlechaAtras.png",
+    "/Paises/logoBlanco.png",
+    "/ICONO-MUSIC.png",
+  ],
+};
+
+/**
+ * Elimina URLs duplicadas manteniendo el orden de aparición.
+ */
 function dedupe(urls: string[]): string[] {
   return [...new Set(urls)];
 }
@@ -64,10 +99,10 @@ export function getRouteAssets(pathname: string | null): RouteAssets {
   if (segments.length === 0) return HOME;
 
   const patterns: Array<[string[], RouteAssets]> = [
-    [["nosotras"], EMPTY],
-    [["paises", "*", "curiosidades"], EMPTY],
-    [["paises", "*"], EMPTY],
-    [["destinos", "*"], EMPTY],
+    [["nosotras"], NOSOTRAS],
+    [["paises", "*", "curiosidades"], SHARED_ROUTE_UI_DEFERRED],
+    [["paises", "*"], SHARED_ROUTE_UI_DEFERRED],
+    [["destinos", "*"], SHARED_ROUTE_UI_DEFERRED],
   ];
 
   for (const [pattern, assets] of patterns) {

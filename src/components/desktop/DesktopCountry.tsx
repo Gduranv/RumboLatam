@@ -103,6 +103,7 @@ export default function DesktopCountry({ countryId, dynamicDestinationsResources
             alt={pais?.giaPais?.alt ?? GIA_PAIS_FALLBACK.alt}
             fill
             unoptimized
+            loading="lazy"
             fetchPriority="low"
             decoding="async"
             className="object-contain"
