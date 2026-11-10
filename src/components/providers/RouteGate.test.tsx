@@ -1,4 +1,4 @@
-﻿import { afterEach, beforeEach, describe, expect, it, vi, type Mock } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi, type Mock } from "vitest";
 import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { RouteGate } from "./RouteGate";
 import { DEFAULT_VISUAL_TIMEOUT_MS } from "@/lib/loading/visual-ready";

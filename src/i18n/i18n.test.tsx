@@ -183,5 +183,193 @@ describe("sistema i18n (LocaleProvider, diccionarios UI, países y destinos)", (
       }
     }
   });
+
+  it("garantiza que la etiqueta/descripción de Hierve el Agua traduce 'Maravilla geológica' y no se sustituye por la ubicación geográfica", () => {
+    const esHierve = getLocalizedDestino("hierve-el-agua", "es");
+    const enHierve = getLocalizedDestino("hierve-el-agua", "en");
+    const ptHierve = getLocalizedDestino("hierve-el-agua", "pt");
+
+    expect(esHierve?.tag).toBe("Maravilla geológica");
+    expect(enHierve?.tag).toBe("Geological wonder");
+    expect(ptHierve?.tag).toBe("Maravilha geológica");
+
+    // Verificar que bajo ningún concepto se reemplace por la ubicación del lugar
+    expect(enHierve?.tag).not.toContain("San Lorenzo Albarradas");
+    expect(enHierve?.tag).not.toContain("Oaxaca");
+    expect(ptHierve?.tag).not.toContain("San Lorenzo Albarradas");
+    expect(ptHierve?.tag).not.toContain("Oaxaca");
+  });
+
+  it("garantiza que cada uno de los 24 destinos traduce fielmente su tag conceptual en vez de usar la ubicación geográfica", () => {
+    const forbiddenLocations = [
+      "Santa Cruz, Patagonia",
+      "Humahuaca, Jujuy",
+      "Puerto Iguazú, Misiones",
+      "Curitiba, Paraná",
+      "Barreirinhas, Maranhão",
+      "Barra de Guaratiba, Rio de Janeiro",
+      "Puerto Río Tranquilo, Aysén",
+      "Lo Barnechea, Metropolitan Region",
+      "Lo Barnechea, Região Metropolitana",
+      "Pucón, La Araucanía",
+      "Sierra Nevada de Santa Marta, Magdalena",
+      "Caldas, Quindío & Risaralda",
+      "Caldas, Quindío e Risaralda",
+      "Ipiales, Nariño",
+      "San Lorenzo Albarradas, Oaxaca",
+      "Miguel Hidalgo, Mexico City",
+      "Miguel Hidalgo, Cidade do México",
+      "Riviera Maya, Quintana Roo",
+      "Paracas, Ica",
+      "Canchis / Quispicanchi, Cusco",
+      "Ica, Peru",
+      "La Altagracia, Eastern Coast",
+      "La Altagracia, Costa Leste",
+      "Santo Domingo Este",
+      "La Romana",
+      "Bolívar State, Gran Sabana",
+      "Estado Bolívar, Gran Sabana",
+      "Tovar Municipality, Aragua State",
+      "Município Tovar, Estado Aragua",
+      "San Esteban National Park, Carabobo",
+      "Parque Nacional San Esteban, Carabobo",
+    ];
+
+    const expectedTags: Record<string, { es: string; en: string; pt: string }> = {
+      "parque-nacional-los-glaciares": {
+        es: "Gigante helado",
+        en: "Frozen giant",
+        pt: "Gigante congelado",
+      },
+      "serrania-de-hornocal": {
+        es: "Prisma ancestral",
+        en: "Ancestral prism",
+        pt: "Prisma ancestral",
+      },
+      "cataratas-del-iguazu": {
+        es: "Maravilla natural",
+        en: "Natural wonder",
+        pt: "Maravilha natural",
+      },
+      "jardin-botanico-curitiba": {
+        es: "Invernadero icónico",
+        en: "Iconic greenhouse",
+        pt: "Estufa icônica",
+      },
+      "lencois-maranhenses": {
+        es: "Desierto inundado",
+        en: "Flooded desert",
+        pt: "Deserto inundado",
+      },
+      "pedra-do-telegrafo": {
+        es: "Abismo visual",
+        en: "Visual abyss",
+        pt: "Abismo visual",
+      },
+      "capillas-de-marmol": {
+        es: "Catedrales del lago",
+        en: "Lake cathedrals",
+        pt: "Catedrais do lago",
+      },
+      "valle-nevado": {
+        es: "Cumbre Alpina",
+        en: "Alpine summit",
+        pt: "Cume alpino",
+      },
+      "volcan-villarrica": {
+        es: "Guardián activo",
+        en: "Active guardian",
+        pt: "Guardião ativo",
+      },
+      "ciudad-perdida": {
+        es: "Rastro arqueológico",
+        en: "Archaeological trace",
+        pt: "Vestígio arqueológico",
+      },
+      "eje-cafetero": {
+        es: "Paisaje cultural",
+        en: "Cultural landscape",
+        pt: "Paisagem cultural",
+      },
+      "santuario-las-lajas": {
+        es: "Templo místico",
+        en: "Mystical temple",
+        pt: "Templo místico",
+      },
+      "hierve-el-agua": {
+        es: "Maravilla geológica",
+        en: "Geological wonder",
+        pt: "Maravilha geológica",
+      },
+      "castillo-de-chapultepec": {
+        es: "Palacio Histórico",
+        en: "Historic Palace",
+        pt: "Palácio Histórico",
+      },
+      tulum: {
+        es: "Ruinas caribeñas",
+        en: "Caribbean ruins",
+        pt: "Ruínas caribenhas",
+      },
+      "isla-ballestas": {
+        es: "Refugio marino",
+        en: "Marine refuge",
+        pt: "Refúgio marinho",
+      },
+      "montana-7-colores": {
+        es: "Arcoíris mineral",
+        en: "Mineral rainbow",
+        pt: "Arco-íris mineral",
+      },
+      "oasis-huacachina": {
+        es: "Espejismo natural",
+        en: "Natural mirage",
+        pt: "Miragem natural",
+      },
+      "punta-cana": {
+        es: "Edén caribeño",
+        en: "Caribbean Eden",
+        pt: "Éden caribenho",
+      },
+      "parque-3-ojos": {
+        es: "Caverna mística",
+        en: "Mystical cavern",
+        pt: "Caverna mística",
+      },
+      "altos-de-chavon": {
+        es: "Villa renacentista",
+        en: "Renaissance village",
+        pt: "Vila renascentista",
+      },
+      canaima: {
+        es: "Patrimonio natural",
+        en: "Natural heritage",
+        pt: "Patrimônio natural",
+      },
+      "colonia-tovar": {
+        es: "Rincón alemán",
+        en: "German corner",
+        pt: "Recanto alemão",
+      },
+      "isla-larga": {
+        es: "Refugio caribeño",
+        en: "Caribbean refuge",
+        pt: "Refúgio caribenho",
+      },
+    };
+
+    for (const [id, expected] of Object.entries(expectedTags)) {
+      const esDest = getLocalizedDestino(id, "es");
+      const enDest = getLocalizedDestino(id, "en");
+      const ptDest = getLocalizedDestino(id, "pt");
+
+      expect(esDest?.tag, `${id} es tag`).toBe(expected.es);
+      expect(enDest?.tag, `${id} en tag`).toBe(expected.en);
+      expect(ptDest?.tag, `${id} pt tag`).toBe(expected.pt);
+
+      expect(forbiddenLocations).not.toContain(enDest?.tag);
+      expect(forbiddenLocations).not.toContain(ptDest?.tag);
+    }
+  });
 });
 

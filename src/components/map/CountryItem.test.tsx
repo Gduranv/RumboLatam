@@ -51,6 +51,44 @@ describe("rastreabilidad SEO de componentes", () => {
     expect(hrefs).toContain("/destinos/colonia-tovar");
   });
 
+  it("DestinationsCarousel adapta el tamaño de fuente y añade truncate cuando el título es largo", () => {
+    const longTitleDestinations = [
+      {
+        id: "jardin-botanico-curitiba",
+        title: "Jardim Botânico de Curitiba",
+        tag: "Estufa",
+        description: "Palácio de cristal.",
+        imageSrc: "/Paises/Brasil/Jardín Botánico de Curitiba BRASIL/PortadaJardinB.webp",
+      },
+    ];
+
+    const { container } = render(
+      <DestinationsCarousel destinations={longTitleDestinations} />
+    );
+    const heading = container.querySelector("h3");
+    expect(heading?.className).toContain("text-[26px]");
+    expect(heading?.className).toContain("truncate");
+  });
+
+  it("MobileDestinationsCarousel adapta el tamaño de fuente y añade truncate cuando el título es largo", () => {
+    const longTitleDestinations = [
+      {
+        id: "jardin-botanico-curitiba",
+        title: "Jardim Botânico de Curitiba",
+        tag: "Estufa",
+        description: "Palácio de cristal.",
+        imageSrc: "/Paises/Brasil/Jardín Botánico de Curitiba BRASIL/PortadaJardinB.webp",
+      },
+    ];
+
+    const { container } = render(
+      <MobileDestinationsCarousel destinations={longTitleDestinations} />
+    );
+    const heading = container.querySelector("h3");
+    expect(heading?.className).toContain("text-[10px]");
+    expect(heading?.className).toContain("truncate");
+  });
+
   it("MobileDestinationsCarousel expone enlaces rastreables a todos los destinos", () => {
     const sampleDestinations = [
       {

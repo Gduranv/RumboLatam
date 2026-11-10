@@ -1,9 +1,10 @@
 "use client";
 
 import type { CSSProperties } from "react";
+import Image from "next/image";
 import ScaleToFitCanvas from "@/components/ui/ScaleToFitCanvas";
 import BackButton from "@/components/ui/BackButton";
-import { getNosotrasStrings, useLocale } from "@/i18n";
+import { getNosotrasStrings, getUiStrings, useLocale } from "@/i18n";
 
 /**
  * Vista desktop de la página Nosotras con soporte multi-idioma.
@@ -11,6 +12,7 @@ import { getNosotrasStrings, useLocale } from "@/i18n";
 const DesktopNosotras = () => {
   const { locale } = useLocale();
   const nosotras = getNosotrasStrings(locale);
+  const ui = getUiStrings(locale);
   const bgScene: CSSProperties = {
     filter: "blur(4.65px)",
     maskImage: "url(/Nosotras/bg-mask.svg)",
@@ -48,8 +50,8 @@ const DesktopNosotras = () => {
           {nosotras.headerTitle}
         </p>
       </div>
-      <ScaleToFitCanvas height={1664} fullWidth>
-        <div className="relative w-[1280px] h-[1664px] shrink-0 bg-azul-claro overflow-hidden">
+      <ScaleToFitCanvas height={1880} fullWidth>
+        <div className="relative w-[1280px] h-[1880px] shrink-0 bg-azul-claro overflow-hidden">
           {/* Ellipse 21 – glow derecho */}
           <div className="absolute left-[973px] top-[849px] w-[532px] h-[499px] pointer-events-none">
             <div className="absolute inset-[-44.51%_-41.75%]">
@@ -487,6 +489,33 @@ const DesktopNosotras = () => {
           <div className="absolute left-[916px] top-[1590px] -translate-y-1/2 w-[243px] h-[80px] flex flex-col justify-center">
             <span className="font-nohemi font-normal text-verde text-[25px] leading-[0.83] tracking-[0.25px]">Mauriany Semprún</span>
           </div>
+
+          {/* Footer institucional con olas y créditos */}
+          <footer className="w-full absolute left-0 right-0 bottom-0 z-20 pointer-events-none" style={{ height: 220 }}>
+            {/* Olas SVG */}
+            <div className="absolute left-0 bottom-0 w-full overflow-hidden leading-none" style={{ height: 220 }}>
+              <svg width="100%" height="220" viewBox="0 0 1280 220" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M628.381 109.615C257.236 153.05 -36.2972 70.2141 -129.392 -4.53375e-06L-158.578 224.213L1306.98 451.28L1360.75 104.267C1091.1 24.3806 822.034 75.2464 628.381 109.615Z" fill="#7DCBE7" />
+              </svg>
+            </div>
+
+            <div className="relative pointer-events-auto flex items-center justify-between px-[101px] pt-[120px] pb-6">
+              <div className="text-[#1D799B] text-[16px] leading-snug tracking-wide font-sans text-left">
+                <p className="font-bold">© 2026 Rumbo Latam.</p>
+                <p className="font-medium">{ui.footerDegreeLine}</p>
+                <p className="font-medium">{ui.footerRightsLine}</p>
+              </div>
+              <div className="relative w-[100px] h-[50px]">
+                <Image
+                  src="/Paises/LogoURBE.png"
+                  alt="Logo URBE"
+                  fill
+                  sizes="100px"
+                  className="object-contain"
+                />
+              </div>
+            </div>
+          </footer>
         </div>
       </ScaleToFitCanvas>
     </main>

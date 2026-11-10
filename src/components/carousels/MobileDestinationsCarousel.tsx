@@ -48,6 +48,7 @@ const MobileDestinationsCarousel = ({
   if (!destinations || destinations.length === 0) return null;
 
   const current = destinations[currentIndex];
+  const isLongTitle = current.title.length > 20;
 
   return (
     <div className="w-full px-2 flex flex-col items-center">
@@ -112,15 +113,19 @@ const MobileDestinationsCarousel = ({
             </svg>
             
             {/* Cabecera de la Tarjeta: Notch Verde (Efecto Carpeta/Folio) */}
-            <div className="absolute top-0 left-0 bg-[#13522B] rounded-tl-[14.5px] rounded-br-[12px] z-20 flex items-center justify-center px-3 py-1.5 shadow-sm max-w-[75%]">
-              <h3 className="text-white text-[12px] font-bold font-nohemi tracking-tight leading-tight truncate">
+            <div className="absolute top-0 left-0 bg-[#13522B] rounded-tl-[14.5px] rounded-br-[12px] z-20 flex items-center justify-center px-3 py-1.5 shadow-sm max-w-[65%]">
+              <h3
+                className={`text-white font-bold font-nohemi tracking-tight leading-tight truncate ${
+                  isLongTitle ? "text-[10px]" : "text-[12px]"
+                }`}
+              >
                 {current.title}
               </h3>
             </div>
 
             {/* Etiqueta (Tag) Superior Derecha */}
-            <div className="absolute top-[6px] right-3 z-20">
-              <span className="text-white font-bold text-[9px] drop-shadow-md">
+            <div className="absolute top-[6px] right-3 z-20 max-w-[32%] flex justify-end">
+              <span className="text-white font-bold text-[9px] drop-shadow-md truncate">
                 {current.tag}
               </span>
             </div>

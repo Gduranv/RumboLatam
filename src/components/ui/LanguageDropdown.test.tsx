@@ -56,6 +56,12 @@ describe("LanguageDropdown", () => {
       const trigger = screen.getByTestId("language-dropdown-trigger");
       expect(trigger).toBeDefined();
       expect(trigger.textContent).toContain("ES");
+
+      const iconImg = trigger.querySelector("img");
+      expect(iconImg).toBeDefined();
+      expect(decodeURIComponent(iconImg?.getAttribute("src") ?? "")).toContain(
+        "/Paises/idioma-logo.png"
+      );
       unmount();
     }
   });

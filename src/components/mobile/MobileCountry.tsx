@@ -219,12 +219,12 @@ export default function MobileCountry({
 
         <div className="flex items-center justify-between">
           <div className="text-[#1D799B] text-[9px] leading-snug tracking-wide font-sans text-left font-medium">
-            <p className="font-bold">© 2024 Rumbo Latam.</p>
+            <p className="font-bold">© 2026 Rumbo Latam.</p>
             <p>{ui.footerDegreeLine}</p>
             <p>{ui.footerRightsLine}</p>
           </div>
           <div className="w-[80px]">
-            <img src="/Paises/LogoURBE.png" alt="Logo URBE" className="w-full h-auto object-contain" />
+            <Image src="/Paises/LogoURBE.png" alt="Logo URBE" width={80} height={40} className="w-full h-auto object-contain" />
           </div>
         </div>
       </footer>

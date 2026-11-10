@@ -64,13 +64,13 @@ export const pais: PaisData = {
 
     {
       id: "parque-3-ojos",
-      title: "Parque de los Tres Ojos",
+      title: "Parque Los Tres Ojos",
       tag: "Lagunas y cavernas",
       description:
         "Tres lagunas de agua cristalina y una caverna de sal que forman uno de los parques más visitados del país. Un lugar donde el agua subterránea emerge y se abre en pozas naturales.",
       image: {
         src: "/Paises/RepublicaDominicana/Parque3ojos/PortadaParque3ojos.webp",
-        alt: "Parque de los Tres Ojos",
+        alt: "Parque Los Tres Ojos",
       },
     },
 

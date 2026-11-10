@@ -385,33 +385,36 @@ const DesktopDestino = ({ destinoId, dynamicResources }: DesktopDestinoProps) =>
       </section>
 
       {/* Capa 6: Footer - Olas Azules */}
-      {/* Ola azul claro */}
-      <div className="absolute left-0 bottom-0 w-full z-0 pointer-events-none">
-        <svg width="100%" height="307" viewBox="0 0 1280 307" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M605.858 118.794C975.571 186.778 1260.57 73.1191 1355.05 9.52168e-05L1389.3 500L-79.1868 500L-125.412 73.9828C145.59 -0.520278 413.204 70.308 605.858 118.794Z" fill="#A3DBEF" />
-        </svg>
-      </div>
+      {/* Footer con olas y créditos */}
+      <footer className="absolute left-0 bottom-0 w-full z-10">
+        {/* Ola azul claro */}
+        <div className="absolute left-0 bottom-0 w-full z-0 pointer-events-none">
+          <svg width="100%" height="307" viewBox="0 0 1280 307" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M605.858 118.794C975.571 186.778 1260.57 73.1191 1355.05 9.52168e-05L1389.3 500L-79.1868 500L-125.412 73.9828C145.59 -0.520278 413.204 70.308 605.858 118.794Z" fill="#A3DBEF" />
+          </svg>
+        </div>
 
-      {/* Ola azul oscuro */}
-      <div className="absolute left-0 bottom-0 w-full z-0 pointer-events-none">
-        <svg width="100%" height="160" viewBox="0 0 1280 160" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M628.381 109.615C257.236 153.05 -36.2972 70.2141 -129.392 -4.53375e-06L-158.578 224.213L1306.98 451.28L1360.75 104.267C1091.1 24.3806 822.034 75.2464 628.381 109.615Z" fill="#7DCBE7" />
-        </svg>
-      </div>
+        {/* Ola azul oscuro */}
+        <div className="absolute left-0 bottom-0 w-full z-0 pointer-events-none">
+          <svg width="100%" height="160" viewBox="0 0 1280 160" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M628.381 109.615C257.236 153.05 -36.2972 70.2141 -129.392 -4.53375e-06L-158.578 224.213L1306.98 451.28L1360.75 104.267C1091.1 24.3806 822.034 75.2464 628.381 109.615Z" fill="#7DCBE7" />
+          </svg>
+        </div>
 
-      {/* Textos del Footer */}
-      <div className="absolute left-0 bottom-[100px] w-full z-10 flex justify-center">
-        <div className="w-full max-w-[1280px] px-10 md:px-[140px] flex items-center justify-between">
-          <div className="text-[#1D799B] text-[16px] leading-snug tracking-wide font-sans">
-            <p className="font-bold">© 2026 Rumbo Latam.</p>
-            <p className="font-medium">{ui.footerDegreeLine}</p>
-            <p className="font-medium">{ui.footerRightsLine}</p>
-          </div>
-          <div className="relative w-[100px] h-[50px]">
-            <Image src="/Paises/LogoURBE.png" alt="Logo URBE" fill className="object-contain" />
+        {/* Textos del Footer */}
+        <div className="relative bottom-[100px] w-full z-10 flex justify-center">
+          <div className="w-full max-w-[1280px] px-10 md:px-[140px] flex items-center justify-between">
+            <div className="text-[#1D799B] text-[16px] leading-snug tracking-wide font-sans">
+              <p className="font-bold">© 2026 Rumbo Latam.</p>
+              <p className="font-medium">{ui.footerDegreeLine}</p>
+              <p className="font-medium">{ui.footerRightsLine}</p>
+            </div>
+            <div className="relative w-[100px] h-[50px]">
+              <Image src="/Paises/LogoURBE.png" alt="Logo URBE" fill className="object-contain" />
+            </div>
           </div>
         </div>
-      </div>
+      </footer>
 
     </main>
   );

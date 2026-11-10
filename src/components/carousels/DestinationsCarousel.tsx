@@ -17,17 +17,26 @@ interface DestinationsCarouselProps {
   destinations: Destination[];
 }
 
-export default function DestinationsCarousel({ destinations }: DestinationsCarouselProps) {
+/**
+ * Carrusel interactivo desktop para los destinos turísticos destacados de un país.
+ */
+const DestinationsCarousel = ({ destinations }: DestinationsCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { locale } = useLocale();
   const ui = getUiStrings(locale);
 
+  /**
+   * Avanza al siguiente destino si no se ha alcanzado el final.
+   */
   const nextDestination = () => {
     if (currentIndex < destinations.length - 1) {
       setCurrentIndex((prevIndex) => prevIndex + 1);
     }
   };
 
+  /**
+   * Retrocede al destino anterior si no se encuentra en el primero.
+   */
   const prevDestination = () => {
     if (currentIndex > 0) {
       setCurrentIndex((prevIndex) => prevIndex - 1);
@@ -37,6 +46,7 @@ export default function DestinationsCarousel({ destinations }: DestinationsCarou
   if (!destinations || destinations.length === 0) return null;
 
   const current = destinations[currentIndex];
+  const isLongTitle = current.title.length > 20;
 
   return (
     <div className="w-full max-w-[986px] h-[594px] flex items-center justify-between mx-auto">
@@ -79,15 +89,23 @@ export default function DestinationsCarousel({ destinations }: DestinationsCarou
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none"></div>
 
           {/* Notch Verde Superior Izquierdo */}
-          <div className="absolute top-0 left-0 w-auto min-w-[54%] max-w-[75%] h-[78px] bg-[#13522B] rounded-tl-[20px] rounded-br-[20px] z-10 flex items-center pl-8 pr-8">
-            <h3 className="text-[#FFF7E2] text-[37.33px] font-bold tracking-tight font-nohemi whitespace-nowrap">
+          <div className="absolute top-0 left-0 w-auto min-w-[48%] max-w-[68%] h-[78px] bg-[#13522B] rounded-tl-[20px] rounded-br-[20px] z-10 flex items-center px-6 xl:px-8 overflow-hidden shadow-sm">
+            <h3
+              className={`text-[#FFF7E2] font-bold tracking-tight font-nohemi whitespace-nowrap truncate max-w-full ${
+                isLongTitle
+                  ? "text-[26px] lg:text-[28px] xl:text-[30px]"
+                  : "text-[32px] xl:text-[37.33px]"
+              }`}
+            >
               {current.title}
             </h3>
           </div>
 
           {/* Etiqueta Superior Derecha (Sobre la foto) */}
-          <div className="absolute top-0 right-[32px] h-[78px] z-10 flex items-center">
-            <span className="text-white font-extrabold text-[24px] font-sans drop-shadow-md">{current.tag}</span>
+          <div className="absolute top-0 right-[32px] h-[78px] z-10 flex items-center max-w-[28%] justify-end">
+            <span className="text-white font-extrabold text-[20px] xl:text-[24px] font-sans drop-shadow-md truncate">
+              {current.tag}
+            </span>
           </div>
 
           {/* Textos y botón inferiores */}
@@ -126,4 +144,6 @@ export default function DestinationsCarousel({ destinations }: DestinationsCarou
       </nav>
     </div>
   );
-}
+};
+
+export default DestinationsCarousel;

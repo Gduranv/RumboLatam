@@ -52,24 +52,24 @@ export const pais: PaisData = {
   destinos: [
     {
       id: "parque-nacional-los-glaciares",
-      title: "Parque los glaciares",
+      title: "Parque Nacional Los Glaciares",
       tag: "Gigante helado",
       description:
         "Hogar de imponentes masas de hielo milenario como el Perito Moreno en Santa Cruz. Un territorio gélido esculpido por el tiempo que te invita a descubrir la majestuosidad austral.",
       image: {
         src: "/Paises/Argentina/Parque nacional los glaciares Arg/PortadaParqueLosGlaciares.webp",
-        alt: "Gigante helado",
+        alt: "Parque Nacional Los Glaciares",
       },
     },
     {
       id: "serrania-de-hornocal",
-      title: "Serrania de Hornocal",
+      title: "Serranía de Hornocal",
       tag: "Prisma ancestral",
       description:
         "El majestuoso cerro de los 14 colores ubicado en la Quebrada de Humahuaca en Jujuy. Una imponente formación geológica que impacta visualmente por sus pliegues calcáreos y matices vivos.",
       image: {
         src: "/Paises/Argentina/Serranía de Hornocal argetina/PortadaSerrania.webp",
-        alt: "Serrania de Hornocal",
+        alt: "Serranía de Hornocal",
       },
     },
     {

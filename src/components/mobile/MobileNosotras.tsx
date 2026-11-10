@@ -1,10 +1,11 @@
 "use client";
 
 import type { CSSProperties } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import ScaleToFitCanvas from "@/components/ui/ScaleToFitCanvas";
 import BackButton from "@/components/ui/BackButton";
-import { getNosotrasStrings, useLocale } from "@/i18n";
+import { getNosotrasStrings, getUiStrings, useLocale } from "@/i18n";
 
 /**
  * Réplica del frame mobile de Figma "Nosotras" (node 935:11092).
@@ -15,6 +16,7 @@ import { getNosotrasStrings, useLocale } from "@/i18n";
 const MobileNosotras = () => {
   const { locale } = useLocale();
   const nosotras = getNosotrasStrings(locale);
+  const ui = getUiStrings(locale);
   const bgScene: CSSProperties = {
     filter: "blur(4.65px)",
     maskImage: "url(/Nosotras/bg-mask.svg)",
@@ -40,8 +42,8 @@ const MobileNosotras = () => {
 
   return (
     <main className="md:hidden w-full min-h-screen bg-azul-claro relative font-sans">
-      <ScaleToFitCanvas height={932} width={430} fullWidth>
-        <div className="relative w-[430px] h-[932px] shrink-0 bg-azul-claro overflow-hidden">
+      <ScaleToFitCanvas height={1050} width={430} fullWidth>
+        <div className="relative w-[430px] h-[1050px] shrink-0 bg-azul-claro overflow-hidden">
           {/* Ellipse 22 – glow derecho */}
           <div className="absolute left-[281px] top-[455px] w-[280px] h-[263px] pointer-events-none">
             <div className="absolute inset-[-84.45%_-79.32%]">
@@ -573,6 +575,37 @@ const MobileNosotras = () => {
               {nosotras.headerTitle}
             </p>
           </div>
+
+          {/* Footer institucional móvil con olas y créditos */}
+          <footer className="w-full absolute left-0 right-0 bottom-0 z-20 pointer-events-none" style={{ height: 120 }}>
+            {/* Ola SVG Arriba */}
+            <div className="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180 -translate-y-[99%]">
+              <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[22px]">
+                <path
+                  d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                  fill="#7DCBE7"
+                />
+              </svg>
+            </div>
+            <div className="absolute inset-0 bg-[#7DCBE7]" />
+
+            <div className="relative pointer-events-auto z-10 flex items-center justify-between px-6 pt-4 pb-3">
+              <div className="text-[#1D799B] text-[9px] leading-snug tracking-wide font-sans text-left font-medium">
+                <p className="font-bold">© 2026 Rumbo Latam.</p>
+                <p>{ui.footerDegreeLine}</p>
+                <p>{ui.footerRightsLine}</p>
+              </div>
+              <div className="relative w-[75px] h-[38px]">
+                <Image
+                  src="/Paises/LogoURBE.png"
+                  alt="Logo URBE"
+                  fill
+                  sizes="75px"
+                  className="object-contain"
+                />
+              </div>
+            </div>
+          </footer>
         </div>
       </ScaleToFitCanvas>
     </main>

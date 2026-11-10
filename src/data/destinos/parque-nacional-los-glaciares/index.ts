@@ -3,11 +3,11 @@ import type { DestinoData } from "@/types";
 export const destino: DestinoData = {
   id: "parque-nacional-los-glaciares",
   paisId: "argentina",
-  name: "Parque nacional los glaciares",
+  name: "Parque Nacional Los Glaciares",
   tag: "Gigante helado",
   hero: {
     src: "/Paises/Argentina/Parque nacional los glaciares Arg/PortadaParqueLosGlaciares.webp",
-    alt: "Parque nacional los glaciares",
+    alt: "Parque Nacional Los Glaciares",
   },
   manualDelViajero: [
     {
@@ -35,18 +35,52 @@ export const destino: DestinoData = {
       { name: "Los alamos hotel", tipo: "Posada", estrellas: 4.5 },
       { name: "Mirador del Lago", tipo: "Hotel", estrellas: 4 },
     ],
-    imagenes: [],
+    imagenes: [
+      "/Paises/Argentina/Parque nacional los glaciares Arg/Hospedaje1.webp",
+      "/Paises/Argentina/Parque nacional los glaciares Arg/Hospedaj2.webp",
+      "/Paises/Argentina/Parque nacional los glaciares Arg/Hospedaj3.webp",
+    ],
   },
   animales: {
     description:
       "Destacan el majestuoso cóndor andino en las cumbres, el huemul entre los bosques, además de zorros colorados y sutiles guanacos en las zonas de estepa.",
-    imagenes: [],
+    imagenes: [
+      "/Paises/Argentina/Parque nacional los glaciares Arg/Animales1.webp",
+      "/Paises/Argentina/Parque nacional los glaciares Arg/Animales2.webp",
+      "/Paises/Argentina/Parque nacional los glaciares Arg/Animales3.webp",
+      "/Paises/Argentina/Parque nacional los glaciares Arg/Animales4.webp",
+    ],
   },
   actividades: {
-    // TODO(contenido): falta el texto de la sección.
     description:
       "Resaltan caminar por las pasarelas frente al Perito Moreno, realizar caminatas sobre el hielo del glaciar con grampones, navegar en catamarán entre enormes témpanos y hacer senderismo en el Fitz Roy.",
-    imagenes: [],
+    imagenes: [
+      "/Paises/Argentina/Parque nacional los glaciares Arg/Actividades1.webp",
+      "/Paises/Argentina/Parque nacional los glaciares Arg/Actividades2.webp",
+      "/Paises/Argentina/Parque nacional los glaciares Arg/Actividades3.webp",
+      "/Paises/Argentina/Parque nacional los glaciares Arg/Actividades4.webp",
+    ],
   },
-  galeria: [],
+  galeria: [
+    {
+      src: "/Paises/Argentina/Parque nacional los glaciares Arg/GaleriaCarrusel1.webp",
+      alt: "Galería Parque Nacional Los Glaciares 1",
+    },
+    {
+      src: "/Paises/Argentina/Parque nacional los glaciares Arg/GaleriaCarrusel2.webp",
+      alt: "Galería Parque Nacional Los Glaciares 2",
+    },
+    {
+      src: "/Paises/Argentina/Parque nacional los glaciares Arg/GaleriaCarrusel3.webp",
+      alt: "Galería Parque Nacional Los Glaciares 3",
+    },
+    {
+      src: "/Paises/Argentina/Parque nacional los glaciares Arg/GaleriaCarrusel4.webp",
+      alt: "Galería Parque Nacional Los Glaciares 4",
+    },
+    {
+      src: "/Paises/Argentina/Parque nacional los glaciares Arg/GaleriaCarrusel5.webp",
+      alt: "Galería Parque Nacional Los Glaciares 5",
+    },
+  ],
 };

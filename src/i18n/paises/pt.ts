@@ -30,7 +30,7 @@ export const PAISES_PT: Record<string, PaisTranslation> = {
     destinos: [
       {
         id: "parque-nacional-los-glaciares",
-        title: "Parque Los Glaciares",
+        title: "Parque Nacional Los Glaciares",
         tag: "Gigante gelado",
         description:
           "Lar de imponentes massas de gelo milenar como o Perito Moreno em Santa Cruz. Um território gélido esculpido pelo tempo que convida a descobrir a majestade austral.",
@@ -92,7 +92,7 @@ export const PAISES_PT: Record<string, PaisTranslation> = {
       {
         id: "jardin-botanico-curitiba",
         title: "Jardim Botânico de Curitiba",
-        tag: "Estufa de cristal",
+        tag: "Estufa",
         description:
           "Um palácio de cristal em estilo art nouveau francês cercado por perfeitos jardins geométricos. Uma joia arquitetônica que abriga a flora tropical e encanta pela simetria visual.",
       },

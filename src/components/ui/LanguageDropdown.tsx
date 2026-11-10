@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { getUiStrings, useLocale, type Locale } from "@/i18n";
 
@@ -132,24 +133,16 @@ export const LanguageDropdown = () => {
         aria-expanded={isOpen}
         aria-label={ui.languageSelectorAria}
         onClick={() => setIsOpen((prev) => !prev)}
-        className="group flex items-center gap-2 md:gap-2.5 h-11 md:h-12 px-3.5 md:px-4 rounded-full bg-[#FFF7E2] border-2 border-[#FF7223] text-[#13522B] shadow-[0_10px_28px_rgba(19,82,43,0.2)] hover:bg-[#FF7223] hover:text-[#FFF7E2] transition-all duration-200 active:scale-95 cursor-pointer"
+        className="group flex items-center gap-2 md:gap-2.5 h-11 md:h-12 px-3.5 md:px-4 rounded-full bg-[#FFF7E2] border-2 border-[#FF7223] text-[#13522B] shadow-[0_10px_28px_rgba(19,82,43,0.2)] hover:bg-[#FFF2D0] hover:shadow-[0_12px_32px_rgba(19,82,43,0.28)] hover:scale-105 transition-all duration-200 active:scale-95 cursor-pointer"
       >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="w-[18px] h-[18px] md:w-5 md:h-5 text-[#FF7223] group-hover:text-[#FFF7E2] transition-colors shrink-0"
+        <Image
+          src="/Paises/idioma-logo.png"
+          alt=""
+          width={36}
+          height={18}
+          className="w-[28px] h-[14px] md:w-[34px] md:h-[17px] object-contain shrink-0"
           aria-hidden="true"
-        >
-          <circle cx="12" cy="12" r="10" />
-          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-          <path d="M2 12h20" />
-        </svg>
+        />
 
         <span className="font-['Nohemi',sans-serif] font-bold text-[13px] md:text-[15px] tracking-wide leading-none pt-[1px]">
           {activeOption.shortLabel}
@@ -164,7 +157,7 @@ export const LanguageDropdown = () => {
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className={`w-3.5 h-3.5 md:w-4 md:h-4 transition-transform duration-200 shrink-0 ${
+          className={`w-3.5 h-3.5 md:w-4 md:h-4 text-[#FF7223] transition-transform duration-200 shrink-0 ${
             isOpen ? "rotate-180" : "rotate-0"
           }`}
           aria-hidden="true"

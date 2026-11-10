@@ -3,11 +3,11 @@ import type { DestinoData } from "@/types";
 export const destino: DestinoData = {
   id: "parque-3-ojos",
   paisId: "repdominicana",
-  name: "Parque de los Tres Ojos",
+  name: "Parque Los Tres Ojos",
   tag: "Caverna mística",
   hero: {
     src: "/Paises/RepublicaDominicana/Parque3ojos/PortadaParque3ojos.webp",
-    alt: "Parque de los Tres Ojos",
+    alt: "Parque Los Tres Ojos",
   },
   manualDelViajero: [
     {

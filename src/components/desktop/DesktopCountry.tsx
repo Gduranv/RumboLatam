@@ -180,24 +180,25 @@ export default function DesktopCountry({ countryId, dynamicDestinationsResources
       </div>
 
       {/* Capa 5: Footer - Ola azul más oscuro (SVG nativo) */}
-      <div className="absolute left-0 bottom-0 w-full z-0 pointer-events-none">
-        <svg width="100%" height="160" viewBox="0 0 1280 160" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M628.381 109.615C257.236 153.05 -36.2972 70.2141 -129.392 -4.53375e-06L-158.578 224.213L1306.98 451.28L1360.75 104.267C1091.1 24.3806 822.034 75.2464 628.381 109.615Z" fill="#7DCBE7" />
-        </svg>
-      </div>
+      <footer className="absolute left-0 bottom-0 w-full z-10">
+        <div className="absolute left-0 bottom-0 w-full z-0 pointer-events-none">
+          <svg width="100%" height="160" viewBox="0 0 1280 160" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M628.381 109.615C257.236 153.05 -36.2972 70.2141 -129.392 -4.53375e-06L-158.578 224.213L1306.98 451.28L1360.75 104.267C1091.1 24.3806 822.034 75.2464 628.381 109.615Z" fill="#7DCBE7" />
+          </svg>
+        </div>
 
-      {/* Contenido del Footer (Textos y Logo) */}
-      <div className="absolute left-0 bottom-[100px] w-full px-[140px] z-10 flex items-center justify-between">
-        <div className="text-[#1D799B] text-[16px] leading-snug tracking-wide font-sans">
-          <p className="font-bold">© 2026 Rumbo Latam.</p>
-          <p className="font-medium">{ui.footerDegreeLine}</p>
-          <p className="font-medium">{ui.footerRightsLine}</p>
+        {/* Contenido del Footer (Textos y Logo) */}
+        <div className="relative bottom-[100px] w-full px-[140px] z-10 flex items-center justify-between">
+          <div className="text-[#1D799B] text-[16px] leading-snug tracking-wide font-sans">
+            <p className="font-bold">© 2026 Rumbo Latam.</p>
+            <p className="font-medium">{ui.footerDegreeLine}</p>
+            <p className="font-medium">{ui.footerRightsLine}</p>
+          </div>
+          <div className="relative w-[100px] h-[50px]">
+            <Image src="/Paises/LogoURBE.png" alt="Logo URBE" fill sizes="100px" className="object-contain" />
+          </div>
         </div>
-        <div className="relative w-[100px] h-[50px]">
-          {/* Aquí irá el logo de URBE cuando se proporcione */}
-          {<Image src="/Paises/LogoURBE.png" alt="Logo URBE" fill sizes="100px" className="object-contain" />}
-        </div>
-      </div>
+      </footer>
     </main>
   );
 }

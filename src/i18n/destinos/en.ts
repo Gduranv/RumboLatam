@@ -4,7 +4,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   // Argentina
   "parque-nacional-los-glaciares": {
     name: "Los Glaciares National Park",
-    tag: "Santa Cruz, Patagonia",
+    tag: "Frozen giant",
     manualDelViajero: [
       {
         title: "Weather",
@@ -29,7 +29,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   },
   "serrania-de-hornocal": {
     name: "Serranía de Hornocal",
-    tag: "Humahuaca, Jujuy",
+    tag: "Ancestral prism",
     manualDelViajero: [
       {
         title: "Weather",
@@ -54,7 +54,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   },
   "cataratas-del-iguazu": {
     name: "Iguazú Falls",
-    tag: "Puerto Iguazú, Misiones",
+    tag: "Natural wonder",
     manualDelViajero: [
       {
         title: "Weather",
@@ -81,7 +81,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   // Brasil
   "jardin-botanico-curitiba": {
     name: "Curitiba Botanical Garden",
-    tag: "Curitiba, Paraná",
+    tag: "Iconic greenhouse",
     manualDelViajero: [
       {
         title: "Weather",
@@ -106,7 +106,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   },
   "lencois-maranhenses": {
     name: "Lençóis Maranhenses",
-    tag: "Barreirinhas, Maranhão",
+    tag: "Flooded desert",
     manualDelViajero: [
       {
         title: "Weather",
@@ -131,7 +131,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   },
   "pedra-do-telegrafo": {
     name: "Pedra do Telégrafo",
-    tag: "Barra de Guaratiba, Rio de Janeiro",
+    tag: "Visual abyss",
     manualDelViajero: [
       {
         title: "Weather",
@@ -158,7 +158,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   // Chile
   "capillas-de-marmol": {
     name: "Marble Caves",
-    tag: "Puerto Río Tranquilo, Aysén",
+    tag: "Lake cathedrals",
     manualDelViajero: [
       {
         title: "Weather",
@@ -183,7 +183,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   },
   "valle-nevado": {
     name: "Valle Nevado",
-    tag: "Lo Barnechea, Metropolitan Region",
+    tag: "Alpine summit",
     manualDelViajero: [
       {
         title: "Weather",
@@ -208,7 +208,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   },
   "volcan-villarrica": {
     name: "Villarrica Volcano",
-    tag: "Pucón, La Araucanía",
+    tag: "Active guardian",
     manualDelViajero: [
       {
         title: "Weather",
@@ -235,7 +235,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   // Colombia
   "ciudad-perdida": {
     name: "Lost City (Teyuna)",
-    tag: "Sierra Nevada de Santa Marta, Magdalena",
+    tag: "Archaeological trace",
     manualDelViajero: [
       {
         title: "Weather",
@@ -260,7 +260,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   },
   "eje-cafetero": {
     name: "Coffee Cultural Landscape",
-    tag: "Caldas, Quindío & Risaralda",
+    tag: "Cultural landscape",
     manualDelViajero: [
       {
         title: "Weather",
@@ -285,7 +285,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   },
   "santuario-las-lajas": {
     name: "Las Lajas Sanctuary",
-    tag: "Ipiales, Nariño",
+    tag: "Mystical temple",
     manualDelViajero: [
       {
         title: "Weather",
@@ -312,7 +312,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   // México
   "hierve-el-agua": {
     name: "Hierve el Agua",
-    tag: "San Lorenzo Albarradas, Oaxaca",
+    tag: "Geological wonder",
     manualDelViajero: [
       {
         title: "Weather",
@@ -337,7 +337,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   },
   "castillo-de-chapultepec": {
     name: "Chapultepec Castle",
-    tag: "Miguel Hidalgo, Mexico City",
+    tag: "Historic Palace",
     manualDelViajero: [
       {
         title: "Weather",
@@ -360,9 +360,9 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
     actividadesDescription:
       "Explore the National Museum of History, Emperor Maximilian and Carlota's royal alcázar, murals by Orozco and Siqueiros, and panoramic terraces overlooking Paseo de la Reforma.",
   },
-  tulum: {
+  "tulum": {
     name: "Tulum Archaeological Zone",
-    tag: "Riviera Maya, Quintana Roo",
+    tag: "Caribbean ruins",
     manualDelViajero: [
       {
         title: "Weather",
@@ -389,7 +389,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   // Perú
   "isla-ballestas": {
     name: "Ballestas Islands",
-    tag: "Paracas, Ica",
+    tag: "Marine refuge",
     manualDelViajero: [
       {
         title: "Weather",
@@ -414,7 +414,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   },
   "montana-7-colores": {
     name: "Rainbow Mountain (Vinicunca)",
-    tag: "Canchis / Quispicanchi, Cusco",
+    tag: "Mineral rainbow",
     manualDelViajero: [
       {
         title: "Weather",
@@ -439,7 +439,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   },
   "oasis-huacachina": {
     name: "Huacachina Oasis",
-    tag: "Ica, Peru",
+    tag: "Natural mirage",
     manualDelViajero: [
       {
         title: "Weather",
@@ -466,7 +466,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   // República Dominicana
   "punta-cana": {
     name: "Punta Cana",
-    tag: "La Altagracia, Eastern Coast",
+    tag: "Caribbean Eden",
     manualDelViajero: [
       {
         title: "Weather",
@@ -491,7 +491,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   },
   "parque-3-ojos": {
     name: "Los Tres Ojos National Park",
-    tag: "Santo Domingo Este",
+    tag: "Mystical cavern",
     manualDelViajero: [
       {
         title: "Weather",
@@ -516,7 +516,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   },
   "altos-de-chavon": {
     name: "Altos de Chavón",
-    tag: "La Romana",
+    tag: "Renaissance village",
     manualDelViajero: [
       {
         title: "Weather",
@@ -541,9 +541,9 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   },
 
   // Venezuela
-  canaima: {
+  "canaima": {
     name: "Canaima National Park",
-    tag: "Bolívar State, Gran Sabana",
+    tag: "Natural heritage",
     manualDelViajero: [
       {
         title: "Weather",
@@ -568,7 +568,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   },
   "colonia-tovar": {
     name: "Colonia Tovar",
-    tag: "Tovar Municipality, Aragua State",
+    tag: "German corner",
     manualDelViajero: [
       {
         title: "Weather",
@@ -593,7 +593,7 @@ export const DESTINOS_EN: Record<string, DestinoTranslation> = {
   },
   "isla-larga": {
     name: "Isla Larga",
-    tag: "San Esteban National Park, Carabobo",
+    tag: "Caribbean refuge",
     manualDelViajero: [
       {
         title: "Weather",

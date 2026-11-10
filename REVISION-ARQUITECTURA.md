@@ -223,7 +223,7 @@ SVG (mapa, brújula) pueden quedarse como `<img>` si no aporta la optimización,
 
 ### 3.15 [BAJO] Inconsistencias menores
 
-- Pie de página: `© 2024` en `MobileCountry.tsx:175` vs `© 2026` en el resto.
+- Pie de página: corregido a `© 2026` de forma consistente en todas las páginas (incluyendo Nosotras mobile y desktop).
 - `DesktopCountry.tsx:144` usa `<CountryHeaderButtons />` sin `backUrl` (va a `/`), mientras el
   móvil vuelve a `/`; en `destinos` sí se pasa `backToCountry`. Comportamiento inconsistente.
 - El README sigue siendo el boilerplate de `create-next-app`.

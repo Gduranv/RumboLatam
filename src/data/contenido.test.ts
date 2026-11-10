@@ -176,4 +176,24 @@ describe("contrato de destinos", () => {
       expect(pais?.curiosidadesNameColor, `curiosidadesNameColor de ${id}`).toBe(color);
     }
   });
+
+  it("verifica títulos canónicos y registro completo de secciones en Argentina y Rep. Dominicana", () => {
+    const rd = getPais("repdominicana");
+    const destino3Ojos = rd?.destinos.find((d) => d.id === "parque-3-ojos");
+    expect(destino3Ojos?.title).toBe("Parque Los Tres Ojos");
+
+    const argentina = getPais("argentina");
+    const glaciares = argentina?.destinos.find((d) => d.id === "parque-nacional-los-glaciares");
+    expect(glaciares?.title).toBe("Parque Nacional Los Glaciares");
+
+    const hornocal = argentina?.destinos.find((d) => d.id === "serrania-de-hornocal");
+    expect(hornocal?.title).toBe("Serranía de Hornocal");
+
+    const destinoGlaciares = DESTINOS.find((d) => d.id === "parque-nacional-los-glaciares");
+    expect(destinoGlaciares?.name).toBe("Parque Nacional Los Glaciares");
+    expect(destinoGlaciares?.hospedaje.imagenes.length).toBeGreaterThan(0);
+    expect(destinoGlaciares?.animales.imagenes.length).toBeGreaterThan(0);
+    expect(destinoGlaciares?.actividades.imagenes.length).toBeGreaterThan(0);
+    expect(destinoGlaciares?.galeria.length).toBeGreaterThan(0);
+  });
 });
